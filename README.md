@@ -1,5 +1,5 @@
 # Zoli's repo
-#
-# Week-1
-## Day-1 - Team
-## Day-2 - GitHub practice
+
+## Week-1
+1. day-1 - Team
+2. day - GitHub practice

@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1507127051 source:d:\greenfox\zoli-g\week-01\day-3\exercise-20\main.c
+	<stdio.h>
+	<stdint.h>
+

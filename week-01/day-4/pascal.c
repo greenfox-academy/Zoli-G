@@ -16,11 +16,13 @@ int main()
     int i, j;
     int size = 7;
     int lines = (size + 1) / 2;
-    int star = lines * 2 - 1;
-    int space = size - star;
+    int star;   //no. of stars in a line
+    int space;    //no. of spaces in indentation in a line
 
     for (i = 1; i <= lines; i++) {
-        //for (j = 1; j <= ((lines - 1) * 2); j++) {printf(" ");}
+        star = lines * 2 - 1;   //no. of stars in a line
+        space = size - star;    //no. of spaces in indentation in a line
+
         printf("*\n");
     }
 

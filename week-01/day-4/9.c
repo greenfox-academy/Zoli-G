@@ -14,16 +14,11 @@ int main()
     num1 = 85;
     num2 = 96;
 
-    float diff = num1 / num2;
-    int diff_digit = diff;
-
-    //printf("%d\n", diff_digit);
-
-    switch (diff_digit) {
-        case 0 :
+    switch (num1 > num2) {
+        case 0:
             printf("Num1 is less than num2.\n");
             break;
-        case 1 :
+        case 1:
             printf("Num1 is greater than num2.\n");
             break;
     }

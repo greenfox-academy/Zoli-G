@@ -13,16 +13,18 @@ int main()
 
     if (a > b) {
         //a, b
-        if (c < a) {max = 1;} else {max = 3;}
+        if (c < a) max = 1;
+        else max = 3;
     }
     else {
         //b, a
-        if (c < b) {max = 2;} else {max = 3;}
+        if (c < b) max = 2;
+        else max = 3;
     }
 
-    if (max == 1) {printf("Max number is %d", a);}
-    if (max == 2) {printf("Max number is %d", b);}
-    if (max == 3) {printf("Max number is %d", c);}
+    if (max == 1) printf("Max number is %d", a);
+    if (max == 2) printf("Max number is %d", b);
+    if (max == 3) printf("Max number is %d", c);
 
     return 0;
 }

@@ -1,6 +1,6 @@
 # Zoli's repository
 GreenFox Academy - Hardware programming course (10/2017 - 02/2018)
-Static-Pallida
+[Static-Pallida]
 
 ## Week-1 (2nd Oct. - 6th Oct.) - Introduction to Git & C
 1. day - [Teambuilding day](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-1)

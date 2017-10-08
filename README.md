@@ -10,8 +10,8 @@ Hardware programming course (10/2017 - 02/2018)
 5. day - [C advanced practice with loops](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-5), Demo 1
 
 ## Week-2 (9th Oct. - 13th Oct.) - Learning basic C
-1. day - 
-2. day - 
-3. day -
-4. day -
-5. day -
+6. day - 
+7. day - 
+8. day -
+9. day -
+10. day -

@@ -41,7 +41,5 @@ int give_me_distance_in_km()
 
 int main()
 {
-
 	return 0;
-
 }

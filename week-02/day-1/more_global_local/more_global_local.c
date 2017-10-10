@@ -16,21 +16,10 @@ int can_they_buy_a_new_tv()
     //if they can, the program should write out that how much
     //money they have after they bought the tv
     //if they can't tell, how much money they need to buy it
-    if (tom_money >= tv_price)
-        printf("Tom can buy this TV! He still have $%d.\n", tom_money - tv_price);
+    if (tom_money + mark_money + jerry_money >= tv_price)
+        printf("The 3 friends can buy this TV! They'll still have $%d.\n", tom_money + mark_money + jerry_money - tv_price);
     else
-        printf("Tom, you cannot buy this TV, sorry. You still need $%d.\n", tv_price - tom_money);
-
-    if (mark_money >= tv_price)
-        printf("Mark can buy this TV! He still have $%d.\n", mark_money - tv_price);
-    else
-        printf("Mark, you cannot buy this TV, sorry. You still need $%d.\n", tv_price - mark_money);
-
-    if (jerry_money >= tv_price)
-        printf("Jerry can buy this TV! He still have $%d.\n", jerry_money - tv_price);
-    else
-        printf("Jerry, you cannot buy this TV, sorry. You still need $%d.\n", tv_price - jerry_money);
-
+        printf("They can't buy this TV. Still need $%d.\n", tv_price - tom_money - mark_money - jerry_money);
 }
 
 int can_they_make_a_cake()
@@ -46,11 +35,16 @@ int can_they_make_a_cake()
 
     //if they can buy all these stuff calculate how much
     //each of them should pay to share the bill equally
+    int money = tom_money + mark_money + jerry_money;
     int sum = milk + chocolate + flour + egg + sugar + salt + oven_shape + cream;
 
-    int shared_cost = sum / 3;  //If equally shared...
+    if (money < sum)
+        printf("They won't eat cake tonight!");
+    else {
+        int shared_cost = sum / 3;  //If equally shared...
 
-    printf("The 3 friend shared cost making cake is $%d.\n", shared_cost);
+        printf("The 3 friend's shared cost (making cake) is $%d.\n", shared_cost);
+    }
 }
 
 int can_they_make_ham_and_eggs()
@@ -64,11 +58,16 @@ int can_they_make_ham_and_eggs()
 
     //if they can buy all these stuff calculate how much
     //each of them should pay to share the bill equally
+    int money = tom_money + mark_money + jerry_money;
     int sum = milk + egg + salt + ham + onion + spice;
 
-    int shared_cost = sum / 3;  //If equally shared...
+    if (money < sum)
+        printf("They won't eat cake tonight!");
+    else {
+        int shared_cost = sum / 3;  //If equally shared...
 
-    printf("The 3 friend shared cost making h&e is $%d.\n", shared_cost);
+        printf("The 3 friend shared cost making h&e is $%d.\n", shared_cost);
+    }
 }
 
 //is there any local or global variables we did not use well?

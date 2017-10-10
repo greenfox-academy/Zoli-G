@@ -1,3 +1,5 @@
 # CodeBlocks
 *.o
 *.exe
+*.cbp
+*.layout

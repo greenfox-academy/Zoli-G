@@ -27,15 +27,15 @@ int main()
     // Then load up the array with integer values
     int i;
     for (i = 0; i < arr_size; i++) {
-        arr[i] = sin(i * 20) * 5;
+        arr[i] = sin(i * 5) * 4;
         printf("%d ", arr[i]);
     }
-    printf("\n\n");
+    //printf("\n\n");
 
     // Finally print all unique elements in array
     for (i = 0; i < arr_size; i++) {    //copy arr to freq
         freq[i] = arr[i];
-        printf("%d ", freq[i]);
+        //printf("%d ", freq[i]);
     }
     printf("Array size is %d.\n", arr_size);
 
@@ -64,7 +64,7 @@ int main()
     for (i = 0; i < arr_size; i++) {    //print freq
         printf("%d ", freq[i]);
     }
-    printf("Array size: %d", arr_size);
+    printf("Array size: %d\n", arr_size);
 
     return 0;
 }

@@ -5,6 +5,7 @@
 // again the parameters value should be stored in a .h file
 // use recursion
 
+int gcd_recursive(int num1, int num2);
 
 int main() {
     //int a = 20;

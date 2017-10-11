@@ -28,10 +28,9 @@ int main() {
 
     petname[i - 1] = 0;
 
-    printf("\nYour pets name is %s.\n", petname);
-
     //TODO:
     // Print it out
+    printf("\nYour pets name is %s.\n", petname);
 
     return 0;
 }

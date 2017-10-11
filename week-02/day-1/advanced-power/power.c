@@ -17,7 +17,7 @@ int main()
 int power_of_number(int base, int power) {
     int i, result = 1;
 
-    if ((base == 1) || (power == 0))
+    if ((base != 0) && (power == 0))
         return 1;
     else if (base == 0)
         return 0;

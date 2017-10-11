@@ -16,8 +16,10 @@ int main()
 int factorial_recursive(int num) {
     if (num == 1)
         return 1;
-    else if (num <= 0)
+    else if (num == 0)
         return 0;
+    else if (num < 0)
+        return -1;      //Error
     else
         return num * factorial_recursive(num - 1);
 }

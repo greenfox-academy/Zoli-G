@@ -41,5 +41,7 @@ int give_me_distance_in_km()
 
 int main()
 {
+    printf("Distance between me and a lighting is %d meters.\n", give_me_distance());
+    printf("This distance represented in kilometers is: %d.", give_me_distance_in_km());
 	return 0;
 }

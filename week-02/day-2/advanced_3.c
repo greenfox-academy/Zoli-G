@@ -30,7 +30,6 @@ int main()
         arr[i] = sin(i * 5) * 4;
         printf("%d ", arr[i]);
     }
-    //printf("\n\n");
 
     // Finally print all unique elements in array
     for (i = 0; i < arr_size; i++) {    //copy arr to freq

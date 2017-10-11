@@ -25,7 +25,7 @@ int main()
     // handle the problem when trying to delete from invalid positions (e.g. negative number)
     int del_id;
     do {
-    printf("\n\nEnter array ID to delete element: ");
+    printf("\n\nEnter array ID to delete element (1 to %d): ", arr_size);
     scanf("%d", &del_id);
     } while ((del_id > arr_size) || (del_id < 0));
 

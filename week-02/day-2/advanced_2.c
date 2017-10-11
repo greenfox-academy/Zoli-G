@@ -9,6 +9,7 @@ int main()
 	// Write a C program to find the two largest element in an array using only 1 for loop
 	int i, max1, max2;
 
+    //print out array
     for (i = 0; i < sizeof(number_array) / sizeof(int); i++) {
         printf("%d ", number_array[i]);
     }
@@ -17,16 +18,13 @@ int main()
     max1 = INT_MIN;
 	max2 = INT_MIN;
 
-	printf("\n\n");
     for (i = 0; i < sizeof(number_array) / sizeof(int); i++) {
         if (number_array[i] > max1) {
             max2 = max1;
             max1 = number_array[i];
-            printf("max1=%d\n", max1);
         }
         else if (number_array[i] > max2) {
             max2 = number_array[i];
-            printf("max2=%d\n", max2);
         }
     }
 

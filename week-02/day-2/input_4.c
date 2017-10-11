@@ -15,6 +15,8 @@ void func() {
     gets(myname);
     printf("\n\tHello ");
     puts(myname);
+
+    printf("\n\n'Gets' function does not work after scanf. A getchar() has been added inbetween.");
 }
 
 int main()
@@ -23,8 +25,6 @@ int main()
     //then asks for a name with gets, and print it out with puts
     //you will notice something is wrong
     //try to solve the problem
-
-    //A: gets does not work after scanf. I added a getchar() inbetween.
 
     func();
 

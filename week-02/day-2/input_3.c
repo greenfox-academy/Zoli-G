@@ -4,17 +4,17 @@ int char_to_ascii(int c) {
     if (c < 0) c += 256;
 
     switch (c) {
-    case  8: printf("Pressed letter: BACKSPACE - ASCII code: %d.\n", c, c);
+    case  8: printf("Pressed button: BACKSPACE - ASCII code: %d.\n", c, c);
              break;
-    case  9: printf("Pressed letter: TAB - ASCII code: %d.\n", c, c);
+    case  9: printf("Pressed button: TAB - ASCII code: %d.\n", c, c);
              break;
-    case 13: printf("Pressed letter: ENTER - ASCII code: %d.\n", c, c);
+    case 13: printf("Pressed button: ENTER - ASCII code: %d.\n", c, c);
              break;
-    case 27: printf("Pressed letter: ESC - ASCII code: %d.\n", c, c);
+    case 27: printf("Pressed button: ESC - ASCII code: %d.\n", c, c);
              break;
-    case 32: printf("Pressed letter: SPACE - ASCII code: %d.\n", c, c);
+    case 32: printf("Pressed button: SPACE - ASCII code: %d.\n", c, c);
              break;
-    default: printf("Pressed letter: '%c' - ASCII code: %d.\n", c, c);
+    default: printf("Pressed button: '%c' - ASCII code: %d.\n", c, c);
     }
 }
 

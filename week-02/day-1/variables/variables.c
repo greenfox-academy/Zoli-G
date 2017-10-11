@@ -41,10 +41,15 @@ int logar(int num) {
 }
 
 int main() {
-        printf("%d. step: %d.\n", counter, logar(4567));
-        printf("%d. step: %d.\n", counter, pi(67));
-        printf("%d. step: %d.\n", counter, multi_if(567));
-        printf("%d. step: %d.\n", counter, half_if(4567));
-        printf("%d. step: %d.\n", counter, add_5(4567));
-        return 0;
+    int num;
+
+    printf("Please enter number to calculate: ");
+    scanf("%d", &num);
+    printf("%d. step: %d.\n", counter, logar(num));
+    printf("%d. step: %d.\n", counter, pi(num));
+    printf("%d. step: %d.\n", counter, multi_if(num));
+    printf("%d. step: %d.\n", counter, half_if(num));
+    printf("%d. step: %d.\n", counter, add_5(num));
+
+    return 0;
 }

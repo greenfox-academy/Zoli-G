@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int prime_array[10000];
+int prime_array[1000000];
 int limit = 2;
 
 void fill_array() {
@@ -38,7 +38,7 @@ void eliminate_non_prime_numbers() {
             check = prime_array[i];
         else
             continue;
-        printf("Eliminating the multiples of %d.\n", check);
+        //printf("Eliminating the multiples of %d.\n", check);
         for (int j = i + check; j <= limit - 2; j += check) {
             prime_array[j] = 0;
         }
@@ -50,11 +50,11 @@ int main()
     printf("Eratosthenes prime finding algorithm\n");
     printf("------------------------------------\n\n");
 
-    while ((limit < 10) || (limit > 10000)) {
-        printf("Please enter limit (10-1000): ");
+    while ((limit < 10) || (limit > 1000000)) {
+        printf("Please enter limit (10-1.000.000): ");
         scanf("%d", &limit);
-        if ((limit < 10) || (limit > 10000))
-            printf("\n\tWrong ingut! Enter integer between 10 and 10000.\n\n");
+        if ((limit < 10) || (limit > 1000000))
+            printf("\n\tWrong ingut! Enter integer between 10 and 1.000.000.\n\n");
         else
             printf("\n\tInput OK! Calculation started...\n\n");
     }

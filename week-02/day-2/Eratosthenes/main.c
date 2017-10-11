@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 int prime_array[1000000];
+int primes_found;
 int limit = 2;
 
 void fill_array() {
@@ -43,6 +44,20 @@ void eliminate_non_prime_numbers() {
     }
 }
 
+void save_to_file() {
+    FILE *f;
+    f = fopen("primes.txt", "w");
+    fprintf(f, "Eratosthenes prime finding algorithm\n");
+    fprintf(f, "------------------------------------\n\n");
+    fprintf(f, "Listing primes from 2 to %d:\n\n", limit);
+    for (int i = 0; i <= limit - 2; i++) {
+        if (prime_array[i] != 0)
+            fprintf(f, "%d ", prime_array[i]);
+    }
+    fprintf(f, "\n\nTotal of %d primes found.", primes_found);
+    fclose(f);
+}
+
 int main()
 {
     printf("Eratosthenes prime finding algorithm\n");
@@ -60,16 +75,16 @@ int main()
     fill_array();
 
     printf("\tWe are searching primes between 2 and %d.\n\n", limit);
-    //print_array();
-
     eliminate_non_prime_numbers();
     printf("\tPlease wait, computing...\n\n");
 
     printf("\nThe found prime numbers are between 2 and %d are:\n", limit);
     printf("---------------------------------------------------\n\n");
 
-    int primes_found = print_array_only_primes();
+    primes_found = print_array_only_primes();
     printf("\n\nTotal of %d primes found.\n\n", primes_found);
+
+    save_to_file();
 
     return 0;
 }

@@ -5,9 +5,8 @@ int prime_array[1000000];
 int limit = 2;
 
 void fill_array() {
-    for (int i = 0; i <= limit - 2; i++) {
+    for (int i = 0; i <= limit - 2; i++)
         prime_array[i] = i + 2;
-    }
 }
 
 void print_array() {
@@ -26,9 +25,8 @@ int print_array_only_primes() {
 }
 
 void del_from_array(int place) {
-    for (int i = place; i <= limit - 2; i++) {
+    for (int i = place; i <= limit - 2; i++)
         prime_array[i] = prime_array[i + 1];
-    }
 }
 
 void eliminate_non_prime_numbers() {
@@ -65,6 +63,7 @@ int main()
     //print_array();
 
     eliminate_non_prime_numbers();
+    printf("\tPlease wait, computing...\n\n");
 
     printf("\nThe found prime numbers are between 2 and %d are:\n", limit);
     printf("---------------------------------------------------\n\n");

@@ -36,7 +36,7 @@ int main()
         freq[i] = arr[i];
         //printf("%d ", freq[i]);
     }
-    printf("Array size is %d.\n", arr_size);
+    printf("(Array size is %d.)\n", arr_size);
 
     i = 0;
     int j = 1;
@@ -63,7 +63,7 @@ int main()
     for (i = 0; i < arr_size; i++) {    //print freq
         printf("%d ", freq[i]);
     }
-    printf("Array size: %d\n", arr_size);
+    printf("(Array size: is %d.)\n", arr_size);
 
     return 0;
 }

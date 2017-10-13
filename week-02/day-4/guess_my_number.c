@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
+#include <conio.h>
 
 int lives = 5;
 
@@ -10,6 +12,8 @@ void init() {
 
     printf("\tIn this game you'll need to guess a number which was already calculated by this computer.\n\tYou can choose the range between 20 and 100.\n\tDon't forget to be brave!\n");
     printf("\t-----------------------------------------------------------------------------------------\n\n");
+
+    lives = 5;
 }
 
 int enter_range() {
@@ -32,7 +36,6 @@ void ask_for_number(int range, int number_guessed) {
     int shot;
     if (lives == 0) {
         printf("\n\n\tSorry your game is over. Better luck next time!\n\tThe guessed number was %d.\n", number_guessed);
-        //restart();
         exit(0);
     }
     printf("\n\tEnter your guess (%d tries to go): ", lives);
@@ -59,29 +62,13 @@ void ask_for_number(int range, int number_guessed) {
 
 }
 
-/*
-void restart() {
-    printf("Do you want to try your luck again? Press ENTER to play or ESC to exit.");
-    char key;
-    do {
-        key = getch();
-        printf("'%d' ", key);
-    } while ((key == 13) || (key == 27));
-
-    switch (key) {
-    case 13: main();
-             break;
-    case 27: exit(0);
-             break;
-    }
-}
-*/
-
 void main() {
-    init();
-    int range = enter_range();
-    int number_guessed = randomize(range);
-    //printf("%d", number_guessed);
-    ask_for_number(range, number_guessed);
+    int range, number_guessed, key;
+
+        init();
+        range = enter_range();
+        number_guessed = randomize(range);
+
+        ask_for_number(range, number_guessed);
 
 }

@@ -28,6 +28,7 @@ int is_palindrom(char* string) {
 //Copies a substring out of the parameter string from start to end position
 char* substring(char string[], int start, int end) {
     char result[64];
+    //char result[end - start + 1];
 
     for (int i = start; i <= end; i++) {
         result[i - start] = string[i];

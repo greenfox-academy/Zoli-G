@@ -17,3 +17,4 @@ Hardware programming course (10/2017 - 02/2018)
 10. day - [C project day 2/2: Anagram search, palindrom making&search, Number guessing, Josephus problem (finishing previous day work)](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-5), Demo 2
 
 ## Week-3 (16th Oct. - 20th Oct.) - Parsing and Type Casting
+Yet to be determined...

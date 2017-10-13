@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 //Is the parameter sting is a palindrome? Returns 0 if not, 1 if it is!
 int is_palindrom(char* string) {

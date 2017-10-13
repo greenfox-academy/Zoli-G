@@ -1,25 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char* create_palindrom(char* text, int size) {
-    char palindrom[size * 2];
+char* create_palindrom(char* text) {
+    int size = strlen(text);
+
+    char text2[size];
 
     for (int i = 0; i < size; i++) {
-        palindrom[i] = text[i];
-        //printf("%c", palindrom[i]);
+        text2[i] = text[size - i - 1];
+        //printf("%c", text2[i]);
     }
 
-    for (int i = size; i < size * 2; i++) {
-        palindrom[i] = text[size * 2 - i - 1];
-        //printf("%c", palindrom[i]);
-    }
-    //printf("size: %d", size*2);
-    palindrom[size * 2] = '\0';
-    //printf("Size of palindrom: %d", strlen(palindrom));
-    return palindrom;
+    text2[size] = '\0';
+
+    return strcat(text, text2);
 }
 
-void main() {
+int main() {
     char word[50];
     char word_size = 0;
 
@@ -29,11 +26,7 @@ void main() {
     printf("Enter string to make palindrom: ");
     scanf("%s", &word);
 
-    word_size = strlen(word);
+    printf("\nPalindrom: %s.\n", create_palindrom(word));
 
-    //printf("%s - %d\n", word, word_size);
-    char p[word_size * 2];
-    strcpy(p, create_palindrom(word, word_size));
-    printf("\nPalindrom: %s.\n", p);
-
+    return 0;
 }

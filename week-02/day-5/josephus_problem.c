@@ -26,9 +26,18 @@
 
 
 int safe_place_for_josephus(int people) {
-
+    return 2 * (people - pow(2, (int)log2(people))) + 1;
 }
 
 void main() {
+    printf("Josephus Problem Solver\n");
+    printf("-----------------------\n\n");
 
+    printf("\tNo. of people in circle \tSafe position*\n");
+
+    for (int i = 1; i <= 20; i++) {
+        printf("\t\t%d \t\t\t\t %d\n", i, safe_place_for_josephus(i));
+    }
+
+    printf("\n*[Safe position is counted from the first (starting) person in the same direction the 'game' continues.]\n");
 }

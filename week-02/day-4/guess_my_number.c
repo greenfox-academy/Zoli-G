@@ -31,8 +31,9 @@ int randomize(int max) {
 void ask_for_number(int range, int number_guessed) {
     int shot;
     if (lives == 0) {
-        printf("\n\tSorry your game is over. Better luck next time!\n\n");
-        restart();
+        printf("\n\n\tSorry your game is over. Better luck next time!\n\tThe guessed number was %d.\n", number_guessed);
+        //restart();
+        exit(0);
     }
     printf("\n\tEnter your guess (%d tries to go): ", lives);
     scanf("%d", &shot);
@@ -42,12 +43,12 @@ void ask_for_number(int range, int number_guessed) {
     }
     else {
         if (shot < number_guessed) {
-            printf("\t\t\t\t\t\tToo low!");
+            printf("\t\t\t\t\t\tToo low! Think of a higher number.");
             lives--;
             return ask_for_number(range, number_guessed);
         }
         else if (shot > number_guessed) {
-            printf("\t\t\t\t\t\tToo high!");
+            printf("\t\t\t\t\t\tToo high! Think of a lower number.");
             lives--;
             return ask_for_number(range, number_guessed);
         }
@@ -58,13 +59,14 @@ void ask_for_number(int range, int number_guessed) {
 
 }
 
+/*
 void restart() {
     printf("Do you want to try your luck again? Press ENTER to play or ESC to exit.");
     char key;
     do {
         key = getch();
-        //printf("%d", key);
-    } while ((key != 13) || (key != 27));
+        printf("'%d' ", key);
+    } while ((key == 13) || (key == 27));
 
     switch (key) {
     case 13: main();
@@ -73,6 +75,7 @@ void restart() {
              break;
     }
 }
+*/
 
 void main() {
     init();

@@ -14,4 +14,4 @@ Hardware programming course (10/2017 - 02/2018)
 7. day - [C arrays (char, int), user inputs (scanf-gets-puts)](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-2)
 8. day - [C practice, finishing & cleaning codes of the previous two days.](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-3)
 9. day - [C project day 1/2: Anagram search, palindrom making&search, Number guessing, Josephus problem](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-4)
-10. day - [C project day 2/2: Anagram search, palindrom making&search, Number guessing, Josephus problem (finishing previous day work)](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-5)
+10. day - [C project day 2/2: Anagram search, palindrom making&search, Number guessing, Josephus problem (finishing previous day work)](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-5), Demo 2

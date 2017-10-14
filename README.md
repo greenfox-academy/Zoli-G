@@ -1,4 +1,5 @@
-# Zoli's repository   ![Greenfox](https://avatars1.githubusercontent.com/u/14247612?s=200&v=4)
+![Greenfox](https://avatars1.githubusercontent.com/u/14247612?s=200&v=4)
+# Zoli's repository   
 ```
 Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 ```

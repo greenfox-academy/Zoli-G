@@ -3,7 +3,7 @@
 #include <string.h>
 
 //Is the parameter sting is a palindrome? Returns 0 if not, 1 if it is!
-int is_palindrom(char* string) {
+int is_palindrom(char string[]) {
     int length = strlen(string);
     int cycles;
 
@@ -19,7 +19,7 @@ int is_palindrom(char* string) {
     for (int i = 0; i < cycles; i++) {
         //printf("Cycle(%d): %d", cycles, i);
         //printf("%c(%d)", string[i], (int)string[i]);
-        if ((int)string[i] != (int)string[length - i - 1])
+        if (string[i] != string[length - i - 1])
             return 0;
     }
     return 1;
@@ -35,6 +35,7 @@ char* substring(char string[], int start, int end) {
         //printf("%c", result[i - start]);
     }
     result[end - start + 1] = '\0';
+    //printf("'%s'\n", result);
     return result;
 }
 
@@ -63,7 +64,7 @@ char* get_palindroms_from_string(char string[]) {
 char* get_palindroms_from_string(char string[]) {
     int length = strlen(string);
     for (int i = 3; i <= length; i++) {             //smallest palindrom size is 3, the largest is the text itself
-        for (int j = 0; j <= length - i; j++) {          //
+        for (int j = 0; j <= length - i; j++) {     //starting position is 0, ending is
             if (is_palindrom(substring(string, j, j + i - 1)) == 1) {
                 printf("Palindrom(i = %d, j = %d): '%s'\n", i, j, substring(string, j, j + i - 1));
             }
@@ -82,4 +83,6 @@ void main() {
     printf("Is the whole string a palindrome? %d\n", is_palindrom(text));
 
     get_palindroms_from_string(text);
+
+    //printf("'%s'\n", substring(text, 5, 20));
 }

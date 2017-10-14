@@ -31,7 +31,7 @@ int main()
         printf("%d ", arr[i]);
     }
 
-    // Finally print all unique elements in array
+    // Fill up unique array
     for (i = 0; i < arr_size; i++) {    //copy arr to freq
         freq[i] = arr[i];
         //printf("%d ", freq[i]);

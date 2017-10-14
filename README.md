@@ -1,7 +1,7 @@
-# Zoli's repository
-Hardware programming course (10/2017 - 02/2018)
-[Static-Pallida]
-
+# Zoli's repository <a href="http://www.greenfoxacademy.com/"><img align="right" width="auto" height="auto" src="https://static.wixstatic.com/media/f4461b_2b82d418d4d24019834d72b5aae5bca5~mv2_d_9000_4167_s_4_2.png/v1/fill/w_250,h_49,al_c,usm_0.66_1.00_0.01/f4461b_2b82d418d4d24019834d72b5aae5bca5~mv2_d_9000_4167_s_4_2.png"></a>
+```
+Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
+```
 ## Week-1 (2nd Oct. - 6th Oct.) - Introduction to Git & C
 1. day - [Teambuilding day](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-1)
 2. day - [Linux terminal commands, GitHub practice, CLI](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-2)

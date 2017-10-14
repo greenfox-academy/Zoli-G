@@ -1,5 +1,7 @@
 # Zoli's repository
+```
 Hardware programming course (10/2017 - 02/2018)
+```
 [Static-Pallida]
 
 ## Week-1 (2nd Oct. - 6th Oct.) - Introduction to Git & C

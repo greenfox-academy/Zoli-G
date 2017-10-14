@@ -1,5 +1,4 @@
-![Greenfox](https://static.wixstatic.com/media/f4461b_2b82d418d4d24019834d72b5aae5bca5~mv2_d_9000_4167_s_4_2.png/v1/fill/w_250,h_49,al_c,usm_0.66_1.00_0.01/f4461b_2b82d418d4d24019834d72b5aae5bca5~mv2_d_9000_4167_s_4_2.png)
-# Zoli's repository   
+# Zoli's repository <img align="right" width="auto" height="auto" src="https://static.wixstatic.com/media/f4461b_2b82d418d4d24019834d72b5aae5bca5~mv2_d_9000_4167_s_4_2.png/v1/fill/w_250,h_49,al_c,usm_0.66_1.00_0.01/f4461b_2b82d418d4d24019834d72b5aae5bca5~mv2_d_9000_4167_s_4_2.png">
 ```
 Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 ```

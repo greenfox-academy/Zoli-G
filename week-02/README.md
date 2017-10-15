@@ -25,6 +25,7 @@ Practise day of the previous two days (finishing tasks)
  - Palindrome searcher: finds sub-palindroms in a given larger string/text
  - Guess my number: in a user inputted range generates a random number and user can guess it
  - Josephus Problem: he's in trouble, we have to save him. N people standing in a circle and from a starting position (1.) every k-th people are killed. Let's calculate the survivng position as a function of n!
+ - Armstrong number: an n-digit number that is equal to the sum of the nth powers of its digits
 
 ## Day-9
 Practise day of the previous day (finishing tasks)

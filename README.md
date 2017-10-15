@@ -4,7 +4,7 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 ```
 :boy: :speech_balloon:`Hi there, welcome to my repository! Here you can find all my work created in this course from day to day. I'm updating it daily. Please feel free to look through my works.`
 ##  :date: <span align="left">Week-1 (2nd Oct. - 6th Oct.) - </span><span align="right">Introduction to Git & C</span>
->1. day - [Teambuilding day](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-1)
+>1. day - Teambuilding day
 >2. day - [Linux terminal commands, GitHub practice, CLI](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-2)
 >3. day - [C (datatypes, bitwise and arithmetic operators): Hello World + 25 exercises](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-3)
 >4. day - [C practice with loops (for, while, do-while, switch): 17 exercises](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-4)

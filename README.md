@@ -20,4 +20,4 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 ##  :date: Week-3 (16th Oct. - 20th Oct.) - Parsing and Type Casting
 Who knows...
 
-@ 2017 | Zoli
+@ 2017 |  :zzz:oli

@@ -21,5 +21,5 @@
  - Palindrome builder: takes a string, prints itself and appends the reversed form of it to create a pelindrom
  - Palindrome searcher: finds sub-palindroms in a given larger string/text
  - Guess my number: in a user inputted range generates a random number and user can guess it
- - Josephus Problem: he's in trouble, we have to save him. N people standing in a circle and from a starting position (1.) every k-th people are killed. Let's calculate the survivng position as a function of n!
+ - Josephus Problem: he's in trouble, we have to save him. N people standing in a circle and from a starting position (1.) every k-th people are killed. Let's calculate the surviving position as a function of n! The first solution is an algebra way approach, the second solution is "graphical" solution with arrays.
  - Armstrong number: an n-digit number that is equal to the sum of the nth powers of its digits

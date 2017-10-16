@@ -4,21 +4,21 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 ```
 :boy: :speech_balloon:`Hi there, welcome to my repository! Here you can find all my work created in this course from day to day. I'm updating it daily. Please feel free to look through my works.`
 ##  :date: <span align="left">Week-1 (2nd Oct. - 6th Oct.) - </span><span align="right">Introduction to Git & C</span>
->1. day - Teambuilding day
->2. day - [Linux terminal commands, GitHub practice, CLI](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-2)
->3. day - [C (datatypes, bitwise and arithmetic operators): Hello World + 25 exercises](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-3)
->4. day - [C practice with loops (for, while, do-while, switch): 17 exercises](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-4)
->5. day - [C advanced practice with loops](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-5), Demo 1
+>Day 1 - Teambuilding day
+>Day 2 - [Linux terminal commands, GitHub practice, CLI](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-2)
+>Day 3 - [C (datatypes, bitwise and arithmetic operators): Hello World + 25 exercises](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-3)
+>Day 4 - [C practice with loops (for, while, do-while, switch): 17 exercises](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-4)
+>Day 5 - [C advanced practice with loops](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-5), Demo 1
 
 ##  :date: Week-2 (9th Oct. - 13th Oct.) - Learning basic C
->6. day - [C functions, global-local variables, include-define, recursion](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-1)
->7. day - [C arrays (char, int), user inputs (scanf-gets-puts)](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-2)
->8. day - C practice, finishing & cleaning codes of the previous two days.
->9. day - [C project day 1/2: Anagram search, palindrom making&search, Number guessing, Josephus problem](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-4)
->10. day - [C project day 2/2: Anagram search, palindrom making&search, Number guessing, Josephus problem (finishing previous day work)](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-5), Demo 2
+>Day 6 - [C functions, global-local variables, include-define, recursion](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-1)
+>Day 7 - [C arrays (char, int), user inputs (scanf-gets-puts)](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-2)
+>Day 8 - C practice, finishing & cleaning codes of the previous two days.
+>Day 9 - [C project day 1/2: Anagram search, palindrom making&search, Number guessing, Josephus problem](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-4)
+>Day 10 - [C project day 2/2: Anagram search, palindrom making&search, Number guessing, Josephus problem (finishing previous day work)](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-5), Demo 2
 
 ##  :date: Week-3 (16th Oct. - 20th Oct.) - Parsing and Type Casting
->11. day - Training for presentation skills (half-day) + Learning about debugging technics in Code::Blocks
+>Day 11 - Training for presentation skills (half-day) + Learning about debugging technics in Code::Blocks
 
 Who knows...
 

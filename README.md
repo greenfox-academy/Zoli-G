@@ -18,6 +18,8 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >10. day - [C project day 2/2: Anagram search, palindrom making&search, Number guessing, Josephus problem (finishing previous day work)](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-5), Demo 2
 
 ##  :date: Week-3 (16th Oct. - 20th Oct.) - Parsing and Type Casting
+>11. day - Training for presentation skills (half-day) + Learning about debugging technics in Code::Blocks
+
 Who knows...
 
 @ 2017 |  :zzz:oli

@@ -13,12 +13,12 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 ##  :date: Week-2 (9th Oct. - 13th Oct.) - Learning basic C
 >6. Day - [C functions, global-local variables, include-define, recursion](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-1)
 >7. Day - [C arrays (char, int), user inputs (scanf-gets-puts)](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-2)
->8. Day - C practice, finishing & cleaning codes of the previous two days.
+>8. Day - C practice: finishing & cleaning codes of the previous two days.
 >9. Day - [C project day 1/2: Anagram search, palindrom making&search, Number guessing, Josephus problem](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-4)
 >10. Day - [C project day 2/2: Anagram search, palindrom making&search, Number guessing, Josephus problem (finishing previous day work)](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-5), Demo 2
 
 ##  :date: Week-3 (16th Oct. - 20th Oct.) - Parsing and Type Casting
->11. Day - Training for presentation skills (half-day) + Learning about debugging technics in Code::Blocks
+>11. Day - Training for presentation skills (half day) + Learning about debugging technics in Code::Blocks (half day)
 
 Who knows...
 

@@ -19,6 +19,7 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 
 ##  :date: Week-3 (16th Oct. - 20th Oct.) - Parsing and Type Casting
 >11. Day - Training for presentation skills (half day) + [Learning about debugging technics in Code::Blocks (half day)](https://github.com/greenfox-academy/Zoli-G/tree/master/week-03/Day-1)
+>12. Day - [Typecasting (temporary change of the type of the variable) and string parsing functions](https://github.com/greenfox-academy/Zoli-G/tree/master/week-03/Day-2)
 
 Who knows...
 

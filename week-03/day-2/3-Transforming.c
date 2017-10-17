@@ -9,6 +9,8 @@ int main()
 
     //TODO: make an integer to string conversion with itoa(), first in binary, then decimal format
     // Store the string in buffer
+    printf("The %d number converted to binary and than string is: %s\n", a, itoa(a, buffer, 2));
+    printf("The %d number converted to string is: %s\n", a, itoa(a, buffer, 10));
 
     return 0;
 }

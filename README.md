@@ -22,7 +22,7 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >12. Day - [Typecasting (temporary change of the type of the variable) and string parsing functions](https://github.com/greenfox-academy/Zoli-G/tree/master/week-03/Day-2)
 >13. Day - C practice: finishing & cleaning codes of the previous day.
 
-Who knows...
+
 
 ---
 @ 2017 |  :zzz:oli

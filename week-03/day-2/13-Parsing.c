@@ -8,8 +8,6 @@ int main ()
 
 	//TODO: write a program which prints out the distance between the first and last occurance of character 's'
 
-  	//printf ("Looking for the 's' character in '%s'.\n", str);
-
   	first = strchr(str,'s');
   	int f = first - str + 1;
 

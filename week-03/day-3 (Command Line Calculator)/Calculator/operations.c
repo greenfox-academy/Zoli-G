@@ -23,3 +23,24 @@ void print_menu() {
 	printf("Hit enter to start!\n");
 	printf("====================================\n");
 }
+
+void promt() {
+	char command[32];
+	while (1) {
+		printf("\n> ");
+		gets(command);
+        if (strcmp(command, "exit") == 0) {
+        	break;
+        }
+        else if (strcmp(command, "clear") == 0) {
+        	clearscreen();
+        }
+        else if (strcmp(command, "help") == 0) {
+        	print_menu();
+        }
+	}
+}
+
+void clearscreen() {
+	system("cls");
+}

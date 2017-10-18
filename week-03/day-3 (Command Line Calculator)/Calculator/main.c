@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "header.h"
 
-
-void main()
+int main()
 {
     print_menu();
+    promt();
 
+    return 0;
 }

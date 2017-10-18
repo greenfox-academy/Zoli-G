@@ -29,7 +29,7 @@ void print_menu() {
 	printf("Hit enter to start!\n");
 	printf("====================================\n");
 }
-
+//--------------------------------------------------------------------------------------------------------------
 void promt() {
 	char command[32];
 	while (1) {
@@ -49,11 +49,11 @@ void promt() {
         }
 	}
 }
-
+//--------------------------------------------------------------------------------------------------------------
 void clearscreen() {
 	system("cls");
 }
-
+//--------------------------------------------------------------------------------------------------------------
 void interpreter(char *command) {
 	char *command_elements[30];
 	char *token;
@@ -73,18 +73,39 @@ void interpreter(char *command) {
 	}
 
 	if (counter < 3) {
-		printf("The command contains less (%d) elements than necessary.\n", counter);
+		//The command contains less elements than necessary, don't bother
+		return;
 	}
-	else if (counter >= 3) {
-		//Ok, so there are at least 3 strings divided by space
 
-		if (is_this_a_number(command_elements[0]) * is_this_a_number(command_elements[2]) == 0)
-			//printf("Both number found and the sum is: %f", atof(command_elements[0]) + atof(command_elements[2]));
-			printf("One of the strings cannot convert to number!");
+	//Ok, so there are at least 3 strings divided by space
+	
+	//Check whether either of the two numbers or the operator is not valid 
+	if (is_this_a_number(command_elements[0]) * is_this_a_number(command_elements[2]) * is_this_an_operator(command_elements[1]) == 0) {
+		return;
+	}
 		
+	//Ok, so finally we can do stuff with the given three date:
+	//Define operands as int or float
+	if (is_this_a_number(command_elements[0]) == 1) {int operand_1 = atoi(command_elements[0]);}
+	else {float operand_1 = atof(command_elements[0]);}
+	if (is_this_a_number(command_elements[2]) == 1) {int operand_2 = atoi(command_elements[2]);}
+	else {float operand_2 = atof(command_elements[2]);}
+
+	switch (is_this_an_operator(command_elements[1])) {
+		case 1: do_summation(operand_1, operand_2); break;
+		case 2: do_subtraction(operand_1, operand_2); break;
+		case 3: do_multiplication(operand_1, operand_2); break;
+		case 4: do_division(operand_1, operand_2); break;
+		case 5: do_mod(operand_1, operand_2); break;
+		case 6: do_squaring(operand_1, operand_2); break;
+		case 7: do_sqrt(operand_1, operand_2); break;
+		case 8: do_logarithm(operand_1, operand_2); break;
+		case 9: do_binto(operand_1, operand_2); break;
+		case 10: do_hexto(operand_1, operand_2); break;
+		case 11: do_decto(operand_1, operand_2); break;
 	}
 }
-
+//--------------------------------------------------------------------------------------------------------------
 int is_this_a_number(char *string) {
 	int no_of_digits_found = 0;
 	int no_of_dots_found = 0;
@@ -121,7 +142,7 @@ int is_this_a_number(char *string) {
 		return 1;											//return 1: integer number
 	}
 }
-
+//--------------------------------------------------------------------------------------------------------------
 int is_this_an_operator(char *string) {
 	char operator_list[11][6] = {"+", "-", "*", "/", "%", "^", "<", "log", "binto", "hexto", "decto"};
 

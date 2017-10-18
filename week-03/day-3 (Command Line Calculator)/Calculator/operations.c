@@ -74,6 +74,7 @@ void interpreter(char *command) {
 
 	if (counter < 3) {
 		//The command contains less elements than necessary, don't bother
+		printf("At least two numbers and the operator is necessary to compute. Mind the space between.\n");
 		return;
 	}
 
@@ -81,28 +82,31 @@ void interpreter(char *command) {
 	
 	//Check whether either of the two numbers or the operator is not valid 
 	if (is_this_a_number(command_elements[0]) * is_this_a_number(command_elements[2]) * is_this_an_operator(command_elements[1]) == 0) {
+		printf("Either the number or the operator is not in a valid format.\n");
 		return;
 	}
 		
 	//Ok, so finally we can do stuff with the given three date:
 	//Define operands as int or float
-	if (is_this_a_number(command_elements[0]) == 1) {int operand_1 = atoi(command_elements[0]);}
-	else {float operand_1 = atof(command_elements[0]);}
-	if (is_this_a_number(command_elements[2]) == 1) {int operand_2 = atoi(command_elements[2]);}
-	else {float operand_2 = atof(command_elements[2]);}
+	float operand_1 = atof(command_elements[0]);
+	float operand_2 = atof(command_elements[2]);
+	//if (is_this_a_number(command_elements[0]) == 1) {int operand_1 = atoi(command_elements[0]);}
+	//else {float operand_1 = atof(command_elements[0]);}
+	//if (is_this_a_number(command_elements[2]) == 1) {int operand_2 = atoi(command_elements[2]);}
+	//else {float operand_2 = atof(command_elements[2]);}
 
 	switch (is_this_an_operator(command_elements[1])) {
 		case 1: do_summation(operand_1, operand_2); break;
 		case 2: do_subtraction(operand_1, operand_2); break;
 		case 3: do_multiplication(operand_1, operand_2); break;
 		case 4: do_division(operand_1, operand_2); break;
-		case 5: do_mod(operand_1, operand_2); break;
+		/*case 5: do_mod(operand_1, operand_2); break;
 		case 6: do_squaring(operand_1, operand_2); break;
 		case 7: do_sqrt(operand_1, operand_2); break;
 		case 8: do_logarithm(operand_1, operand_2); break;
 		case 9: do_binto(operand_1, operand_2); break;
 		case 10: do_hexto(operand_1, operand_2); break;
-		case 11: do_decto(operand_1, operand_2); break;
+		case 11: do_decto(operand_1, operand_2); break;*/
 	}
 }
 //--------------------------------------------------------------------------------------------------------------
@@ -148,8 +152,24 @@ int is_this_an_operator(char *string) {
 
 	for (int i = 0; i < 11; i++) {					//if the parameter matches one of the operators then
 		if (strcmp(string, operator_list[i]) == 0)
-			return i + 1;							//return with an id of the operator
+			return i + 1;							//return with an id of the operator 1 - 11
 	}
 
 	return 0;										//return 0 if it's not a valid operator
+}
+//--------------------------------------------------------------------------------------------------------------
+void do_summation(float operand_1, float operand_2) {
+	printf("%f + %f = %g\n", operand_1, operand_2, operand_1 + operand_2);
+}
+
+void do_subtraction(float operand_1, float operand_2) {
+	printf("%f - %f = %g\n", operand_1, operand_2, operand_1 - operand_2);
+}
+
+void do_multiplication(float operand_1, float operand_2) {
+	printf("%f * %f = %g\n", operand_1, operand_2, operand_1 * operand_2);
+}
+
+void do_division(float operand_1, float operand_2) {
+	printf("%f / %f = %g\n", operand_1, operand_2, operand_1 / operand_2);
 }

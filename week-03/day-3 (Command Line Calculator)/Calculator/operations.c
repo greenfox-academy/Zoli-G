@@ -76,14 +76,10 @@ void interpreter(char *command) {
 		printf("The command contains less (%d) elements than necessary.\n", counter);
 	}
 	else if (counter >= 3) {
-		printf("The command contains more (%d) elements than necessary. Skipping the rest.\n", counter);
-		printf("%s ", command_elements[0]);
-		printf("%s ", command_elements[1]);
-		printf("%s ", command_elements[2]);
+		//Ok, so there are at least 3 strings divided by space
 
-		if (is_this_a_number(command_elements[0]) * is_this_a_number(command_elements[2]) == 1)
-			printf("Both number found and the sum is: %f", atof(command_elements[0]) + atof(command_elements[2]));
-		else
+		if (is_this_a_number(command_elements[0]) * is_this_a_number(command_elements[2]) == 0)
+			//printf("Both number found and the sum is: %f", atof(command_elements[0]) + atof(command_elements[2]));
 			printf("One of the strings cannot convert to number!");
 		
 	}
@@ -92,18 +88,16 @@ void interpreter(char *command) {
 int is_this_a_number(char *string) {
 	int no_of_digits_found = 0;
 	int no_of_dots_found = 0;
-	int index_of_dot = -1;
 	int length = strlen(string);
 
 	for (int i = 0; i < length; i ++) {						//Run through the letters
 		if (isdigit(string[i]) == 0 && string[i] != '.') {	//if the letter is not a number or not a dot
 			printf("\n\tNot a number or dot: %c\n", string[i]);
-			return 0;										//exit
+			return 0;										//exit with 0: not a real number
 		}
 		else if (string[i] == '.') {						//if it's a dot than
 			//printf("\n\tFound a dot: %c\n", string[i]);
 			no_of_dots_found++;								//let's count it, maybe there is more dots.
-			index_of_dot = i;								//save the dot position, maybe it's in a wrong place
 		}
 		else if (isdigit(string[i]) != 0) {					//if it's a number count that too
 			//printf("Found a number: %d\n", string[i]);
@@ -115,15 +109,26 @@ int is_this_a_number(char *string) {
 
 	//If more than two dotts found in the string besides the numbers, than this is not a real number
 	if (no_of_dots_found > 1) {
-		printf("\n\tWay too much dots: %d\n", no_of_dots_found);
-		return 0;
+		printf("\n\tWay too much dots! Not a number: %d\n", no_of_dots_found);
+		return 0;											//exit with 0: not a number, syntax error
+	}
+	else if (no_of_dots_found == 1) {
+		printf("\n\tFloat number!\n");
+		return -1;											//return -1: float number with decimal places
+	}
+	else {
+		printf("\n\tInteger number!\n");
+		return 1;											//return 1: integer number
+	}
+}
+
+int is_this_an_operator(char *string) {
+	char operator_list[11][6] = {"+", "-", "*", "/", "%", "^", "<", "log", "binto", "hexto", "decto"};
+
+	for (int i = 0; i < 11; i++) {					//if the parameter matches one of the operators then
+		if (strcmp(string, operator_list[i]) == 0)
+			return i + 1;							//return with an id of the operator
 	}
 
-	//If the dot position is in the first or last place, than it's also not a number: .45 or 456.
-	//if (index_of_dot == 0 || index_of_dot == length - 1) {
-	//	printf("\n\tInvalid dot position: %d\n", index_of_dot);
-	//	return 0;
-	//}
-
-	return 1;
+	return 0;										//return 0 if it's not a valid operator
 }

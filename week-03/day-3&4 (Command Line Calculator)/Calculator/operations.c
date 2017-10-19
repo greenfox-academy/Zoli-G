@@ -5,29 +5,29 @@
 #include "header.h"
 
 void print_menu() {
-	printf("           CLI Calculator           \n");
-	printf("====================================\n");
-	printf("usage: [number] [operation] [number]\n");
-	printf("Commands:\n");
-	printf("\n");
-	printf("+	summation\n");
-	printf("-	subtraction\n");
-	printf("*	multiplication\n");
-	printf("/	division\n");
-	printf("%	division with remainder\n");
-	printf("^	squaring\n");
-	printf("<	square root\n");
-	printf("log	logarithm\n");
-	printf("binto	binary to hex or dec\n");
-	printf("hexto	hexadecimal to bin or dec\n");
-	printf("decto	decimal to bin or hex\n");
-	printf("====================================\n");
-	printf("exit	exiting from the program\n");
-	printf("clear	clear the screen\n");
-	printf("help	print usage\n");
-	printf("====================================\n");
-	printf("Hit enter to start!\n");
-	printf("====================================\n");
+	printf("           CLI Calculator           \n"
+	"====================================\n"
+	"usage: [number] [operation] [number]\n"
+	"Commands:\n"
+	"\n"
+	"+	summation\n"
+	"-	subtraction\n"
+	"*	multiplication\n"
+	"/	division\n"
+	"%	division with remainder\n"
+	"^	squaring\n"
+	"<	square root\n"
+	"log	logarithm\n"
+	"binto	binary to hex or dec\n"
+	"hexto	hexadecimal to bin or dec\n"
+	"decto	decimal to bin or hex\n"
+	"====================================\n"
+	"exit	exiting from the program\n"
+	"clear	clear the screen\n"
+	"help	print usage\n"
+	"====================================\n"
+	"Hit enter to start!\n"
+	"====================================\n");
 }
 //--------------------------------------------------------------------------------------------------------------
 void promt() {
@@ -84,7 +84,7 @@ void interpreter(char *command) {
 	float operand_1 = 0, operand_2 = 0;
 	//Save the operator type according to the list for future reference:
 	int op_type = is_this_an_operator(command_elements[1]);
-	
+
 	//If the operator is not valid, exit with error
 	if (op_type == 0) {
 		printf("\n\tThe operator is invalid.\n");
@@ -94,7 +94,7 @@ void interpreter(char *command) {
 		printf("\n\tThe second operand is invalid.\n");
 		return;
 	}
-	
+
 	//if the op is not the hex and the second operand is invalid then exit
 	if (op_type != 10 && is_this_a_number(command_elements[0]) == 0) {
 		printf("\n\tThe first operand is invalid (not hex functions).\n");
@@ -302,7 +302,7 @@ void do_hexto(char *operand_1, float operand_2) {
 	int bin_value = 0;
 	char buffer[32];
 	int length = strlen(operand_1);
-	
+
 	//printf("\n\tValues: %s %f, length: %d\n", operand_1, operand_2, length);
 	//check if the hex string contains only 0-F's
 	for (int i = 0; i < length; i++) {

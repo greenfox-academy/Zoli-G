@@ -14,3 +14,4 @@ void do_sqrt(float operand_1, float operand_2);
 void do_logarithm(float operand_1, float operand_2);
 void do_binto(char *operand_1, float operand_2);
 void do_hexto(char *operand_1, float operand_2);
+void do_decto(char *operand_1, float operand_2);

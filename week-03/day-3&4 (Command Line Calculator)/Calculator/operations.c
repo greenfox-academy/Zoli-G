@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <windows.h>
 #include "header.h"
 
 void print_menu() {
@@ -338,7 +339,7 @@ void do_decto(char *operand_1, float operand_2) {
 	//check if the hex string contains only 0-F's
 	for (int i = 0; i < length; i++) {
 		if (strchr("0123456789", operand_1[i]) == NULL) {
-			printf("\n\tNot a decimal number, invalid digits (out of [0,9] range).\n");
+			printf("\n\tNot a decimal integer number, invalid digits (out of [0,9] range).\n");
 			return;
 		}
 	}
@@ -360,3 +361,30 @@ void do_decto(char *operand_1, float operand_2) {
 		printf("\n\tResult: %s\n", buffer);
 	}
 }
+//--------------------------------------------------------------------------------------------------------------
+	COORD coord = {0,0};
+void set_cursor_pos(int x, int y) {
+	coord.X = x;
+	coord.Y = y;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
+int whereX() {
+  CONSOLE_SCREEN_BUFFER_INFO csbi;
+  if (!GetConsoleScreenBufferInfo(
+      GetStdHandle( STD_OUTPUT_HANDLE ),
+      &csbi
+      ))
+    return -1;
+  return csbi.dwCursorPosition.X;
+  }
+
+int whereY() {
+  CONSOLE_SCREEN_BUFFER_INFO csbi;
+  if (!GetConsoleScreenBufferInfo(
+         GetStdHandle( STD_OUTPUT_HANDLE ),
+         &csbi
+         ))
+    return -1;
+  return csbi.dwCursorPosition.Y;
+ }

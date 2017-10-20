@@ -21,7 +21,8 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >11. Day - Training for presentation skills (half day) + [Learning about debugging technics in Code::Blocks (half day)](https://github.com/greenfox-academy/Zoli-G/tree/master/week-03/Day-1)
 >12. Day - [Typecasting (temporary change of the type of the variable) and string parsing functions](https://github.com/greenfox-academy/Zoli-G/tree/master/week-03/Day-2)
 >13. Day - C practice: finishing & cleaning codes of the previous day.
->14 & 15. Day - [C project work: Command Line Calculator](https://github.com/greenfox-academy/Zoli-G/tree/master/week-03/day-3-5%20(Command%20Line%20Calculator)/Calculator) + Demo 3
+>14. Day - [C project work: Command Line Calculator](https://github.com/greenfox-academy/Zoli-G/tree/master/week-03/day-3-5%20(Command%20Line%20Calculator)/Calculator)
+>15. Day - [C project work: Command Line Calculator](https://github.com/greenfox-academy/Zoli-G/tree/master/week-03/day-3-5%20(Command%20Line%20Calculator)/Calculator) + Demo 3
 
 
 

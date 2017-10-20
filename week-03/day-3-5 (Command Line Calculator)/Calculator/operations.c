@@ -190,22 +190,22 @@ int is_this_an_operator(char *string) {
 	}
 	return 0;										//return 0 if it's not a valid operator
 }
-//--------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 void do_summation(float operand_1, float operand_2) {
 	set_cursor_pos();
 	printf(" = %g\n", operand_1 + operand_2);
 }
-
+//---------------------------------------------------------------------------------------------------
 void do_subtraction(float operand_1, float operand_2) {
 	set_cursor_pos();
 	printf(" = %g\n", operand_1 - operand_2);
 }
-
+//---------------------------------------------------------------------------------------------------
 void do_multiplication(float operand_1, float operand_2) {
 	set_cursor_pos();
 	printf(" = %g\n", operand_1 * operand_2);
 }
-
+//---------------------------------------------------------------------------------------------------
 void do_division(float operand_1, float operand_2) {
 	if (operand_2 == 0) {
 		printf("\n\tDivision by zero is not allowed!\n");
@@ -215,7 +215,7 @@ void do_division(float operand_1, float operand_2) {
 		printf(" = %g\n", operand_1 / operand_2);
 	}
 }
-
+//---------------------------------------------------------------------------------------------------
 void do_mod(float operand_1, float operand_2) {
 	if (ceilf(operand_1) != operand_1 || ceilf(operand_2) != operand_2) {
 		printf("\n\tModulus operator needs integer numbers to compute!\n");
@@ -225,7 +225,7 @@ void do_mod(float operand_1, float operand_2) {
 		printf(" = %d\n", (int)operand_1 % (int)operand_2);
 	}
 }
-
+//---------------------------------------------------------------------------------------------------
 void do_squaring(float operand_1, float operand_2) {
 	if (operand_1 == 0 || operand_2 == 0) {
 		set_cursor_pos();
@@ -239,7 +239,7 @@ void do_squaring(float operand_1, float operand_2) {
 		printf(" = %g\n", pow(operand_1, operand_2));
 	}
 }
-
+//---------------------------------------------------------------------------------------------------
 void do_sqrt(float operand_1, float operand_2) {
 	if (operand_1 == 0) {
 		printf("\n\tZero root of a number is not allowed.\n");
@@ -263,7 +263,7 @@ void do_sqrt(float operand_1, float operand_2) {
 		printf(" = %g\n", pow(operand_2, 1./operand_1));
 	}
 }
-
+//---------------------------------------------------------------------------------------------------
 void do_logarithm(float operand_1, float operand_2) {
 	if (operand_1 == 1) {
 		printf("\n\tThe base cannot be 1.\n");
@@ -279,7 +279,7 @@ void do_logarithm(float operand_1, float operand_2) {
 		printf(" = %g\n", log10(operand_2) / log10(operand_1));
 	}
 }
-
+//---------------------------------------------------------------------------------------------------
 void do_binto(char *operand_1, float operand_2) {
 	int bin_value = 0;
 	//char *p;
@@ -312,7 +312,7 @@ void do_binto(char *operand_1, float operand_2) {
 		printf(" = %s\n", buffer);
 	}
 }
-
+//---------------------------------------------------------------------------------------------------
 void do_hexto(char *operand_1, float operand_2) {
 	int bin_value = 0;
 	char buffer[32];
@@ -346,7 +346,7 @@ void do_hexto(char *operand_1, float operand_2) {
 		printf(" = %s\n", buffer);
 	}
 }
-
+//---------------------------------------------------------------------------------------------------
 void do_decto(char *operand_1, float operand_2) {
 	int bin_value = 0;
 	char buffer[32];

@@ -5,7 +5,7 @@
 #include <windows.h>
 #include "header.h"
 
-static char *command_string[32];
+char *command_string[32];
 
 void print_menu() {
 	printf(

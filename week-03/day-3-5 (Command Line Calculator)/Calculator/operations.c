@@ -5,8 +5,11 @@
 #include <windows.h>
 #include "header.h"
 
+static char *command_string[32];
+
 void print_menu() {
-	printf("           CLI Calculator           \n"
+	printf(
+	"           CLI Calculator           \n"
 	"====================================\n"
 	"usage: [number] [operation] [number]\n"
 	"Commands:\n"
@@ -26,8 +29,6 @@ void print_menu() {
 	"exit	exiting from the program\n"
 	"clear	clear the screen\n"
 	"help	print usage\n"
-	"====================================\n"
-	"Hit enter to start!\n"
 	"====================================\n");
 }
 //--------------------------------------------------------------------------------------------------------------
@@ -59,6 +60,8 @@ void interpreter(char *command) {
 	char *command_elements[30];
 	char *token;
 	int counter = 0;
+
+	strcpy(command_string, command);
 
 	//printf("Command: %s\n", command);
 
@@ -163,7 +166,7 @@ int is_this_a_number(char *string) {
 	}
 	//if only one dot is in the string it is a float number. Dot is allowed to be on the first or last position too
 	else if (no_of_dots_found == 1) {
-		printf("\n\tFloat number found: %s\n", string);
+		//printf("\n\tFloat number found: %s\n", string);
 		return -1;											//return -1: float number with decimal places
 	}
 	//if there's no dots and the number is more than 1 digit long, let's not allow the leading 0's: 007 in not a number
@@ -173,7 +176,7 @@ int is_this_a_number(char *string) {
 	}
 	//if non of the above, it's an integer
 	else {
-		printf("\n\tInteger number found: %s\n", string);
+		//printf("\n\tInteger number found: %s\n", string);
 		return 1;											//return 1: integer number
 	}
 }
@@ -189,15 +192,18 @@ int is_this_an_operator(char *string) {
 }
 //--------------------------------------------------------------------------------------------------------------
 void do_summation(float operand_1, float operand_2) {
-	printf("\n\tResult: %f + %f = %g\n", operand_1, operand_2, operand_1 + operand_2);
+	set_cursor_pos();
+	printf(" = %g\n", operand_1 + operand_2);
 }
 
 void do_subtraction(float operand_1, float operand_2) {
-	printf("\n\tResult: %f - %f = %g\n", operand_1, operand_2, operand_1 - operand_2);
+	set_cursor_pos();
+	printf(" = %g\n", operand_1 - operand_2);
 }
 
 void do_multiplication(float operand_1, float operand_2) {
-	printf("\n\tResult: %f * %f = %g\n", operand_1, operand_2, operand_1 * operand_2);
+	set_cursor_pos();
+	printf(" = %g\n", operand_1 * operand_2);
 }
 
 void do_division(float operand_1, float operand_2) {
@@ -205,7 +211,8 @@ void do_division(float operand_1, float operand_2) {
 		printf("\n\tDivision by zero is not allowed!\n");
 	}
 	else {
-		printf("\n\tResult: %f / %f = %g\n", operand_1, operand_2, operand_1 / operand_2);
+		set_cursor_pos();
+		printf(" = %g\n", operand_1 / operand_2);
 	}
 }
 
@@ -214,19 +221,22 @@ void do_mod(float operand_1, float operand_2) {
 		printf("\n\tModulus operator needs integer numbers to compute!\n");
 	}
 	else {
-		printf("\n\tResult: %d mod %d = %d\n", (int)operand_1, (int)operand_2, (int)operand_1 % (int)operand_2);
+		set_cursor_pos();
+		printf(" = %d\n", (int)operand_1 % (int)operand_2);
 	}
 }
 
 void do_squaring(float operand_1, float operand_2) {
 	if (operand_1 == 0 || operand_2 == 0) {
-		printf("\n\tResult: 0\n");
+		set_cursor_pos();
+		printf(" = 0\n");
 	}
 	else if (operand_1 < 0 && ceilf(operand_2) != operand_2) {
 		printf("\n\tIf the base is negative, the power function cannot accept non-integer exponent.\n");
 	}
 	else {
-		printf("\n\tResult: %f ^ %f = %f\n", operand_1, operand_2, pow(operand_1, operand_2));
+		set_cursor_pos();
+		printf(" = %g\n", pow(operand_1, operand_2));
 	}
 }
 
@@ -244,11 +254,13 @@ void do_sqrt(float operand_1, float operand_2) {
 	}
 	//if the root is integer and odd number and the base is negative:
 	else if (ceilf(operand_1) == operand_1 && (int)operand_1 % 2 == 1 && operand_2 < 0) {
-		printf("\n\tResult: %f < %f = %f\n", operand_1, operand_2, -pow(-operand_2, 1/operand_1));
+		set_cursor_pos();
+		printf(" = %g\n", -pow(-operand_2, 1/operand_1));
 	}
 	//by any other cases
 	else {
-		printf("\n\tResult: %f < %f = %f\n", operand_1, operand_2, pow(operand_2, 1./operand_1));
+		set_cursor_pos();
+		printf(" = %g\n", pow(operand_2, 1./operand_1));
 	}
 }
 
@@ -263,9 +275,9 @@ void do_logarithm(float operand_1, float operand_2) {
 		printf("\n\tThe number must be positive.\n");
 	}
 	else {
-		printf("\n\tResult: %f log %f = %f\n", operand_1, operand_2, log10(operand_2) / log10(operand_1));
+		set_cursor_pos();
+		printf(" = %g\n", log10(operand_2) / log10(operand_1));
 	}
-
 }
 
 void do_binto(char *operand_1, float operand_2) {
@@ -290,12 +302,14 @@ void do_binto(char *operand_1, float operand_2) {
 
 	//if the base is 10 do not calculate more, just print out
 	if (operand_2 == 10) {
-		printf("\n\tResult: %d\n", bin_value);
+		set_cursor_pos();
+		printf(" = %d\n", bin_value);
 	}
 	//else convert to string the base-10 value in base op_2 and save it to buffer
 	else {
 		itoa(bin_value, buffer, (int)operand_2);
-		printf("\n\tResult: %s\n", buffer);
+		set_cursor_pos();
+		printf(" = %s\n", buffer);
 	}
 }
 
@@ -322,12 +336,14 @@ void do_hexto(char *operand_1, float operand_2) {
 	//printf("\n\tBin value: %d\n", bin_value);
 	//if the base is 10 do not calculate more, just print out
 	if (operand_2 == 10) {
-		printf("\n\tResult: %d\n", bin_value);
+		set_cursor_pos();
+		printf(" = %d\n", bin_value);
 	}
 	//else convert to string the base-10 value in base op_2 and save it to buffer
 	else {
 		itoa(bin_value, buffer, (int)operand_2);
-		printf("\n\tResult: %s\n", buffer);
+		set_cursor_pos();
+		printf(" = %s\n", buffer);
 	}
 }
 
@@ -353,38 +369,22 @@ void do_decto(char *operand_1, float operand_2) {
 	//printf("\n\tBin value: %d\n", bin_value);
 	//if the base is 10 do not calculate more, just print out
 	if (operand_2 == 10) {
-		printf("\n\tResult: %d\n", bin_value);
+		set_cursor_pos();
+		printf(" = %d\n", bin_value);
 	}
 	//else convert to string the base-10 value in base op_2 and save it to buffer
 	else {
 		itoa(bin_value, buffer, (int)operand_2);
-		printf("\n\tResult: %s\n", buffer);
+		set_cursor_pos();
+		printf(" = %s\n", buffer);
 	}
 }
 //--------------------------------------------------------------------------------------------------------------
-	COORD coord = {0,0};
-void set_cursor_pos(int x, int y) {
-	coord.X = x;
-	coord.Y = y;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+void set_cursor_pos() {
+	CONSOLE_SCREEN_BUFFER_INFO coninfo;
+   	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+   	GetConsoleScreenBufferInfo(hConsole, &coninfo);
+   	coninfo.dwCursorPosition.Y -= 1;
+   	coninfo.dwCursorPosition.X += strlen(command_string) + 2;
+   	SetConsoleCursorPosition(hConsole, coninfo.dwCursorPosition);
 }
-
-int whereX() {
-  CONSOLE_SCREEN_BUFFER_INFO csbi;
-  if (!GetConsoleScreenBufferInfo(
-      GetStdHandle( STD_OUTPUT_HANDLE ),
-      &csbi
-      ))
-    return -1;
-  return csbi.dwCursorPosition.X;
-  }
-
-int whereY() {
-  CONSOLE_SCREEN_BUFFER_INFO csbi;
-  if (!GetConsoleScreenBufferInfo(
-         GetStdHandle( STD_OUTPUT_HANDLE ),
-         &csbi
-         ))
-    return -1;
-  return csbi.dwCursorPosition.Y;
- }

@@ -3,6 +3,8 @@
 #include <string.h>
 #include "header.h"
 
+static char *command_string;
+
 int main()
 {
     print_menu();

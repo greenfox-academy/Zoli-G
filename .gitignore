@@ -9,3 +9,7 @@ obj/
 
 # Other
 *.zip
+
+# Office
+*.pptx
+*.ppsx

@@ -8,7 +8,7 @@ void safe_union(int *a, int l_a, int *b, int l_b, int *result, int l_res) {
     }
 
     for (int j = 0; j < l_b; j++) {
-        *(result + 3 + j) = *(b + j);   //result[3 + j] = b[j];
+        *(result + l_a + j) = *(b + j);   //result[l_a + j] = b[j];
     }
 
     return;

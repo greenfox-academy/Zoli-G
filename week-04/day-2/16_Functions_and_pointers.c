@@ -29,8 +29,7 @@ int assort_odd_elements(int *array, int size) {
 	//Fill the temp array with even numbers from the original array
 	for (int i = 0; i < size; i++) {
 		if (array[i] % 2 == 0) {
-			temp_array[counter] = array[i];
-			//printf("%d ", array[i]);
+			temp_array[counter] = array[i]
 			counter++;
 		}
 	}

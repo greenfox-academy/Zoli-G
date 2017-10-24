@@ -2,7 +2,7 @@
 ```
 Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 ```
-:boy: :speech_balloon:`Hi there, welcome to my repository! Here you can find all my work created in this course from day to day. I'm updating it daily. Please feel free to look through my works.`
+:boy: :speech_balloon:`Hi there, welcome to my repository! Here you can find my works created in this course from day to day. I'm updating it daily. Please feel free to look through my files.`
 ##  :date: Week-1 (2nd Oct. - 6th Oct.) - <i>Introduction to Git & C</i>
 >1. Day - Teambuilding day
 >2. Day - [Linux terminal commands, GitHub practice, CLI](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-2)

@@ -25,6 +25,7 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >15. Day - [C project work: Command Line Calculator](https://github.com/greenfox-academy/Zoli-G/tree/master/week-03/day-3-5%20(Command%20Line%20Calculator)/Calculator), Demo 3
 
 ##  :date: Week-4 (23rd Oct. - 27th Oct.) - <i>Pointers, Struct and Enum</i>
+<img align="right" width="100" src="https://github.com/greenfox-academy/Zoli-G/blob/master/week-04/day-1%20-%201956/1956.png" alt="1956">
 >16. Day - `Memorial Day of the 1956 Revolution - Freedom & Independence!`
 >17. Day - [Pointers, function output parameters](https://github.com/greenfox-academy/Zoli-G/tree/master/week-04/day-2)
 >18. Day <br/>

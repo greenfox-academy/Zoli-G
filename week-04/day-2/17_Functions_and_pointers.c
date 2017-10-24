@@ -27,20 +27,17 @@ char char_frequency(char *string, int *output_freq) {
 
 	//Zero out the new array values
 	for (int i = 0; i < 256; i++) {
-		//printf("%d ", charmap[i]);
 		charmap[i] = 0;
 	}
 
 	//Fill the character map: ex: if we found an 'a' char, then let's increase the map[64]
 	for (int i = 0; i < strlen(string); i++) {
-		//printf("%c-", *(string + i));
 		charmap[string[i]]++;
 	}
 
 	//Let's search for the max values
 	int max = 0, max_counter = 0;
 	for (int i = 0; i < 256; i++) {
-		//printf("%d: [%c - %d]\n", i, i, charmap[i]);
 		if (max < charmap[i]) {
 			max_counter = i;
 			max = charmap[i];

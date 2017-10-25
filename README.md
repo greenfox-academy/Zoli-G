@@ -27,7 +27,7 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 ##  :date: Week-4 (23rd Oct. - 27th Oct.) - <i>Pointers, Struct and Enum</i>
 >16. Day - `Memorial Day of the 1956 Revolution - Freedom & Independence!` <img align="right" width="150" src="https://github.com/greenfox-academy/Zoli-G/blob/master/week-04/day-1%20-%201956/1956.png" alt="1956">
 >17. Day - [Pointers, function output parameters](https://github.com/greenfox-academy/Zoli-G/tree/master/week-04/day-2)
->18. Day
+>18. Day - [Structures, typedef, union, bitfields, enum](https://github.com/greenfox-academy/Zoli-G/tree/master/week-04/day-3)
 >19. Day
 >20. Day
 

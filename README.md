@@ -2,7 +2,7 @@
 ```
 Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 ```
-:boy: :speech_balloon:`Hi there, welcome to my repository! Here you can find all my work created in this course from day to day. I'm updating it daily. Please feel free to look through my works.`
+:boy: :speech_balloon:`Hi there, welcome to my repository! Here you can find my works created in this course from day to day. I'm updating it daily. Please feel free to look through my files.`
 ##  :date: Week-1 (2nd Oct. - 6th Oct.) - <i>Introduction to Git & C</i>
 >1. Day - Teambuilding day
 >2. Day - [Linux terminal commands, GitHub practice, CLI](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-2)
@@ -25,11 +25,11 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >15. Day - [C project work: Command Line Calculator](https://github.com/greenfox-academy/Zoli-G/tree/master/week-03/day-3-5%20(Command%20Line%20Calculator)/Calculator), Demo 3
 
 ##  :date: Week-4 (23rd Oct. - 27th Oct.) - <i>Pointers, Struct and Enum</i>
->16. Day - `Memorial Day of the 1956 Revolution - Freedom & Independence!`
+>16. Day - `Memorial Day of the 1956 Revolution - Freedom & Independence!` <img align="right" width="150" src="https://github.com/greenfox-academy/Zoli-G/blob/master/week-04/day-1%20-%201956/1956.png" alt="1956">
 >17. Day - [Pointers, function output parameters](https://github.com/greenfox-academy/Zoli-G/tree/master/week-04/day-2)
->18. Day <br/>
->19. Day <br/>
->20. Day <br/>
+>18. Day
+>19. Day
+>20. Day
 
 ---
 @ 2017 |  :zzz:oli

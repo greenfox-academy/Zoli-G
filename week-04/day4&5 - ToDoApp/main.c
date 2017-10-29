@@ -10,6 +10,8 @@ void ExitProgram();
 int GetCommand();	//gets the user inputted commands and interprets it
 int GetNoOfQuotsFromText(char string[]);
 void ToDo_add(char param[]);
+void ToDo_write_to_file();
+void ToDo_read_from_file();
 void ToDo_list();
 void ToDo_empty();
 void ToDo_remove(char param[]);
@@ -101,6 +103,8 @@ int GetCommand() {
 	//Run functions according to the command
 	switch (commandID) {
 		case 0 : ToDo_add(enteredCommand_parameters); break;
+		case 1 : ToDo_write_to_file(); break;
+		case 2 : ToDo_read_from_file(); break;
 		case 3 : ToDo_list(); break;
 		case 4 : ToDo_empty(); break;
 		case 5 : ToDo_remove(enteredCommand_parameters); break;
@@ -150,6 +154,43 @@ void ToDo_add(char param[]) {
 		ToDoTaskArray[ToDoTaskElements - 1].TaskPrio = 0;
 		printf("Task saved at position %d.\n", ToDoTaskElements);
 	}
+}
+//----------------------------CASE-1------------------------------------
+void ToDo_write_to_file() {
+	size_t counter = 0;
+	FILE *fp;
+
+	fp = fopen("todo-save.bin", "wb");
+
+	if (fp == 0) {
+		printf("Failed to write to 'todo-save.bin'.\n");
+        return;
+    }
+ 
+ 	for (int i = 0; i < ToDoTaskElements; i++) {
+		counter += fwrite(&(ToDoTaskArray[i]), sizeof(struct ToDoTask), 1, fp);
+    }
+
+    printf("%d record(s) have been saved.\n", counter);
+    
+    fclose(fp);
+}
+//----------------------------CASE-2------------------------------------
+void ToDo_read_from_file() {
+	FILE *fp;
+	size_t i = 0;
+
+	fp = fopen("todo-save.bin", "rb");
+
+	ToDo_empty();
+
+	while (fread(&ToDoTaskArray[i], sizeof(struct ToDoTask), 1, fp) == 1) {
+        i++;
+	}
+
+    ToDoTaskElements = i;
+
+    printf("%d record have been read.\n", i);
 }
 //----------------------------CASE-3------------------------------------
 void ToDo_list() {

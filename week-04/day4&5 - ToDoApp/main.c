@@ -297,7 +297,6 @@ void ToDo_addPrio(char param[]) {
 	}
 }
 //----------------------------CASE-8------------------------------------
-//Recursive function to print tasks sorted by priority in descending order
 void ToDo_listPrio() {
 	struct ToDoTask *pArray[10];
 	struct ToDoTask *p;

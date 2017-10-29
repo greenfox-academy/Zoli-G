@@ -31,5 +31,7 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >19. Day - [Project work - ToDoApp day 1/2](https://github.com/greenfox-academy/Zoli-G/tree/master/week-04/day4%265%20-%20ToDoApp)
 >20. Day - Project work - ToDoApp day 2/2
 
+##  :date: Week-5 (30rd Oct. - 3rd Nov.) - <i>C++, C practice, Exam</i>
+>21. Day
 ---
 @ 2017 |  :zzz:oli

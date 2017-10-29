@@ -28,8 +28,10 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >16. Day - `Memorial Day of the 1956 Revolution - Freedom & Independence!` <img align="right" width="150" src="https://github.com/greenfox-academy/Zoli-G/blob/master/week-04/day-1%20-%201956/1956.png" alt="1956">
 >17. Day - [Pointers, function output parameters](https://github.com/greenfox-academy/Zoli-G/tree/master/week-04/day-2)
 >18. Day - [Structures, typedef, union, bitfields, enum](https://github.com/greenfox-academy/Zoli-G/tree/master/week-04/day-3)
->19. Day
->20. Day
+>19. Day - [Project work - ToDoApp day 1/2](https://github.com/greenfox-academy/Zoli-G/tree/master/week-04/day4%265%20-%20ToDoApp)
+>20. Day - Project work - ToDoApp day 2/2
 
+##  :date: Week-5 (30rd Oct. - 3rd Nov.) - <i>C++, C practice, Exam</i>
+>21. Day
 ---
 @ 2017 |  :zzz:oli

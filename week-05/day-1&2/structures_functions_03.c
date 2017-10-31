@@ -66,9 +66,9 @@ int REPLACE(int index, int num) {
 
 void SORT() {
 	int temp = 0;
-	for (int i = 0; i < arrS.level; i++) {
-		for (int j = 0; j < arrS.level - i; j++) {
-			if (arrS.array[j] > arrS.array[j + i]){
+	for (int i = 0; i < arrS.level - 1; i++) {
+		for (int j = 0; j < arrS.level - 1 - i; j++) {
+			if (arrS.array[j] > arrS.array[j + 1]){
 				temp = arrS.array[j];
 				arrS.array[j] = arrS.array[j + 1];
 				arrS.array[j + 1] = temp;

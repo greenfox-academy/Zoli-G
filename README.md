@@ -29,7 +29,7 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >17. Day - [Pointers, function output parameters](https://github.com/greenfox-academy/Zoli-G/tree/master/week-04/day-2)
 >18. Day - [Structures, typedef, union, bitfields, enum](https://github.com/greenfox-academy/Zoli-G/tree/master/week-04/day-3)
 >19. Day - [Project work - ToDoApp day 1/2](https://github.com/greenfox-academy/Zoli-G/tree/master/week-04/day4%265%20-%20ToDoApp)
->20. Day - Project work - ToDoApp day 2/2
+>20. Day - Project work - ToDoApp day 2/2, Demo 4
 
 ##  :date: Week-5 (30th Oct. - 3rd Nov.) - <i>C practice, Exam</i>
 >21. Day - Training day for stress management + [C pratice day 1/2: arrays, pointers, functions, enums, file IO](https://github.com/greenfox-academy/Zoli-G/tree/master/week-05/day-1%262)

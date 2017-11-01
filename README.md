@@ -34,6 +34,6 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 ##  :date: Week-5 (30th Oct. - 3rd Nov.) - <i>C++, C practice, Exam</i>
 >21. Day - Training day for stress management + [C pratice day 1/2: arrays, pointers, functions, enums, file IO](https://github.com/greenfox-academy/Zoli-G/tree/master/week-05/day-1%262)
 >22. Day - C pratice day 2/2
->23. Day - `All Saints' Day`
+>23. Day - `All Saints' Day`  :church:
 ---
 @ 2017 |  :zzz:oli

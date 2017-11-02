@@ -26,10 +26,10 @@ int main() {
 	unsigned char key;
 
 	system("cls");
-	printf("Move with [a,s,d,w]\n");
+	printf("Move with [a,s,d,w], ESC to quit!\n");
 	do {
 		set_cursor_pos(x, y);
-		//printf("[Zoli]");
+
 		printf("%c", 219);
 
 		key = getch();
@@ -38,9 +38,10 @@ int main() {
 			case LEFT : if (x >= 1) set_cursor_pos(--x, y); break;
 			case UP : if (y >= 1) set_cursor_pos(x, --y); break;
 			case DOWN : if (y <= 25) set_cursor_pos(x, ++y); break;
+			default : printf("%d", key);
 		}
 	} while (key != 27);
-	
+
 	return 0;
 }
 

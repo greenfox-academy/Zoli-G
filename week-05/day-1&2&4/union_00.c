@@ -25,6 +25,7 @@ int main(){
 
     //It's possible to access the integers in 1 bytes chunks: 10 digit num stored in 4 bytes
 	printf("The 4 byte number values in byte-by-byte: %d-%d-%d-%d\n", X.asChar[3], X.asChar[2], X.asChar[1], X.asChar[0]);
+	printf("The 4 byte number values in byte-by-byte: %c-%c-%c-%c\n", X.asChar[3], X.asChar[2], X.asChar[1], X.asChar[0]);
 
     return 0;
 }

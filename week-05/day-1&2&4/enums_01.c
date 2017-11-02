@@ -38,7 +38,6 @@ int main() {
 			case LEFT : if (x >= 1) set_cursor_pos(--x, y); break;
 			case UP : if (y >= 1) set_cursor_pos(x, --y); break;
 			case DOWN : if (y <= 25) set_cursor_pos(x, ++y); break;
-			default : printf("%d", key);
 		}
 	} while (key != 27);
 

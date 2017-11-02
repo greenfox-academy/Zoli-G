@@ -32,10 +32,10 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >20. Day - Project work - ToDoApp day 2/2, Demo 4
 
 ##  :date: Week-5 (30th Oct. - 3rd Nov.) - <i>C practice, Exam</i>
->21. Day - Training day for stress management + [C pratice day 1/2: arrays, pointers, functions, enums, file IO](https://github.com/greenfox-academy/Zoli-G/tree/master/week-05/day-1%262)
->22. Day - C pratice day 2/2
+>21. Day - Training day for stress management + [C pratice day 1/3: arrays, pointers, functions, enums, file IO](https://github.com/greenfox-academy/Zoli-G/tree/master/week-05/day-1%262)
+>22. Day - C pratice day 2/3
 >23. Day - `All Saints' Day`  :church:
->24. Day - ???
+>24. Day - C pratice day 3/3
 >25. Day - Exam - ???
 ---
 @ 2017 |  :zzz:oli

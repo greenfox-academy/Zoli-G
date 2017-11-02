@@ -36,6 +36,6 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >22. Day - C pratice day 2/3
 >23. Day - `All Saints' Day`  :church:
 >24. Day - C pratice day 3/3
->25. Day - Exam - ???
+>25. Day - Exam  :memo: - ???
 ---
-@ 2017 |  :zzz:oli
+ :copyright: 2017 |  :zzz:oli

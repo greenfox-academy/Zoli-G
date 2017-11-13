@@ -26,13 +26,13 @@ int main() {
   for (size_t i = 0; i <= *count - 1; i++) {
     cout << "Enter #" << i + 1 << ": ";
     cin >> *num;
-    v[i] = *num;
+    *(v + i) = *num;
   }
 
   //Average
   float *sum = NULL;
   sum = new float;
-  for (int i = 0; i <= *count - 1; i++) {
+  for (size_t i = 0; i <= *count - 1; i++) {
     *sum += *(v + i);
   }
   cout << endl << "The average is: " << *sum / *count;

@@ -16,6 +16,6 @@ namespace Person {
 
 int main()
 {
-    std::cout << Person::BOY(36) << std::endl;
+    std::cout << "My birth year: " << Person::BOY(Person::age) << std::endl;
     return 0;
 }

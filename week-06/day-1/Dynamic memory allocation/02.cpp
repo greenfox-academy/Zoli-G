@@ -37,8 +37,8 @@ int main() {
   }
   cout << endl << "The average is: " << *sum / *count;
 
-  delete [] v;
-  delete count;
+  delete [] v, count;
+  //delete count;
   delete num;
   delete sum;
 

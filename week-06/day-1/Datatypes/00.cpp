@@ -23,6 +23,6 @@ int main()
 
    cout << name << endl;
    cout << age << endl;
-   cout << likes_coffee << (coffee == true ? "yes" : "no") << endl;
+   cout << likes_coffee << (coffee == true ? "Yes!" : "Noooo, not healthy.") << endl;
    return 0;
 }

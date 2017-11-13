@@ -41,7 +41,7 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 <h3 align="center">One week holiday</h3>
 
 ## :date: Week-6 (13th Nov. - 17th Nov.) - <i>C++ intro week</i>
->26. Day - C++ (user IO `cout` `cin` | `string` | `vector` | DMA `new`)
+>26. Day - [C++](https://github.com/greenfox-academy/Zoli-G/tree/master/week-06/day-1) (user IO `cout` `cin` | `string` | `vector` | DMA `new`)
 >27. Day
 >28. Day
 >29. Day

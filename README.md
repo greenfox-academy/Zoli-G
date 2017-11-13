@@ -37,5 +37,14 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >23. Day - `All Saints' Day`  :church:
 >24. Day - C pratice day 3/3
 >25. Day - Exam  :memo:  :heavy_check_mark:
+
+## A week holiday
+
+## :date: Week-6 (13th Nov. - 17th Nov.) - <i>C++ intro week</i>
+>26. Day
+>27. Day
+>28. Day
+>29. Day
+>30. Day
 ---
  :copyright: 2017 |  :zzz:oli

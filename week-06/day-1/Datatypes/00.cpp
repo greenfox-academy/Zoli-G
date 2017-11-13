@@ -17,12 +17,12 @@ int main()
 {
    string name = "Zoli";
    string age = "36";
-   string likes_coffee = "Likes coffe: ";
+   string likes_coffee = "Do I like coffe? - ";
 
    bool coffee = false;
 
    cout << name << endl;
    cout << age << endl;
-   cout << likes_coffee << coffee << endl;
+   cout << likes_coffee << (coffee == true ? "yes" : "no") << endl;
    return 0;
 }

@@ -11,7 +11,7 @@
 void sortarray(int *p, unsigned int length);
 
 int main() {
-  
+
 	//Creating array
 	int array[12];
 
@@ -20,7 +20,7 @@ int main() {
 
 	//Called once for random generation
 	srand(time(NULL));
- 
+
  	//Filling out array with random numbers and printing out
  	printf("Original array: ");
 	for (int i = 0; i < 12; i++) {

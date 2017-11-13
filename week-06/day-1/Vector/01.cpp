@@ -3,7 +3,7 @@
 
 using namespace std;
 
-//create an integer vector with the size of 5 and print the 3rd element of it
+//create an integer vector with the size of 5 and print all elements of it
 
 int main() {
   vector<int> v = {3, 67, 88, 432, 0};

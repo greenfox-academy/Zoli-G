@@ -38,7 +38,7 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >24. Day - C pratice day 3/3
 >25. Day - Exam  :memo:  :heavy_check_mark:
 
-## A week holiday
+<center>## A week holiday</center>
 
 ## :date: Week-6 (13th Nov. - 17th Nov.) - <i>C++ intro week</i>
 >26. Day

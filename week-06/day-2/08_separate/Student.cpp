@@ -1,9 +1,10 @@
+#include <iostream>
 #include "Student.h"
 
 Student::~Student()
 {
     grades.clear();
-    cout << "\n-----\nClass Log closed.\n";
+    cout << "-----\nClass Log closed.\n";
 }
 
 void Student::add_grade(unsigned char grade) {
@@ -16,4 +17,8 @@ float Student::get_average() {
       sum += grades.at(i);
     }
     return (float) sum / grades.size();
+}
+
+unsigned int Student::get_no_of_grades() {
+    return grades.size();
 }

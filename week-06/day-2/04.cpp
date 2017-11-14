@@ -15,6 +15,9 @@ class House {
       this->address = address;
       this->area = area;
     }
+    ~House() {
+      cout << endl << "Office hours over, goodbye!" << endl;
+    }
     unsigned int get_price() {
       return this->price;
     }

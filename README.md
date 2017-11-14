@@ -42,7 +42,7 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 
 ## :date: Week-6 (13th Nov. - 17th Nov.) - <i>C++ intro week</i>
 >26. Day - [C++ day 1/2](https://github.com/greenfox-academy/Zoli-G/tree/master/week-06/day-1) (user IO `cout` `cin` | `string` | `vector` | DMA `new` `delete`)
->27. Day - [C++ day 2/2](https://github.com/greenfox-academy/Zoli-G/tree/master/week-06/day-2)
+>27. Day - [C++ day 2/2](https://github.com/greenfox-academy/Zoli-G/tree/master/week-06/day-2)  :eyes:P
 >28. Day
 >29. Day
 >30. Day

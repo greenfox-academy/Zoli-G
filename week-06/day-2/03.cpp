@@ -11,6 +11,9 @@ class Student {
       this->age = age;
       this->name = name;
     }
+    ~Student() {
+      cout << endl << "Goodbye!" << endl;
+    }
     string greet() {
       return "Hello my name is: " + name;
     }

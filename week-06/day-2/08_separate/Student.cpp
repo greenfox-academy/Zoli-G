@@ -4,7 +4,7 @@
 Student::~Student()
 {
     grades.clear();
-    cout << "-----\nClass Log closed.\n";
+    cout << "-----\nClass Log closed. Dear Teacher: You can go on holiday now!\n";
 }
 
 void Student::add_grade(unsigned char grade) {

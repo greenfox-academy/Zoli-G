@@ -8,6 +8,7 @@ private:
   vector<unsigned char> grades;
 public:
   ~Student() {
+    grades.clear();
     cout << "\n-----\nClass Log closed.\n";
   }
   void add_grade(unsigned char grade) {

@@ -11,6 +11,9 @@ public:
   Circle(float radius) {
     this->radius = radius;
   }
+  ~Circle() {
+    cout << endl << "Circle program exits." << endl;
+  }
   float get_circumference() {
     return radius * 2 * PI;
   }

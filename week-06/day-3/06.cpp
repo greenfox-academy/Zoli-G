@@ -16,7 +16,6 @@ public:
     LinkedList() {
       tail = NULL;              //set tail as NULL
       head->next = tail;        //set head to point to tail (close link)
-
     }
 
     void addValue(char val) {

@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -8,7 +7,7 @@ using namespace std;
 // Feel free to walk through some tutorials, get familiar with your implementation.
 
 struct Node {
-    int x;
+    char x;
     Node *next;
 };
 
@@ -20,7 +19,7 @@ public:
 
     }
 
-    void addValue(int val) {
+    void addValue(char val) {
         Node *n = new Node();   //create a new Node
         head->x = val;          //set head value to the added parameter
         n->next = head;         //set the new node to point back to head
@@ -31,7 +30,7 @@ public:
       Node *temp = new Node();
       temp = head->next;
       while (temp->next != NULL) {
-        cout << temp->x << " ";
+        cout << temp->x << "->";
         temp = temp->next;
       }
       cout << temp->x;
@@ -44,10 +43,12 @@ private:
 int main()
 {
     LinkedList l;
-    l.addValue(5);
-    l.addValue(23);
-    l.addValue(9);
-    l.addValue(111);
+    l.addValue('n');
+    l.addValue('e');
+    l.addValue('w');
+    l.addValue('s');
+    l.addValue('p');
+    l.addValue('z');
     l.display();
 
     return 0;

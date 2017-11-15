@@ -32,8 +32,10 @@ int main() {
   ParentClass *a = new ChildClass();
   cout << a->FirstName() << " " << a->LastName() << endl;
 
-  ChildClass *aa = new ChildClass();
-  cout << aa->FirstName() << " " << aa->LastName() << endl;
+  //ChildClass *aa = new ChildClass();
+  //cout << aa->FirstName() << " " << aa->LastName() << endl;
+
+  cout << ((ChildClass*) a)->FirstName() << " " << ((ChildClass*) a)->LastName() << endl;
 
   return 0;
 }

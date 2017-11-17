@@ -5,4 +5,6 @@ greenfox|0|1
 festes, mazolas|0|0
 allat etetes|0|1
 csaladi program|0|1
-Faultetes a parkban|2|0
+Faultetes a parkban|0|0
+Ez fontos|9|0
+Ez nem annyira fontos|5|0

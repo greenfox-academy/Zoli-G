@@ -24,6 +24,7 @@ int main() {
             case 5 : RemoveTask(r.answer); break;
             case 6 : CompleteTask(r.answer); break;
             case 7 : AddPriorityTask(r.answer); break;
+            case 8 : ListByPriority(); break;
             case 9 : PrintMenu(); break;
         }
     }
@@ -180,7 +181,8 @@ void LoadFromFile(string name) {
         counter++;
         //Tokenizing and converting strings to numbers:
         TaskName = line.substr(0, line.find_first_of("|"));
-        Priority = (unsigned char) atoi(line.substr(line.find_first_of("|"), line.find_last_of("|") - line.find_first_of("|")).c_str());
+        //Priority = (unsigned char) atoi(line.substr(line.find_first_of("|"), line.find_last_of("|") - line.find_first_of("|")).c_str());
+        Priority = (unsigned char) (line.at(line.size() - 3) - '0');
         IsTaskDone = (IsDone) (line.at(line.size() - 1) - '0');
         //Create task with constructor, push it to vector, and delete the temp class
         Task *t = new Task(TaskName, Priority, IsTaskDone);
@@ -235,4 +237,37 @@ void AddPriorityTask(string name) {
     TaskList.push_back(*t);
 
     cout << "\tTask named '" << TaskName << "' with priority: "  << (int)Priority << " added." << endl;
+}
+
+void ListByPriority() {
+    vector<Task*> pointerList;
+
+    for (int i = 0; i < TaskList.size(); i++) {
+        pointerList.push_back(&TaskList.at(i));
+        //cout << pointerList.at(i) << endl;
+    }
+
+    Task* t = new Task;
+    for (int i = 0; i < TaskList.size() - 1; i++) {
+        for (int j = 0; j < TaskList.size() - 1 - i; j++) {
+            if ((int)pointerList.at(j)->getTaskPriority() < (int)pointerList.at(j + 1)->getTaskPriority()) {
+                t = pointerList.at(j);
+                pointerList.at(j) = pointerList.at(j + 1);
+                pointerList.at(j + 1) = t;
+            }
+        }
+    }
+    delete t;
+
+    cout << "\tListing tasks by priority" << endl;
+    cout << "\t-------------------" << endl;
+    cout << "\tid com prio name" << endl;
+    cout << "\t-------------------" << endl;
+    for (int i = 0; i < pointerList.size(); i++) {
+        cout << "\t" << i + 1 << "  ["  << (pointerList.at(i)->getTaskIsDone() == 0 ? " " : "x") << "]  (" <<  (int)pointerList.at(i)->getTaskPriority() << ") " << pointerList.at(i)->getTaskName() << endl;
+    }
+    cout << "\t-------------------" << endl;
+    cout << "\tTotal of " << pointerList.size() << " task(s)." << endl;
+
+    pointerList.clear();
 }

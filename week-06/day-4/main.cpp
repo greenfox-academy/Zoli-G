@@ -244,16 +244,13 @@ void ListByPriority() {
 
     for (int i = 0; i < TaskList.size(); i++) {
         pointerList.push_back(&TaskList.at(i));
-        //cout << pointerList.at(i) << endl;
     }
 
     Task* t = new Task;
     for (int i = 0; i < TaskList.size() - 1; i++) {
         for (int j = 0; j < TaskList.size() - 1 - i; j++) {
-            if ((int)pointerList.at(j)->getTaskPriority() < (int)pointerList.at(j + 1)->getTaskPriority()) {
-                t = pointerList.at(j);
-                pointerList.at(j) = pointerList.at(j + 1);
-                pointerList.at(j + 1) = t;
+            if (pointerList.at(j)->getTaskPriority() < pointerList.at(j + 1)->getTaskPriority()) {
+                swap(pointerList.at(j), pointerList.at(j + 1));
             }
         }
     }

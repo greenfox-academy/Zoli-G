@@ -25,7 +25,3 @@ IsDone Task::getTaskIsDone() {
 void Task::setTaskDone() {
     IsTaskDone = DONE;
 }
-
-void Task::setTaskPriority(unsigned char p) {
-    Priority = p;
-}

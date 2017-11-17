@@ -25,7 +25,6 @@ class Task {
         unsigned char getTaskPriority();
         IsDone getTaskIsDone();
         void setTaskDone();
-        void setTaskPriority(unsigned char p);
 
     private:
         string TaskName;

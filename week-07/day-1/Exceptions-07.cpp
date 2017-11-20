@@ -5,11 +5,11 @@ using namespace std;
 int main () {
 
     int int_array[5] = {1, 2, 3, 4, 5};
-    
-    try {
-    	int n = 200;
+    int n = 4;
 
-    	if (n > 5) {
+    try {
+
+    	if (n >= sizeof(int_array) / sizeof(int)) {
     		throw 'i';
     	}
 

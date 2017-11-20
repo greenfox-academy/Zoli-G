@@ -12,6 +12,7 @@ public:
 
 		tm *ltm = localtime(&now);
 
+		cout << "Class created: ";
    		cout << 1900 + ltm->tm_year << ".";
    		cout << 1 + ltm->tm_mon << ".";
    		cout << ltm->tm_mday << ". ";

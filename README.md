@@ -48,7 +48,7 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >30. Day - Todo App in C++, Demo 5
 
 ## :date: Week-7 (20th Nov. - 24th Nov.) - <i>C++</i>
->31. Day
+>31. Day - [C++ Error handling with try&catch block `try``catch``throw`](https://github.com/greenfox-academy/Zoli-G/tree/master/week-07/day-1)
 >32. Day
 >33. Day
 >34. Day

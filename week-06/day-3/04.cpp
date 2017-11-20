@@ -21,7 +21,7 @@ public:
 class ChildClass : public ParentClass {
 public:
   string FirstName() {return "Goldy";};
-  string LastName() {return "Alchemy";};
+  string LastName() {return "Alchemy-M.";};
 };
 
 int main() {

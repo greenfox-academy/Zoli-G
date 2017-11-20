@@ -11,4 +11,19 @@ using namespace std;
 
 int main() {
 
+	string input;
+
+	cout << "Enter 'unarm' to disarm the bomb and hit enter. You have 10 seconds to go!" << endl;
+
+	time_t now = time(0);
+
+	cin >> input;
+
+	time_t after = time(0);
+
+	if (after - now <= 10 && input == "unarm") {
+		cout << "Successfully disarmed! You  can lean back now!" << endl;
+	} else {
+		cout << "*#@>|... Booom! You're late!" << endl;
+	}
 }

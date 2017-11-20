@@ -44,8 +44,8 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >26. Day - [C++ day 1/3](https://github.com/greenfox-academy/Zoli-G/tree/master/week-06/day-1) C++ Basic: `cout`, `cin`, `string`, `vector`, `new`, `delete`, `using`, `namespace`
 >27. Day - [C++ day 2/3](https://github.com/greenfox-academy/Zoli-G/tree/master/week-06/day-2) C++ :eyes:P: `class`, `public`, `private`, contructor, destructor, `this`, get/set method
 >28. Day - [C++ day 3/3](https://github.com/greenfox-academy/Zoli-G/tree/master/week-06/day-3) C++ :eyes:P: inheritance, `virtual`, pure virtual, polymorphism
->29. Day - [Todo App in C++](https://github.com/greenfox-academy/Zoli-G/tree/master/week-06/day-3)
->30. Day - Todo App in C++
+>29. Day - [Todo App in C++](https://github.com/greenfox-academy/Zoli-G/tree/master/week-06/day-4)
+>30. Day - Todo App in C++, Demo 5
 
 ## :date: Week-7 (20th Nov. - 24th Nov.) - <i>C++</i>
 >31. Day

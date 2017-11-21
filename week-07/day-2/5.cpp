@@ -16,31 +16,10 @@ public:
     Integer() {number = 0;}; //First constructor
     Integer(Integer& otherObj) : number(otherObj.number) {}; //Second constructor
     Integer(int number) : number(number) {}; //Third constructor
-    /*Integer& add(Integer& otherIntObj) {
-        this->number += otherIntObj.number;
-        return *this;
-    }
-    Integer& add(Integer& o1, Integer& o2) {
-        this->number += o1.number + o2.number;
-        return *this;
-    }
-    Integer& add(Integer& o1, Integer& o2, Integer& o3) {
-        this->number += o1.number + o2.number + o3.number;
-        return *this;
-    }
-    Integer& add(Integer& o1, Integer& o2, Integer& o3, Integer& o4) {
-        this->number += o1.number + o2.number + o3.number + o4.number;
-        return *this;
-    }
-    Integer& add(Integer& o1, Integer& o2, Integer& o3, Integer& o4, Integer& o5) {
-        this->number += o1.number + o2.number + o3.number + o4.number + o5.number;
-        return *this;
-    }*/
     int getInteger() {
         return this->number;
     }
 };
-
 
 int main() {
     Integer i;

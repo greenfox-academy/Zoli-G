@@ -49,7 +49,7 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 
 ## :date: Week-7 (20th Nov. - 24th Nov.) - <i>C++</i>
 >31. Day - [C++ Error handling with try&catch block](https://github.com/greenfox-academy/Zoli-G/tree/master/week-07/day-1) `try` `catch` `throw`
->32. Day - `Self Awareness Exercise` (Half-day trining) - [C++ function/operator overloading](https://github.com/greenfox-academy/Zoli-G/tree/master/week-07/day-1)
+>32. Day - Training day for `Self Awareness Exercise` - [C++ function/operator overloading](https://github.com/greenfox-academy/Zoli-G/tree/master/week-07/day-1)
 >33. Day
 >34. Day
 >35. Day

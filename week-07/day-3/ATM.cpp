@@ -24,38 +24,30 @@ class Users {
 private:
     vector<user_data> UserList;
     //ATM password
-    string admin_password = "admin123";
+    unsigned int admin_password = 12345678;
 public:
     void addUser(user_data ud) {
         UserList.push_back(ud);
     }
-    //string getATMAdminPass() {
-    //    return admin_password;
-    //}
     unsigned int getUserPin(unsigned int index) {
         return UserList.at(index).getPincode();
     }
     unsigned int getUserCount() {
         return UserList.size();
     }
-    //Check if  it is an ATM admin password
-    int ValidatePassInput(string input_pass) {
-        if (input_pass == admin_password) {
-            cout << "Admin logged in." << endl;
-            return 9999;    //Admin logged in
-        }
-        cout << "Admin login failed." << endl;
-        return -1;          //False password
-    }
     //Check if it is a user password
-    int ValidateInput(unsigned int input_pass) {
+    int ValidatePassInput(unsigned int input_pass) {
         for (int i = 0; i < UserList.size(); ++i) {
             if (input_pass == UserList.at(i).getPincode()) {
                 cout << "User " << UserList.at(i).getName() << " logged in." << endl;
                 return i;    //User logged in, return user index in vector
             }
         }
-        cout << "User login failed." << endl;
+        if (input_pass == admin_password) {
+            cout << "Admin logged in." << endl;
+            return 9999;
+        }
+        cout << "Login failed." << endl;
         return -1;          //False password
     }
     //Print richest customer
@@ -73,9 +65,9 @@ public:
 };
 
 //Function prototypes
-void MainScreen();
-int ValidateInput(string);
-int ValidateInput(unsigned int);
+unsigned int MainScreen();
+unsigned int UserMenu();
+unsigned int AdminMenu();
 
 int main() {
 
@@ -88,18 +80,43 @@ int main() {
     BankUsers.addUser(u2);
     BankUsers.addUser(u3);
 
-    BankUsers.printRichestCostumer();
+    //BankUsers.printRichestCostumer();
+    unsigned int input;
+    while (input = MainScreen(), input != 0) {
 
-    MainScreen();
-    unsigned int input_pin = 0;
-    cin >> input_pin;
-    BankUsers.ValidateInput(input_pin);
+    }
+    cout << "--------" << endl;
+    cout << "Goodbye!" << endl;
+
+    //BankUsers.ValidatePassInput(input_pin);
 
     return 0;
 }
 
-void MainScreen() {
+unsigned int MainScreen() {
+    unsigned int input_pin;
+
     cout << "Welcome to the Z-Bank" << endl;
     cout << "---------------------" << endl;
-    cout << "Please enter your PIN code: " << endl;
+    cout << "Please enter your PIN code or [0] to exit: ";
+    cin >> input_pin;
+    return input_pin;
+}
+
+unsigned int UserMenu() {
+    unsigned int money;
+
+    cout << "Enter money to withdraw: ";
+    cin >> money;
+
+    return money;
+}
+
+unsigned int AdminMenu() {
+    unsigned int money;
+
+    cout << "Enter money to deposit in ATM: ";
+    cin >> money;
+
+    return money;
 }

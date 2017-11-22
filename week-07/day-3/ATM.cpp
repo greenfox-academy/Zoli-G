@@ -25,6 +25,7 @@ private:
     vector<user_data> UserList;
     //ATM password
     unsigned int admin_password = 12345678;
+    unsigned int ATM_money = 1000000;
 public:
     void addUser(user_data ud) {
         UserList.push_back(ud);
@@ -32,8 +33,8 @@ public:
     unsigned int getUserPin(unsigned int index) {
         return UserList.at(index).getPincode();
     }
-    unsigned int getUserCount() {
-        return UserList.size();
+    unsigned int getATM_money() {
+        return ATM_money;
     }
     //Check if it is a user password
     int ValidatePassInput(unsigned int input_pass) {
@@ -67,7 +68,7 @@ public:
 //Function prototypes
 unsigned int MainScreen();
 unsigned int UserMenu();
-unsigned int AdminMenu();
+unsigned int AdminMenu(Users&);
 
 int main() {
 
@@ -82,13 +83,17 @@ int main() {
 
     //BankUsers.printRichestCostumer();
     unsigned int input;
+    unsigned int money;
     while (input = MainScreen(), input != 0) {
-
+        switch (BankUsers.ValidatePassInput(input)) {
+            case 9999 : money = AdminMenu(BankUsers);
+                        break;
+            default : money = UserMenu();
+        }
     }
+
     cout << "--------" << endl;
     cout << "Goodbye!" << endl;
-
-    //BankUsers.ValidatePassInput(input_pin);
 
     return 0;
 }
@@ -106,16 +111,17 @@ unsigned int MainScreen() {
 unsigned int UserMenu() {
     unsigned int money;
 
-    cout << "Enter money to withdraw: ";
+    cout << "Enter money to withdraw or [0] to exit: ";
     cin >> money;
 
     return money;
 }
 
-unsigned int AdminMenu() {
+unsigned int AdminMenu(Users& ATM) {
     unsigned int money;
 
-    cout << "Enter money to deposit in ATM: ";
+    cout << "Money in ATM: " << ATM.getATM_money() << endl;
+    cout << "Enter money to deposit in ATM or [0] to exit: ";
     cin >> money;
 
     return money;

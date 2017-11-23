@@ -1,58 +1,67 @@
 #include <iostream>
 #include <vector>
+#include <windows.h>
 using namespace std;
 
 class user_data {
 public:
-    user_data(string name, unsigned int pincode, float money) : name(name), pincode(pincode), money(money) {}
-    float getMoney() {
-        return money;
-    }
+    user_data(string name, unsigned int pincode, float money, bool is_admin) : name(name), pincode(pincode), money(money), is_admin(is_admin) {}
     string getName() {
         return name;
     }
     unsigned int getPincode() {
         return pincode;
     }
+    float getMoney() {
+        return money;
+    }
+    bool getAdminAccess() {
+		return is_admin;
+    }
+    float withdrawMoney(unsigned int money) {
+        this->money -= money;
+    }
 private:
     string name;
     unsigned int pincode;
     float money;
+    bool is_admin;
 };
 //------------------------------
-class Users {
+class ATM {
 private:
+	//User info
+    int userLogged;
+    bool adminLogged;
     vector<user_data> UserList;
     //ATM password
-    unsigned int admin_password = 12345678;
-    unsigned int ATM_money = 1000000;
+    unsigned int ATM_money;
 public:
-    void addUser(user_data ud) {
-        UserList.push_back(ud);
+	ATM(unsigned int ATM_money) : ATM_money(ATM_money) {
+		userLogged = -1;
+		adminLogged = false;
+		UserList.clear();
+	}
+
+    void addUser(string name, unsigned int pincode, float money, bool is_admin) {
+    	user_data newuser(name, pincode, money, is_admin);
+        UserList.push_back(newuser);
     }
-    unsigned int getUserPin(unsigned int index) {
-        return UserList.at(index).getPincode();
-    }
-    unsigned int getATM_money() {
-        return ATM_money;
-    }
-    //Check if it is a user password
-    int ValidatePassInput(unsigned int input_pass) {
+
+    //Check if it is a valid user pin or not
+    void setUserLogin(unsigned int pin) {
         for (int i = 0; i < UserList.size(); ++i) {
-            if (input_pass == UserList.at(i).getPincode()) {
-                cout << "User " << UserList.at(i).getName() << " logged in." << endl;
-                return i;    //User logged in, return user index in vector
+            if (pin == UserList.at(i).getPincode()) {
+                userLogged = i;
+                adminLogged = UserList.at(i).getAdminAccess();
+                return;
             }
         }
-        if (input_pass == admin_password) {
-            cout << "Admin logged in." << endl;
-            return 9999;
-        }
-        cout << "Login failed." << endl;
-        return -1;          //False password
+        cout  << "\t-> Login failed." << endl;
     }
+
     //Print richest customer
-    void printRichestCostumer() {
+    string getRichestCostumer() {
         float max_money = 0;
         unsigned int max_index = 0;
         for (int i = 0; i < UserList.size(); ++i) {
@@ -61,68 +70,118 @@ public:
                 max_index = i;
             }
         }
-        cout << "Our Banks richest costumer is: " << UserList.at(max_index).getName();
+        return UserList.at(max_index).getName();
+    }
+    //--------------------------------------------------------
+	void ATMScreenWelcome() {
+		system("cls");
+		cout << "===================================" << endl;
+		cout << "*       Welcome to the Z-Bank!    *" << endl;
+		cout << "-----------------------------------" << endl;
+		cout << "The future of the reliable banking." << endl;
+		cout << "-----------------------------------" << endl;
+        cout << endl;
+	}
+	unsigned int ATMPinPromt() {
+		unsigned int pin;
+		do {
+			cout << "Please enter your PIN number: ";
+			cin >> pin;
+
+			setUserLogin(pin);
+		} while (userLogged == -1);
+		return pin;
+	}
+	void ATMAdminMenu() {
+		unsigned int menu;
+		do {
+			cout << endl;
+			cout << "[1] - Query ATM current balance" << endl;
+			cout << "[2] - Deposit money to ATM" << endl;
+			cout << "[3] - Get customer with the highest account value" << endl;
+			cout << "[4] - Logout & return to main menu..." << endl;
+			cout << "[ ]: ";
+			cin >> menu;
+
+			switch (menu) {
+			case 1 : cout << "\t------------" << endl;
+					 cout << "\tATM balance: " << ATM_money << "Ft." << endl;
+					 cout << "\t------------" << endl;
+					 break;
+			case 2 : ATM_money = 1000000; break;
+			case 3 : cout << "\t---------------------------------" << endl;
+					 cout << "\tUser with the highest deposit is: " << getRichestCostumer() << endl;
+					 cout << "\t---------------------------------" << endl;
+					 break;
+			}
+        } while (menu != 4);
+	}
+	void ATMUserMenu() {
+		unsigned int menu;
+		do {
+			cout << endl;
+			cout << "[1] - View Your account balance" << endl;
+			cout << "[2] - Withdraw money" << endl;
+			cout << "[3] - Logout & return to main menu..." << endl;
+			cout << "[ ]: ";
+			cin >> menu;
+
+			switch (menu) {
+			case 1 : cout << "\t-------------" << endl;
+					 cout << "\tYour balance: " << UserList.at(userLogged).getMoney() << "Ft." << endl;
+					 cout << "\t-------------" << endl;
+					 break;
+			case 2 : ATMUserWithdraw();
+					 break;
+			}
+		} while (menu != 3);
+	}
+	void ATMUserWithdraw() {
+		unsigned int money;
+		cout << "Enter money to withdraw: ";
+		cin >> money;
+
+		if (money > UserList.at(userLogged).getMoney()) {
+			cout << "\t-----------------------------------" << endl;
+            cout << "\tNot enough money to withdraw money." << endl;
+			cout << "\t-----------------------------------" << endl;
+		} else {
+			UserList.at(userLogged).withdrawMoney(money);
+			ATM_money -= money;
+			cout << "\t----------------------------------" << endl;
+			cout << "\tSuccess. Remove money from drawer." << endl;
+			cout << "\t----------------------------------" << endl;
+		}
+	}
+    void ATMMenu() {
+		ATMScreenWelcome();
+        do {
+			setUserLogin(ATMPinPromt());
+        } while (userLogged == -1);
+
+        switch (adminLogged) {
+        case false : ATMUserMenu(); break;
+        case true : ATMAdminMenu(); break;
+        }
+
+
     }
 };
 
 //Function prototypes
-unsigned int MainScreen();
-unsigned int UserMenu();
-unsigned int AdminMenu(Users&);
+
 
 int main() {
 
-    user_data u1("Zoli", 1234, 73500);
-    user_data u2("Adam", 4321, 10500.5);
-    user_data u3("Gergo", 3455, 234566.1);
+	//Create ATM object with starting amount of money and an admin password
+	ATM ATM_Machine(1000000);
 
-    Users BankUsers;
-    BankUsers.addUser(u1);
-    BankUsers.addUser(u2);
-    BankUsers.addUser(u3);
+	//Fill users data
+    ATM_Machine.addUser("Zoli", 1234, 73500, false);
+    ATM_Machine.addUser("Adam", 4321, 10500.5, false);
+    ATM_Machine.addUser("Gergo", 3455, 234566.1, false);
+	ATM_Machine.addUser("ATM Money Ltd.", 12345678, 0, true);
 
-    //BankUsers.printRichestCostumer();
-    unsigned int input;
-    unsigned int money;
-    while (input = MainScreen(), input != 0) {
-        switch (BankUsers.ValidatePassInput(input)) {
-            case 9999 : money = AdminMenu(BankUsers);
-                        break;
-            default : money = UserMenu();
-        }
-    }
-
-    cout << "--------" << endl;
-    cout << "Goodbye!" << endl;
-
+	ATM_Machine.ATMMenu();
     return 0;
-}
-
-unsigned int MainScreen() {
-    unsigned int input_pin;
-
-    cout << "Welcome to the Z-Bank" << endl;
-    cout << "---------------------" << endl;
-    cout << "Please enter your PIN code or [0] to exit: ";
-    cin >> input_pin;
-    return input_pin;
-}
-
-unsigned int UserMenu() {
-    unsigned int money;
-
-    cout << "Enter money to withdraw or [0] to exit: ";
-    cin >> money;
-
-    return money;
-}
-
-unsigned int AdminMenu(Users& ATM) {
-    unsigned int money;
-
-    cout << "Money in ATM: " << ATM.getATM_money() << endl;
-    cout << "Enter money to deposit in ATM or [0] to exit: ";
-    cin >> money;
-
-    return money;
 }

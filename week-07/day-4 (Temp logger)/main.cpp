@@ -27,7 +27,7 @@ void TLMainMenu() {
     cout << "Temp logger program" << endl;
     cout << "-------------------" << endl << endl;
 
-	//Port enumerator: let's print out how many COM ports are on the PC
+    //Port enumerator: let's print out how many COM ports are on the PC
     vector<string> ports = SerialPortWrapper::listAvailablePorts();
     cout << "Number of serial ports found: " << ports.size() << endl;
     for (unsigned int i = 0; i < ports.size(); i++) {
@@ -39,11 +39,11 @@ void TLMainMenu() {
         exit(0);
     }
 
-	//Main menu's "global" variables
-    SerialPortWrapper* serial = new SerialPortWrapper("COM3", 115200);	//Serial port object
-    bool isPortOpen = false;											//Bool var to see if the port is already opened
-    char menu;															//Menu keypress
-    vector<string> SerialData;											//Vector to store the serial data (from STM32 USB)
+    //Main menu's "global" variables
+    SerialPortWrapper* serial = new SerialPortWrapper("COM3", 115200);  //Serial port object
+    bool isPortOpen = false;                                            //Bool var to see if the port is already opened
+    char menu;                                                          //Menu keypress
+    vector<string> SerialData;                                          //Vector to store the serial data (from STM32 USB)
 
     TLWelcomeScreen();
     do {
@@ -56,7 +56,7 @@ void TLMainMenu() {
             case 115 : TL_SaveData(serial, SerialData, &isPortOpen); break; //s
             case 99 : TL_ClosePort(serial, &isPortOpen); break; //c (close port)
             case 108 : TL_ListData(serial, &isPortOpen); break; //l (list)
-            default : continue;	//who knows...
+            default : continue; //who knows...
         }
 
     } while (menu != 101); //e (exit)
@@ -151,7 +151,7 @@ if (*isPortOpen == false) {
 }
 //----------------------------------Checking-serial-data-validity-:-2022.13.35 25:63:12 122--------
 bool ValidateSerialData(string& data) {
-	//If the string contains any other character than numbers, dots, semicolons and dash(for minus temp) than this is invalid string
+    //If the string contains any other character than numbers, dots, semicolons and dash(for minus temp) than this is invalid string
     if (data.find_first_not_of("0123456789.:- ") != std::string::npos) {
         cout << "Characters in string";
         return false;
@@ -168,10 +168,10 @@ bool ValidateSerialData(string& data) {
     }
     dataStringTokens.push_back(data); //Put last part of the string to the vector (no delimiter at the end)
 
-	//if the string is not delimeted to 7 parts, than its not valid
+    //if the string is not delimeted to 7 parts, than its not valid
     if (dataStringTokens.size() != 7) {cout << "Invalid amount of number"; return false;}
 
-	//Convert strings to integers and check the range, and filter out the invalid dates and temperature records
+    //Convert strings to integers and check the range, and filter out the invalid dates and temperature records
     if (stoi(dataStringTokens.at(0)) < 1970 || stoi(dataStringTokens.at(0)) > 2017) {cout << "Invalid year"; return false;}
     if (stoi(dataStringTokens.at(1)) < 1 || stoi(dataStringTokens.at(1)) > 12) {cout << "Invalid month"; return false;}
     if (stoi(dataStringTokens.at(2)) < 1 || stoi(dataStringTokens.at(2)) > 31) {cout << "Invalid day"; return false;}
@@ -182,7 +182,7 @@ bool ValidateSerialData(string& data) {
 
     if (stoi(dataStringTokens.at(6)) < -44 || stoi(dataStringTokens.at(6)) > 56) {cout << "Invalid temperature"; return false;}
 
-    //if this point reached, than the string contained valid data, so let's print out:
+    //if this point reached, meaning the string contained valid data, so let's print out:
     for (string s : dataStringTokens) {
         cout << s << "|";
     }

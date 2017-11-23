@@ -154,6 +154,9 @@ if (*isPortOpen == false) {
 }
 
 bool ValidateSerialData(string& data) {
+    if (data.find_first_not_of("0123456789.:- ") == string::npos) {
+        return false;
+    }
     vector<string> dataStringTokens;
     for (int i = 0; i < data.size(); ++i) {
         if (data.at(i) == '.' || data.at(i) == ':' || data.at(i) == ' ') {
@@ -166,4 +169,18 @@ bool ValidateSerialData(string& data) {
     for (string s : dataStringTokens) {
         cout << s << "|";
     }
+
+    if (dataStringTokens.size() != 7) {
+        return false;
+    }
+
+    if (stoi(dataStringTokens.at(0)) < 1970 || stoi(dataStringTokens.at(0)) > 2017) return false;
+    if (stoi(dataStringTokens.at(1)) < 1 || stoi(dataStringTokens.at(1)) > 12) return false;
+    if (stoi(dataStringTokens.at(2)) < 1 || stoi(dataStringTokens.at(2)) > 31) return false;
+
+    if (stoi(dataStringTokens.at(3)) < 0 || stoi(dataStringTokens.at(3)) > 24) return false;
+    if (stoi(dataStringTokens.at(4)) < 0 || stoi(dataStringTokens.at(4)) > 59) return false;
+    if (stoi(dataStringTokens.at(5)) < 0 || stoi(dataStringTokens.at(5)) > 59) return false;
+
+    if (stoi(dataStringTokens.at(6)) < -44 || stoi(dataStringTokens.at(6)) > 56) return false;
 }

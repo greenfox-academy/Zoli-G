@@ -15,6 +15,7 @@ void TL_OpenPort(SerialPortWrapper*, bool*);
 void TL_ClosePort(SerialPortWrapper*, bool*);
 void TL_ListValues(SerialPortWrapper*, bool*);
 void TL_SaveData(SerialPortWrapper*, vector<string>&, bool*);
+bool ValidateSerialData(string&);
 
 int main()
 {
@@ -122,7 +123,9 @@ void TL_ListValues(SerialPortWrapper* serial, bool* isPortOpen) {
     while(1){
         serial->readLineFromPort(&line);
         if (line.length() > 0){
-            cout << "-> " << line << endl;
+            cout << line << " -> ";
+            ValidateSerialData(line);
+            cout << endl;
         }
         if (kbhit() && (keypressed = getch(), keypressed == 27)) break;
     }
@@ -148,4 +151,19 @@ if (*isPortOpen == false) {
         if (kbhit() && (keypressed = getch(), keypressed == 27)) break;
     }
     cout << vector.size() << " data sample saved from Serial Port." << endl;
+}
+
+bool ValidateSerialData(string& data) {
+    vector<string> dataStringTokens;
+    for (int i = 0; i < data.size(); ++i) {
+        if (data.at(i) == '.' || data.at(i) == ':' || data.at(i) == ' ') {
+            dataStringTokens.push_back(data.substr(0, i));
+            data.erase(0, i + 1);
+            i = 0;
+        }
+    }
+    dataStringTokens.push_back(data);
+    for (string s : dataStringTokens) {
+        cout << s << "|";
+    }
 }

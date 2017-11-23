@@ -50,8 +50,8 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 ## :date: Week-7 (20th Nov. - 24th Nov.) - <i>C++</i>
 >31. Day - [C++ Error handling with try&catch block](https://github.com/greenfox-academy/Zoli-G/tree/master/week-07/day-1) `try` `catch` `throw`
 >32. Day - Training day for `Self Awareness Exercise` - [C++ function/operator overloading](https://github.com/greenfox-academy/Zoli-G/tree/master/week-07/day-2)
->33. Day
->34. Day
+>33. Day - [ATM Simutator in C++ OOP](https://github.com/greenfox-academy/Zoli-G/tree/master/week-07/day-3%20(ATM))
+>34. Day - [Temp Logger server board STM32's console software (procedural style)](https://github.com/greenfox-academy/Zoli-G/tree/master/week-07/day-4%20(Temp%20logger))
 >35. Day
 ---
  :copyright: 2017 |  :zzz:oli

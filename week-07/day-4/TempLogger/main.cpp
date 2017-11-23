@@ -47,17 +47,18 @@ void TLMainMenu() {
     TLWelcomeScreen();
     do {
         TLPromt(&isPortOpen);
-        menu = getch();
+        while (menu = getch(), menu != 104 && menu != 111 && menu != 115 && menu != 99 && menu != 108 && menu != 101) {}
 
         switch (menu) {
-            case 'h' : TLWelcomeScreen(); break;
-            case 'o' : TL_OpenPort(serial, &isPortOpen); break;
-            case 's' : cout << "s"; break;
-            case 'c' : TL_ClosePort(serial, &isPortOpen); break;
-            case 'l' : TL_ListValues(serial, &isPortOpen); break;
+            case 104 : TLWelcomeScreen(); break;
+            case 111 : TL_OpenPort(serial, &isPortOpen); break;
+            case 115 : cout << "s"; break;
+            case 99 : TL_ClosePort(serial, &isPortOpen); break;
+            case 108 : TL_ListValues(serial, &isPortOpen); break;
+            default : continue;
         }
 
-    } while (menu != 'e');
+    } while (menu != 101);
     TLGoodbye();
 }
 
@@ -76,6 +77,7 @@ void TLWelcomeScreen() {
 }
 
 void TLPromt(bool* port) {
+    cout << endl;
     cout << "Press command [" << (*port == true ? "x" : " ") << "]: ";
 }
 
@@ -85,39 +87,41 @@ void TLGoodbye() {
 
 void TL_OpenPort(SerialPortWrapper* serial, bool* isPortOpen) {
     if (*isPortOpen == true) {
-        cout << "Port already open." << endl << endl;
+        cout << "Port already open." << endl;
         return;
     }
     cout << "Opening port... ";
     serial->openPort();
     *isPortOpen = true;
-    cout << "opened." << endl << endl;
+    cout << "opened." << endl;
 }
 
 void TL_ClosePort(SerialPortWrapper* serial, bool* isPortOpen) {
     if (*isPortOpen == false) {
-        cout << "Port already closed." << endl << endl;
+        cout << "Port already closed." << endl;
         return;
     }
     cout << "Closing port... ";
     serial->closePort();
     *isPortOpen = false;
-    cout << "closed." << endl << endl;
+    cout << "closed." << endl;
 }
 
 void TL_ListValues(SerialPortWrapper* serial, bool* isPortOpen) {
     if (*isPortOpen == false) {
-        cout << "Port is closed. Open it first." << endl << endl;
+        cout << "Port is closed. Open it first." << endl;
         return;
     }
-    char keypressed;
+    //char keypressed;
     string line;
+    char keypressed;
 
     cout << "Press any key to get a new sample, or ESC to exit." << endl;
-    while(getch() != 27){
+    while(1){
         serial->readLineFromPort(&line);
         if (line.length() > 0){
             cout << line << endl;
         }
+        if (kbhit() && (keypressed = getch(), keypressed == 27)) break;
     }
 }

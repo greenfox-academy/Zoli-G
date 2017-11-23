@@ -14,6 +14,7 @@ void TLGoodbye();
 void TL_OpenPort(SerialPortWrapper*, bool*);
 void TL_ClosePort(SerialPortWrapper*, bool*);
 void TL_ListValues(SerialPortWrapper*, bool*);
+void TL_SaveData(SerialPortWrapper*, vector<string>&, bool*);
 
 int main()
 {
@@ -54,7 +55,7 @@ void TLMainMenu() {
         switch (menu) {
             case 104 : TLWelcomeScreen(); break;
             case 111 : TL_OpenPort(serial, &isPortOpen); break;
-            case 115 : cout << "s"; break;
+            case 115 : TL_SaveData(serial, SerialData, &isPortOpen); break;
             case 99 : TL_ClosePort(serial, &isPortOpen); break;
             case 108 : TL_ListValues(serial, &isPortOpen); break;
             default : continue;
@@ -125,4 +126,26 @@ void TL_ListValues(SerialPortWrapper* serial, bool* isPortOpen) {
         }
         if (kbhit() && (keypressed = getch(), keypressed == 27)) break;
     }
+}
+
+void TL_SaveData(SerialPortWrapper* serial, vector<string>& vector, bool* isPortOpen) {
+if (*isPortOpen == false) {
+        cout << "Port is closed. Open it first before saving." << endl;
+        return;
+    }
+    string line;
+    char keypressed;
+    unsigned int counter = 1;
+
+    cout << "Saving Serial Data... press ESC to exit:" << endl;
+    while(1){
+        serial->readLineFromPort(&line);
+        if (line.length() > 0){
+            cout << counter << " -> " << line << endl;
+            vector.push_back(line);
+            ++counter;
+        }
+        if (kbhit() && (keypressed = getch(), keypressed == 27)) break;
+    }
+    cout << vector.size() << " data sample saved from Serial Port." << endl;
 }

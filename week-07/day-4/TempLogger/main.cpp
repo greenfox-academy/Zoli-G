@@ -10,8 +10,8 @@ void TLMainMenu();
 void TLWelcomeScreen();
 void TLPromt();
 void TLGoodbye();
-void TL_OpenPort(SerialPortWrapper* serial);
-void TL_ClosePort(SerialPortWrapper* serial);
+void TL_OpenPort(SerialPortWrapper* serial, bool* isPortOpen);
+void TL_ClosePort(SerialPortWrapper* serial, bool* isPortOpen);
 void TL_ListValues(SerialPortWrapper* serial);
 
 int main()
@@ -27,6 +27,19 @@ int main()
 }
 
 void TLMainMenu() {
+    cout << "Temp logger program" << endl;
+    cout << "-------------------" << endl << endl;
+
+    vector<string> ports = SerialPortWrapper::listAvailablePorts();
+    cout << "Number of serial ports found: " << ports.size() << endl;
+    for (unsigned int i = 0; i < ports.size(); i++) {
+        cout << "\tPort name: " << ports.at(i) << endl;
+    }
+    if (ports.size() == 0) {
+        cout << "Device not connected, program terminates." << endl;
+        exit(0);
+    }
+    
     SerialPortWrapper* serial = new SerialPortWrapper("COM3", 115200);;
     bool isPortOpen = false;
     char menu;
@@ -37,9 +50,9 @@ void TLMainMenu() {
 
         switch (menu) {
             case 104 : TLWelcomeScreen(); break; //h
-            case 111 : TL_OpenPort(serial); break; //o
+            case 111 : TL_OpenPort(serial, &isPortOpen); break; //o
             case 115 : cout << "s"; break; //s
-            case  99 : TL_ClosePort(serial); break; //c
+            case  99 : TL_ClosePort(serial, &isPortOpen); break; //c
             case 108 : TL_ListValues(serial); break; //l
         }
 
@@ -67,16 +80,26 @@ void TLGoodbye() {
     cout << endl << "Temperature logger exits." << endl;
 }
 
-void TL_OpenPort(SerialPortWrapper* serial) {
+void TL_OpenPort(SerialPortWrapper* serial, bool* isPortOpen) {
+    if (*isPortOpen == true) {
+        cout << "Port already open." << endl << endl;
+        return;
+    }
     cout << "Opening port... ";
     serial->openPort();
-    //isPortOpen = true;
-    cout << "opened." << endl;
+    *isPortOpen = true;
+    cout << "opened." << endl << endl;
 }
 
-void TL_ClosePort(SerialPortWrapper* serial) {
+void TL_ClosePort(SerialPortWrapper* serial, bool* isPortOpen) {
+    if (*isPortOpen == false) {
+        cout << "Port already closed." << endl << endl;
+        return;
+    }
+    cout << "Closing port... ";
     serial->closePort();
-    //isPortOpen = false;
+    *isPortOpen = false;
+    cout << "closed." << endl << endl;
 }
 
 void TL_ListValues(SerialPortWrapper* serial) {

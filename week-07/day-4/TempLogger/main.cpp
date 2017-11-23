@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <conio.h>
 
 #include "SerialPortWrapper.h"
 
@@ -8,11 +9,11 @@ using namespace std;
 
 void TLMainMenu();
 void TLWelcomeScreen();
-void TLPromt();
+void TLPromt(bool*);
 void TLGoodbye();
-void TL_OpenPort(SerialPortWrapper* serial, bool* isPortOpen);
-void TL_ClosePort(SerialPortWrapper* serial, bool* isPortOpen);
-void TL_ListValues(SerialPortWrapper* serial);
+void TL_OpenPort(SerialPortWrapper*, bool*);
+void TL_ClosePort(SerialPortWrapper*, bool*);
+void TL_ListValues(SerialPortWrapper*, bool*);
 
 int main()
 {
@@ -39,21 +40,21 @@ void TLMainMenu() {
         cout << "Device not connected, program terminates." << endl;
         exit(0);
     }
-    
+
     SerialPortWrapper* serial = new SerialPortWrapper("COM3", 115200);;
     bool isPortOpen = false;
     char menu;
     TLWelcomeScreen();
     do {
-        TLPromt();
-        cin >> menu;
+        TLPromt(&isPortOpen);
+        menu = getch();
 
         switch (menu) {
-            case 104 : TLWelcomeScreen(); break; //h
-            case 111 : TL_OpenPort(serial, &isPortOpen); break; //o
-            case 115 : cout << "s"; break; //s
-            case  99 : TL_ClosePort(serial, &isPortOpen); break; //c
-            case 108 : TL_ListValues(serial); break; //l
+            case 'h' : TLWelcomeScreen(); break;
+            case 'o' : TL_OpenPort(serial, &isPortOpen); break;
+            case 's' : cout << "s"; break;
+            case 'c' : TL_ClosePort(serial, &isPortOpen); break;
+            case 'l' : TL_ListValues(serial, &isPortOpen); break;
         }
 
     } while (menu != 'e');
@@ -61,6 +62,7 @@ void TLMainMenu() {
 }
 
 void TLWelcomeScreen() {
+    cout << endl << endl;
     cout << "Temperature Logger Application" << endl;
     cout << "==============================" << endl;
     cout << "Commands:" << endl;
@@ -70,10 +72,11 @@ void TLWelcomeScreen() {
     cout << " c   Close port" << endl;
     cout << " l   List after error handling" << endl;
     cout << " e   Exit from the program" << endl;
+    cout << endl;
 }
 
-void TLPromt() {
-    cout << "Choose commend: ";
+void TLPromt(bool* port) {
+    cout << "Press command [" << (*port == true ? "x" : " ") << "]: ";
 }
 
 void TLGoodbye() {
@@ -102,9 +105,16 @@ void TL_ClosePort(SerialPortWrapper* serial, bool* isPortOpen) {
     cout << "closed." << endl << endl;
 }
 
-void TL_ListValues(SerialPortWrapper* serial) {
+void TL_ListValues(SerialPortWrapper* serial, bool* isPortOpen) {
+    if (*isPortOpen == false) {
+        cout << "Port is closed. Open it first." << endl << endl;
+        return;
+    }
+    char keypressed;
     string line;
-    while(1){
+
+    cout << "Press any key to get a new sample, or ESC to exit." << endl;
+    while(getch() != 27){
         serial->readLineFromPort(&line);
         if (line.length() > 0){
             cout << line << endl;

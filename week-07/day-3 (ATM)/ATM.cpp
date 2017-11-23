@@ -160,13 +160,8 @@ public:
         case false : ATMUserMenu(); break;
         case true : ATMAdminMenu(); break;
         }
-
-
     }
 };
-
-//Function prototypes
-
 
 int main() {
 

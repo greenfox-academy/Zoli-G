@@ -25,11 +25,9 @@ class Float {
         float get(){
             return mFl;
         }
-
         void add(Float& _other){
             mFl += _other.mFl;
         }
-
         void add(float _num){
             mFl += _num;
         }
@@ -37,7 +35,6 @@ class Float {
             mFl += _other.mFl;
             return *this;
         }
-
         Float& operator + (float _num){
             mFl += _num;
             return *this;

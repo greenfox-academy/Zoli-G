@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <windows.h>
+
 using namespace std;
 
 class user_data {
@@ -34,7 +34,7 @@ private:
     int userLogged;
     bool adminLogged;
     vector<user_data> UserList;
-    //ATM password
+    //ATM money stored
     unsigned int ATM_money;
 public:
 	ATM(unsigned int ATM_money) : ATM_money(ATM_money) {
@@ -82,7 +82,7 @@ public:
 		cout << "-----------------------------------" << endl;
         cout << endl;
 	}
-	unsigned int ATMPinPromt() {
+	void ATMPinPromt() {
 		unsigned int pin;
 		do {
 			cout << "Please enter your PIN number: ";
@@ -90,7 +90,6 @@ public:
 
 			setUserLogin(pin);
 		} while (userLogged == -1);
-		return pin;
 	}
 	void ATMAdminMenu() {
 		unsigned int menu;
@@ -155,9 +154,7 @@ public:
 	}
     void ATMMenu() {
 		ATMScreenWelcome();
-        do {
-			setUserLogin(ATMPinPromt());
-        } while (userLogged == -1);
+        ATMPinPromt();
 
         switch (adminLogged) {
         case false : ATMUserMenu(); break;

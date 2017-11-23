@@ -44,6 +44,8 @@ void TLMainMenu() {
     SerialPortWrapper* serial = new SerialPortWrapper("COM3", 115200);;
     bool isPortOpen = false;
     char menu;
+    vector<string> SerialData;
+
     TLWelcomeScreen();
     do {
         TLPromt(&isPortOpen);
@@ -112,15 +114,14 @@ void TL_ListValues(SerialPortWrapper* serial, bool* isPortOpen) {
         cout << "Port is closed. Open it first." << endl;
         return;
     }
-    //char keypressed;
     string line;
     char keypressed;
 
-    cout << "Press any key to get a new sample, or ESC to exit." << endl;
+    cout << "Printing Serial Data... press ESC to exit:" << endl;
     while(1){
         serial->readLineFromPort(&line);
         if (line.length() > 0){
-            cout << line << endl;
+            cout << "-> " << line << endl;
         }
         if (kbhit() && (keypressed = getch(), keypressed == 27)) break;
     }

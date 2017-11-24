@@ -1,8 +1,8 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 #include <conio.h>
-#include <time.h>
 
 #include "SerialPortWrapper.h"
 
@@ -50,7 +50,7 @@ void TLMainMenu() {
     TLWelcomeScreen();
     do {
         TLPromt(&isPortOpen);
-        while (menu = getch(), menu != 104 && menu != 111 && menu != 115 && menu != 99 && menu != 108 && menu != 101) {}
+        while (menu = getch(), menu != 104 && menu != 111 && menu != 115 && menu != 99 && menu != 108 && menu != 101 && menu != 102) {}
 
         switch (menu) {
             case 104 : TLWelcomeScreen(); break; //h (help menu)
@@ -197,7 +197,17 @@ bool ValidateSerialData(string data) {
 }
 //--------------------------------------------------------------------------------------------------
 void TL_SaveToFile(vector<string>& vector) {
-    for (string s : vector) {
-        
+    if (vector.size() == 0) {
+        cout << "No serial data saved to memory. Run 's' command first." << endl;
+        return;
     }
+
+    ofstream outfile;
+    outfile.open("SerialData.txt", fstream::app);
+
+    for (string s : vector) {
+        outfile << s << endl;
+    }
+    cout << vector.size() << " task saved to file. Look for 'SerialData.txt' in local directory." << endl;
+    outfile.close();
 }

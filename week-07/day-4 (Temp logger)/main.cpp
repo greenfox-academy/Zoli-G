@@ -16,7 +16,7 @@ void TL_OpenPort(SerialPortWrapper*, bool*);
 void TL_ClosePort(SerialPortWrapper*, bool*);
 void TL_ListData(SerialPortWrapper*, bool*);
 void TL_SaveData(SerialPortWrapper*, vector<string>&, bool*);
-bool ValidateSerialData(string&);
+bool ValidateSerialData(string);
 //--------------------------------------------------------------------------------------------------
 int main() {
     TLMainMenu();
@@ -73,6 +73,7 @@ void TLWelcomeScreen() {
     cout << " s   Start logging / Stop logging" << endl;
     cout << " c   Close port" << endl;
     cout << " l   List after error handling" << endl;
+    cout << " f   Save data extracted from menu 's' to file (data.txt)" << endl;
     cout << " e   Exit from the program" << endl;
     cout << endl;
 }
@@ -83,7 +84,7 @@ void TLPromt(bool* port) {
 }
 //--------------------------------------------------------------------------------------------------
 void TLGoodbye() {
-    cout << endl << "Temperature logger exits." << endl;
+    cout << endl << endl << "Temperature logger exits." << endl;
 }
 //--------------------------------------------------------------------------------------------------
 void TL_OpenPort(SerialPortWrapper* serial, bool* isPortOpen) {
@@ -120,8 +121,8 @@ void TL_ListData(SerialPortWrapper* serial, bool* isPortOpen) {
     while(1){
         serial->readLineFromPort(&line);
         if (line.length() > 0){
-            cout << line << " -> ";
-            ValidateSerialData(line);
+            cout << line;
+            cout << " -> " << (ValidateSerialData(line) == false ? "(Data discarded)" : "(OK!)");
             cout << endl;
         }
         if (kbhit() && (keypressed = getch(), keypressed == 27)) break;
@@ -140,20 +141,21 @@ if (*isPortOpen == false) {
     cout << "Saving Serial Data... press ESC to exit:" << endl;
     while(1){
         serial->readLineFromPort(&line);
-        if (line.length() > 0){
-            cout << counter << " -> " << line << endl;
+        if (line.length() > 16 && ValidateSerialData(line) == true){
+            cout << endl;
+            cout << counter << " -> " << line << " ";
             vector.push_back(line);
             ++counter;
-        }
+        } else if (line.length() > 16) {cout << ".";}
         if (kbhit() && (keypressed = getch(), keypressed == 27)) break;
     }
-    cout << vector.size() << " data sample saved from Serial Port." << endl;
+    cout << endl << vector.size() << " data sample saved from Serial Port. Press 'f' to save to the default file." << endl;
 }
 //----------------------------------Checking-serial-data-validity-:-2022.13.35 25:63:12 122--------
-bool ValidateSerialData(string& data) {
+bool ValidateSerialData(string data) {
     //If the string contains any other character than numbers, dots, semicolons and dash(for minus temp) than this is invalid string
     if (data.find_first_not_of("0123456789.:- ") != std::string::npos) {
-        cout << "Characters in string";
+        //cout << "Characters in string";
         return false;
     }
     //Tokenizer engine: 1.make a vector 2.run through the string 3.if delimiter found: .:SPACE -> make a substring
@@ -169,23 +171,30 @@ bool ValidateSerialData(string& data) {
     dataStringTokens.push_back(data); //Put last part of the string to the vector (no delimiter at the end)
 
     //if the string is not delimeted to 7 parts, than its not valid
-    if (dataStringTokens.size() != 7) {cout << "Invalid amount of number"; return false;}
+    if (dataStringTokens.size() != 7) {
+        //cout << "Invalid amount of number";
+        return false;
+    }
 
     //Convert strings to integers and check the range, and filter out the invalid dates and temperature records
     vector<unsigned int> dateLow(6); dateLow = {1970, 1, 1, 0, 0, 0};
     vector<unsigned int> dateHigh(6); dateHigh = {2017, 12, 31, 23, 59, 59};
     for (int i = 0; i < 6; ++i) {
         if (stoi(dataStringTokens.at(i)) < dateLow.at(i) || stoi(dataStringTokens.at(i)) > dateHigh.at(i)) {
-            cout << "Invalid data.";
+            //cout << "Invalid data.";
             return false;
         }
     }
     //Check temperature data too
-    if (stoi(dataStringTokens.at(6)) < -44 || stoi(dataStringTokens.at(6)) > 56) {cout << "Invalid temperature"; return false;}
+    if (stoi(dataStringTokens.at(6)) < -44 || stoi(dataStringTokens.at(6)) > 56) {
+        //cout << "Invalid temperature";
+        return false;
+    }
 
     //if this point reached, meaning the string contained valid data, so let's print out:
-    for (string s : dataStringTokens) {
-        cout << s << "|";
-    }
+    //for (string s : dataStringTokens) {
+    //    cout << s << "|";
+    //}
     return true;
 }
+//--------------------------------------------------------------------------------------------------

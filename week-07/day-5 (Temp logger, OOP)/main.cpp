@@ -7,6 +7,48 @@
 
 using namespace std;
 
+typedef struct {
+    unsigned int year;
+    unsigned int month;
+    unsigned int day;
+
+    unsigned int hour;
+    unsigned int minute;
+    unsigned int second;
+
+    int temperature;
+} TempData;
+
+class WeatherServer {
+private:
+    //Collected data
+    TempData record;
+    vector<TempData> record_vector;
+    //Hardware data
+    string COM_PORT;
+    int BAUDRATE;
+    bool isConnected;
+    bool isPortOpen;
+    vector<string> ports;
+public:
+    WeatherServer(string COM_PORT, int BAUDRATE) : COM_PORT(COM_PORT), BAUDRATE(BAUDRATE) {
+        isConnected = false;
+        isPortOpen = false;
+        ports = SerialPortWrapper::listAvailablePorts();
+
+        if (ports.size() == 0) {
+            cout << "Weather Server Board not connected, program terminates." << endl;
+        } else {
+            cout << "COM port found, Weather Server Connection establishing..." << endl;
+            isConnected = true;
+        }
+    }
+    ~WeatherServer() {
+        cout << "Weather Server shutting down..." << endl;
+    }
+    bool getConnection() {return isConnected;}
+};
+
 //Function Prototypes
 void TLMainMenu();
 void TLWelcomeScreen();
@@ -19,7 +61,16 @@ void TL_SaveData(SerialPortWrapper*, vector<string>&, bool*);
 bool ValidateSerialData(string&);
 //--------------------------------------------------------------------------------------------------
 int main() {
-    TLMainMenu();
+    //Create new WeatherServer object
+    WeatherServer* WS = new WeatherServer("COM3", 115200);
+    //If the board is not detected durint constructor run -> delete instance & exit software
+    if (!WS->getConnection()) {
+        delete WS;
+        exit(0);
+    }
+
+    cout << "Hello+";
+    
     return 0;
 }
 //--------------------------------------------------------------------------------------------------
@@ -182,7 +233,7 @@ bool ValidateSerialData(string& data) {
 
     if (stoi(dataStringTokens.at(6)) < -44 || stoi(dataStringTokens.at(6)) > 56) {cout << "Invalid temperature"; return false;}
 
-    //if this point reached, meaning the string contained valid data, so let's print out:
+    //if this point reached, then the string contained valid data, so let's print out:
     for (string s : dataStringTokens) {
         cout << s << "|";
     }

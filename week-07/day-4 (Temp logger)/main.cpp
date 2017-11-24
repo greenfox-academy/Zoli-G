@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <conio.h>
+#include <time.h>
 
 #include "SerialPortWrapper.h"
 
@@ -17,6 +18,7 @@ void TL_ClosePort(SerialPortWrapper*, bool*);
 void TL_ListData(SerialPortWrapper*, bool*);
 void TL_SaveData(SerialPortWrapper*, vector<string>&, bool*);
 bool ValidateSerialData(string);
+void TL_SaveToFile(vector<string>&);
 //--------------------------------------------------------------------------------------------------
 int main() {
     TLMainMenu();
@@ -56,6 +58,7 @@ void TLMainMenu() {
             case 115 : TL_SaveData(serial, SerialData, &isPortOpen); break; //s
             case 99 : TL_ClosePort(serial, &isPortOpen); break; //c (close port)
             case 108 : TL_ListData(serial, &isPortOpen); break; //l (list)
+            case 102 : TL_SaveToFile(SerialData); break;
             default : continue; //who knows...
         }
 
@@ -190,11 +193,11 @@ bool ValidateSerialData(string data) {
         //cout << "Invalid temperature";
         return false;
     }
-
-    //if this point reached, meaning the string contained valid data, so let's print out:
-    //for (string s : dataStringTokens) {
-    //    cout << s << "|";
-    //}
     return true;
 }
 //--------------------------------------------------------------------------------------------------
+void TL_SaveToFile(vector<string>& vector) {
+    for (string s : vector) {
+        
+    }
+}

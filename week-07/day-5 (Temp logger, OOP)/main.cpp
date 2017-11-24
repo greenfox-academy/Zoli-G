@@ -46,7 +46,31 @@ public:
     ~WeatherServer() {
         cout << "Weather Server shutting down..." << endl;
     }
+    //----------------------------------------
     bool getConnection() {return isConnected;}
+    //----------------------------------------
+    void TL_OpenPort(SerialPortWrapper* serial, bool* isPortOpen) {
+        if (*isPortOpen == true) {
+            cout << "Port already open." << endl;
+            return;
+        }
+        cout << "Opening port... ";
+        serial->openPort();
+        *isPortOpen = true;
+        cout << "opened." << endl;
+    }
+    //----------------------------------------
+    void TL_ClosePort(SerialPortWrapper* serial, bool* isPortOpen) {
+        if (*isPortOpen == false) {
+            cout << "Port already closed." << endl;
+            return;
+        }
+        cout << "Closing port... ";
+        serial->closePort();
+        *isPortOpen = false;
+        cout << "closed." << endl;
+    }
+    //----------------------------------------
 };
 
 //Function Prototypes
@@ -69,8 +93,8 @@ int main() {
         exit(0);
     }
 
-    cout << "Hello+";
-    
+    //->
+
     return 0;
 }
 //--------------------------------------------------------------------------------------------------
@@ -137,27 +161,9 @@ void TLGoodbye() {
     cout << endl << "Temperature logger exits." << endl;
 }
 //--------------------------------------------------------------------------------------------------
-void TL_OpenPort(SerialPortWrapper* serial, bool* isPortOpen) {
-    if (*isPortOpen == true) {
-        cout << "Port already open." << endl;
-        return;
-    }
-    cout << "Opening port... ";
-    serial->openPort();
-    *isPortOpen = true;
-    cout << "opened." << endl;
-}
+
 //--------------------------------------------------------------------------------------------------
-void TL_ClosePort(SerialPortWrapper* serial, bool* isPortOpen) {
-    if (*isPortOpen == false) {
-        cout << "Port already closed." << endl;
-        return;
-    }
-    cout << "Closing port... ";
-    serial->closePort();
-    *isPortOpen = false;
-    cout << "closed." << endl;
-}
+
 //--------------------------------------------------------------------------------------------------
 void TL_ListData(SerialPortWrapper* serial, bool* isPortOpen) {
     if (*isPortOpen == false) {

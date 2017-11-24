@@ -172,14 +172,15 @@ bool ValidateSerialData(string& data) {
     if (dataStringTokens.size() != 7) {cout << "Invalid amount of number"; return false;}
 
     //Convert strings to integers and check the range, and filter out the invalid dates and temperature records
-    if (stoi(dataStringTokens.at(0)) < 1970 || stoi(dataStringTokens.at(0)) > 2017) {cout << "Invalid year"; return false;}
-    if (stoi(dataStringTokens.at(1)) < 1 || stoi(dataStringTokens.at(1)) > 12) {cout << "Invalid month"; return false;}
-    if (stoi(dataStringTokens.at(2)) < 1 || stoi(dataStringTokens.at(2)) > 31) {cout << "Invalid day"; return false;}
-
-    if (stoi(dataStringTokens.at(3)) < 0 || stoi(dataStringTokens.at(3)) > 24) {cout << "Invalid hour"; return false;}
-    if (stoi(dataStringTokens.at(4)) < 0 || stoi(dataStringTokens.at(4)) > 59) {cout << "Invalid minute"; return false;}
-    if (stoi(dataStringTokens.at(5)) < 0 || stoi(dataStringTokens.at(5)) > 59) {cout << "Invalid second"; return false;}
-
+    vector<unsigned int> dateLow(6); dateLow = {1970, 1, 1, 0, 0, 0};
+    vector<unsigned int> dateHigh(6); dateHigh = {2017, 12, 31, 23, 59, 59};
+    for (int i = 0; i < 6; ++i) {
+        if (stoi(dataStringTokens.at(i)) < dateLow.at(i) || stoi(dataStringTokens.at(i)) > dateHigh.at(i)) {
+            cout << "Invalid data.";
+            return false;
+        }
+    }
+    //Check temperature data too
     if (stoi(dataStringTokens.at(6)) < -44 || stoi(dataStringTokens.at(6)) > 56) {cout << "Invalid temperature"; return false;}
 
     //if this point reached, meaning the string contained valid data, so let's print out:

@@ -19,6 +19,7 @@ void TL_ListData(SerialPortWrapper*, bool*);
 void TL_SaveData(SerialPortWrapper*, vector<string>&, bool*);
 bool ValidateSerialData(string);
 void TL_SaveToFile(vector<string>&);
+void TL_LoadFromFile(vector<string>&);
 //--------------------------------------------------------------------------------------------------
 int main() {
     TLMainMenu();
@@ -50,7 +51,7 @@ void TLMainMenu() {
     TLWelcomeScreen();
     do {
         TLPromt(&isPortOpen);
-        while (menu = getch(), menu != 104 && menu != 111 && menu != 115 && menu != 99 && menu != 108 && menu != 101 && menu != 102) {}
+        while (menu = getch(), menu != 104 && menu != 111 && menu != 115 && menu != 99 && menu != 108 && menu != 101 && menu != 102 && menu != 114) {}
 
         switch (menu) {
             case 104 : TLWelcomeScreen(); break; //h (help menu)
@@ -59,6 +60,7 @@ void TLMainMenu() {
             case 99 : TL_ClosePort(serial, &isPortOpen); break; //c (close port)
             case 108 : TL_ListData(serial, &isPortOpen); break; //l (list)
             case 102 : TL_SaveToFile(SerialData); break;
+            case 114 : TL_LoadFromFile(SerialData); break;
             default : continue; //who knows...
         }
 
@@ -76,7 +78,8 @@ void TLWelcomeScreen() {
     cout << " s   Start logging / Stop logging" << endl;
     cout << " c   Close port" << endl;
     cout << " l   List after error handling" << endl;
-    cout << " f   Save data extracted from menu 's' to file (data.txt)" << endl;
+    cout << " f   Save data extracted from menu 's' to file (SerialData.txt)" << endl;
+    cout << " r   Load data from local file" << endl;
     cout << " e   Exit from the program" << endl;
     cout << endl;
 }
@@ -210,4 +213,28 @@ void TL_SaveToFile(vector<string>& vector) {
     }
     cout << vector.size() << " task saved to file. Look for 'SerialData.txt' in local directory." << endl;
     outfile.close();
+}
+//--------------------------------------------------------------------------------------------------
+void TL_LoadFromFile(vector<string>& vector) {
+    string line;
+    int counter = 0;
+
+    cout << "Loading from SerialData.txt...";
+
+    vector.clear();
+
+    ifstream ifile;
+    ifile.open("SerialData.txt");
+
+    //Till the end of file...
+    while (!ifile.eof()) {
+        //...read the whole line from file into the string buffer
+        getline(ifile, line);
+        if (line.length() == 0) continue;
+        cout << "\t" << line << endl;
+        vector.push_back(line);
+        counter++;
+    }
+    cout << counter << " record loaded." << endl;
+    ifile.close();
 }

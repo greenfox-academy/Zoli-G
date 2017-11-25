@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <windows.h>
 
 using namespace std;
 
@@ -54,10 +55,11 @@ public:
             if (pin == UserList.at(i).getPincode()) {
                 userLogged = i;
                 adminLogged = UserList.at(i).getAdminAccess();
+                cout << endl << "\tWelcome " << UserList.at(i).getName() << "!" << endl;
                 return;
             }
         }
-        cout  << "\t-> Login failed." << endl;
+        cout  << "\tLogin failed." << endl;
     }
 
     //Print richest customer
@@ -88,8 +90,12 @@ public:
 			cout << "Please enter your PIN number: ";
 			cin >> pin;
 
-			setUserLogin(pin);
-		} while (userLogged == -1);
+			if (cin.good())				//If entered pin matches the type of "pin"...
+				setUserLogin(pin);		//...call login function
+
+			cin.clear();				//Clear error flag...
+			cin.ignore(INT_MAX, '\n');	//...and ignore all the entered stuff from input buffer.
+		} while (userLogged == -1);		//Ask for PIN while someone not logged in successfully.
 	}
 	void ATMAdminMenu() {
 		unsigned int menu;
@@ -107,7 +113,11 @@ public:
 					 cout << "\tATM balance: " << ATM_money << "Ft." << endl;
 					 cout << "\t------------" << endl;
 					 break;
-			case 2 : ATM_money = 1000000; break;
+			case 2 : ATM_money = 10000000;
+					 cout << "\t-----------------------------------" << endl;
+					 cout << "\tATM money filled with 10.000.000 Ft" << endl;
+					 cout << "\t-----------------------------------" << endl;
+					 break;
 			case 3 : cout << "\t---------------------------------" << endl;
 					 cout << "\tUser with the highest deposit is: " << getRichestCostumer() << endl;
 					 cout << "\t---------------------------------" << endl;
@@ -140,7 +150,18 @@ public:
 		cout << "Enter money to withdraw: ";
 		cin >> money;
 
-		if (money > UserList.at(userLogged).getMoney()) {
+		if (!cin.good()) {
+			cout << "Wrong input!" << endl;
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			return;
+		}
+
+		if (money % 1000 != 0) {
+			cout << "\t-----------------------------" << endl;
+            cout << "\tSmallest banknote is 1000 Ft." << endl;
+			cout << "\t-----------------------------" << endl;
+		} else if (money > UserList.at(userLogged).getMoney()) {
 			cout << "\t-----------------------------------" << endl;
             cout << "\tNot enough money to withdraw money." << endl;
 			cout << "\t-----------------------------------" << endl;
@@ -152,14 +173,23 @@ public:
 			cout << "\t----------------------------------" << endl;
 		}
 	}
+	void ATMLogout() {
+		cout << endl << "Logging out...";
+		Sleep(2000);
+		userLogged = -1;
+		adminLogged = false;
+	}
     void ATMMenu() {
-		ATMScreenWelcome();
-        ATMPinPromt();
+    	while(1) {
+			ATMScreenWelcome();
+			ATMPinPromt();
 
-        switch (adminLogged) {
-        case false : ATMUserMenu(); break;
-        case true : ATMAdminMenu(); break;
-        }
+			switch (adminLogged) {
+			case false : ATMUserMenu(); break;
+			case true : ATMAdminMenu(); break;
+			}
+			ATMLogout();
+    	}
     }
 };
 

@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <ctime>
 #include <windows.h>
 
 using namespace std;
@@ -36,20 +38,21 @@ private:
     bool adminLogged;
     vector<user_data> UserList;
     //ATM money stored
-    unsigned int ATM_money;
+    unsigned int bn20k, bn10k, bn5k, bn2k, bn1k;
+    unsigned int p20k, p10k, p5k, p2k, p1k;
 public:
-	ATM(unsigned int ATM_money) : ATM_money(ATM_money) {
+	ATM(unsigned int bn20k, unsigned int bn10k, unsigned int bn5k, unsigned int bn2k, unsigned int bn1k) : bn20k(bn20k), bn10k(bn10k), bn5k(bn5k), bn2k(bn2k), bn1k(bn1k) {
 		userLogged = -1;
 		adminLogged = false;
 		UserList.clear();
+		p20k = p10k = p5k = p2k = p1k = 0;
 	}
-
+	//---Add bank customer------------------------------------
     void addUser(string name, unsigned int pincode, float money, bool is_admin) {
     	user_data newuser(name, pincode, money, is_admin);
         UserList.push_back(newuser);
     }
-
-    //Check if it is a valid user pin or not
+    //---Check if it is a valid user pin or not---------------
     void setUserLogin(unsigned int pin) {
         for (int i = 0; i < UserList.size(); ++i) {
             if (pin == UserList.at(i).getPincode()) {
@@ -61,8 +64,7 @@ public:
         }
         cout  << "\tLogin failed." << endl;
     }
-
-    //Print richest customer
+    //---Print richest customer-------------------------------
     string getRichestCostumer() {
         float max_money = 0;
         unsigned int max_index = 0;
@@ -73,6 +75,26 @@ public:
             }
         }
         return UserList.at(max_index).getName();
+    }
+    //--------------------------------------------------------
+    bool checkBanknotesForPayout(unsigned int money) {
+    	//Reset payout board
+		p20k = p10k = p5k = p2k = p1k = 0;
+
+		//If the user wants to withdraw more money than present at the ATM -> not possible
+		if (money > bn20k*20000 + bn10k*10000 + bn5k*5000 + bn2k*2000 + bn1k*1000) {
+			return false;
+		}
+
+		//Fill up payout board values with possible combination of banknotes
+		p20k = min((money - money % 20000) / 20000, bn20k); money -= p20k * 20000;
+		p10k = min((money - money % 10000) / 10000, bn10k); money -= p10k * 10000;
+		 p5k = min((money - money %  5000) /  5000, bn5k);  money -=  p5k *  5000;
+		 p2k = min((money - money %  2000) /  2000, bn2k);  money -=  p2k *  2000;
+		 p1k = min((money - money %  1000) /  1000, bn1k);  money -=  p1k *  1000;
+
+		//If the combination was complete:
+		return (money == 0 ? true : false);
     }
     //--------------------------------------------------------
 	void ATMScreenWelcome() {
@@ -110,13 +132,14 @@ public:
 
 			switch (menu) {
 			case 1 : cout << "\t------------" << endl;
-					 cout << "\tATM balance: " << ATM_money << "Ft." << endl;
+					 cout << "\tATM balance: " << (bn20k*20 + bn10k*10 + bn5k*5 + bn2k*2 + bn1k) * 1000 << "Ft." << endl;
+					 cout << "\t20.000Ft (" << bn20k << "), 10.000Ft (" << bn10k << "), 5.000Ft (" << bn5k << "), 2.000Ft (" << bn2k << "), 1000Ft (" << bn1k << ")" << endl;
 					 cout << "\t------------" << endl;
 					 break;
-			case 2 : ATM_money = 10000000;
-					 cout << "\t-----------------------------------" << endl;
-					 cout << "\tATM money filled with 10.000.000 Ft" << endl;
-					 cout << "\t-----------------------------------" << endl;
+			case 2 : bn20k = bn10k = bn5k = bn2k = bn1k  = 10;
+					 cout << "\t--------------------------------" << endl;
+					 cout << "\tATM money filled with 380.000 Ft" << endl;
+					 cout << "\t--------------------------------" << endl;
 					 break;
 			case 3 : cout << "\t---------------------------------" << endl;
 					 cout << "\tUser with the highest deposit is: " << getRichestCostumer() << endl;
@@ -165,12 +188,34 @@ public:
 			cout << "\t-----------------------------------" << endl;
             cout << "\tNot enough money to withdraw money." << endl;
 			cout << "\t-----------------------------------" << endl;
+		} else if (checkBanknotesForPayout(money) == false) {
+			cout << "\t------------------------------------------------------------" << endl;
+            cout << "\tWe're sorry, but the asked money is not payable by this ATM." << endl;
+			cout << "\t------------------------------------------------------------" << endl;
 		} else {
 			UserList.at(userLogged).withdrawMoney(money);
-			ATM_money -= money;
-			cout << "\t----------------------------------" << endl;
-			cout << "\tSuccess. Remove money from drawer." << endl;
-			cout << "\t----------------------------------" << endl;
+			bn20k -= p20k;
+			bn10k -= p10k;
+			bn5k -= p5k;
+			bn2k -= p2k;
+			bn1k -= p1k;
+			cout << "\t--------------------------------" << endl;
+			cout << "\t-----------Z-Bank-Recept--------" << endl;
+			cout << "\t--------------------------------" << endl;
+			cout << "\tTransaction: success" << endl;
+			cout << "\t     ATM cash: " << money << " Ft" << endl;
+			cout << endl;
+			cout << "\tBanknotes received:" << endl;
+			cout << "\t     20.000Ft - " << p20k << "pc" << endl;
+			cout << "\t     10.000Ft - " << p10k << "pc" << endl;
+			cout << "\t      5.000Ft - " << p5k << "pc" << endl;
+			cout << "\t      2.000Ft - " << p2k << "pc" << endl;
+			cout << "\t      1.000Ft - " << p1k << "pc" << endl;
+			cout << endl;
+			time_t t = time(NULL);
+			tm* timePtr = localtime(&t);
+			cout << "\t" << timePtr->tm_year + 1900 << "." << timePtr->tm_mon << "." << timePtr->tm_mday << " " << timePtr->tm_hour << ":" << timePtr->tm_min << ":" << timePtr->tm_sec << endl;
+			cout << "\t--------------------------------" << endl;
 		}
 	}
 	void ATMLogout() {
@@ -188,6 +233,7 @@ public:
 			case false : ATMUserMenu(); break;
 			case true : ATMAdminMenu(); break;
 			}
+
 			ATMLogout();
     	}
     }
@@ -195,12 +241,12 @@ public:
 
 int main() {
 
-	//Create ATM object with starting amount of money and an admin password
-	ATM ATM_Machine(1000000);
+	//Create ATM object with starting amount of money (10pc's of each banknotes)
+	ATM ATM_Machine(10, 10, 10, 10, 10);
 
 	//Fill users data
-    ATM_Machine.addUser("Zoli", 1234, 73500, false);
-    ATM_Machine.addUser("Adam", 4321, 10500.5, false);
+    ATM_Machine.addUser("Zoli", 1234, 173500, false);
+    ATM_Machine.addUser("Adam", 4321, 100500.5, false);
     ATM_Machine.addUser("Gergo", 3455, 234566.1, false);
 	ATM_Machine.addUser("ATM Money Ltd.", 12345678, 0, true);
 

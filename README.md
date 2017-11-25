@@ -8,28 +8,28 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >2. Day - [Linux terminal commands, GitHub practice, CLI](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-2)
 >3. Day - [C (datatypes, bitwise and arithmetic operators): Hello World + 25 exercises](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-3)
 >4. Day - [C practice with loops (for, while, do-while, switch): 17 exercises](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-4)
->5. Day - [C advanced practice with loops](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-5), Demo 1
+>5. Day - [C advanced practice with loops](https://github.com/greenfox-academy/Zoli-G/tree/master/week-01/day-5), `Demo 1`
 
 ##  :date: Week-2 (9th Oct. - 13th Oct.) - <i>Learning basic C</i>
 >6. Day - [C functions, global-local variables, include-define, recursion](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-1)
 >7. Day - [C arrays (char, int), user inputs (scanf-gets-puts)](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-2)
 >8. Day - C practice: finishing & cleaning codes of the previous two days.
 >9. Day - [C project day 1/2: Anagram search, palindrom making&search, Number guessing, Josephus problem](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-4)
->10. Day - [C project day 2/2: Anagram search, palindrom making&search, Number guessing, Josephus problem (finishing previous day work)](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-5), Demo 2
+>10. Day - [C project day 2/2: Anagram search, palindrom making&search, Number guessing, Josephus problem (finishing previous day work)](https://github.com/greenfox-academy/Zoli-G/tree/master/week-02/day-5), `Demo 2`
 
 ##  :date: Week-3 (16th Oct. - 20th Oct.) - <i>Parsing and Type Casting</i>
 >11. Day - Training for presentation skills (half day) + [Learning about debugging technics in Code::Blocks (half day)](https://github.com/greenfox-academy/Zoli-G/tree/master/week-03/Day-1)
 >12. Day - [Typecasting (temporary change of the type of the variable) and string parsing functions](https://github.com/greenfox-academy/Zoli-G/tree/master/week-03/Day-2)
 >13. Day - C practice: finishing & cleaning codes of the previous day.
 >14. Day - [C project work: Command Line Calculator](https://github.com/greenfox-academy/Zoli-G/tree/master/week-03/day-3-5%20(Command%20Line%20Calculator)/Calculator)
->15. Day - [C project work: Command Line Calculator](https://github.com/greenfox-academy/Zoli-G/tree/master/week-03/day-3-5%20(Command%20Line%20Calculator)/Calculator), Demo 3
+>15. Day - [C project work: Command Line Calculator](https://github.com/greenfox-academy/Zoli-G/tree/master/week-03/day-3-5%20(Command%20Line%20Calculator)/Calculator), `Demo 3`
 
 ##  :date: Week-4 (23rd Oct. - 27th Oct.) - <i>Pointers, Struct and Enum</i>
 >16. Day - `Memorial Day of the 1956 Revolution - Freedom & Independence!` <img align="right" width="150" src="https://github.com/greenfox-academy/Zoli-G/blob/master/week-04/day-1%20-%201956/1956.png" alt="1956">
 >17. Day - [Pointers, function output parameters](https://github.com/greenfox-academy/Zoli-G/tree/master/week-04/day-2)
 >18. Day - [Structures, typedef, union, bitfields, enum](https://github.com/greenfox-academy/Zoli-G/tree/master/week-04/day-3)
 >19. Day - [Project work - ToDoApp day 1/2](https://github.com/greenfox-academy/Zoli-G/tree/master/week-04/day4%265%20-%20ToDoApp)
->20. Day - Project work - ToDoApp day 2/2, Demo 4
+>20. Day - Project work - ToDoApp day 2/2, `Demo 4`
 
 ##  :date: Week-5 (30th Oct. - 3rd Nov.) - <i>C practice, Exam</i>
 >21. Day - Training day for stress management + [C pratice day 1/3: arrays, pointers, functions, enums, file IO](https://github.com/greenfox-academy/Zoli-G/tree/master/week-05/day-1%262)
@@ -45,13 +45,13 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >27. Day - [C++ day 2/3](https://github.com/greenfox-academy/Zoli-G/tree/master/week-06/day-2) C++ :eyes:P: `class`, `public`, `private`, contructor, destructor, `this`, get/set method
 >28. Day - [C++ day 3/3](https://github.com/greenfox-academy/Zoli-G/tree/master/week-06/day-3) C++ :eyes:P: inheritance, `virtual`, pure virtual, polymorphism
 >29. Day - [Todo App in C++](https://github.com/greenfox-academy/Zoli-G/tree/master/week-06/day-4)
->30. Day - Todo App in C++, Demo 5
+>30. Day - Todo App in C++, `Demo 5`
 
 ## :date: Week-7 (20th Nov. - 24th Nov.) - <i>C++</i>
 >31. Day - [C++ Error handling with try&catch block](https://github.com/greenfox-academy/Zoli-G/tree/master/week-07/day-1) `try` `catch` `throw`
 >32. Day - Training day for `Self Awareness Exercise` - [C++ function/operator overloading](https://github.com/greenfox-academy/Zoli-G/tree/master/week-07/day-2)
 >33. Day - [ATM Simutator in C++ OOP](https://github.com/greenfox-academy/Zoli-G/tree/master/week-07/day-3%20(ATM))
->34. Day - [Console software for Temperature Logger Server Board: STM32 (procedural style)](https://github.com/greenfox-academy/Zoli-G/tree/master/week-07/day-4%20(Temp%20logger))
->35. Day
+>34. Day - [Console software for Temperature Logger Server Board: STM32 day 1/2](https://github.com/greenfox-academy/Zoli-G/tree/master/week-07/day-4%20(Temp%20logger))
+>35. Day - Console software for Temperature Logger Server Board: STM32 day 2/2, `Demo 6`
 ---
  :copyright: 2017 |  :zzz:oli

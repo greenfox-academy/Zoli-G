@@ -30,7 +30,7 @@ void TLMainMenu() {
     cout << "Temp logger program" << endl;
     cout << "-------------------" << endl << endl;
 
-    //Port enumerator: let's print out how many COM ports are on the PC
+    //Port counting: let's print out how many COM ports are on the PC
     vector<string> ports = SerialPortWrapper::listAvailablePorts();
     cout << "Number of serial ports found: " << ports.size() << endl;
     for (unsigned int i = 0; i < ports.size(); i++) {

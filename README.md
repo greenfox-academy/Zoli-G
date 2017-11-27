@@ -55,10 +55,10 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >35. Day - Console software for Temperature Logger Server Board: STM32 day 2/2, `Demo 6`
 
 ## :date: Week-8 (27th Nov. - 1st Dec.) - <i>STM32 Discovery board</i>
-36. Day - [Introducing System Workbench IDE for STM32 programming, GitHub Extension, LED-blinker & Push button tasks](https://github.com/greenfox-academy/Zoli-G/tree/master/STM32Cube_FW_F7_V1.8.0/Projects/STM32746G-Discovery/GreenFox)
-37. Day -
-38. Day -
-39. Day -
-40. Day -
+>36. Day - [Introducing System Workbench IDE for STM32 programming, GitHub Extension, LED-blinker & Push button tasks](https://github.com/greenfox-academy/Zoli-G/tree/master/STM32Cube_FW_F7_V1.8.0/Projects/STM32746G-Discovery/GreenFox)
+>37. Day -
+>38. Day -
+>39. Day -
+>40. Day -
 ---
  :copyright: 2017 |  :zzz:oli

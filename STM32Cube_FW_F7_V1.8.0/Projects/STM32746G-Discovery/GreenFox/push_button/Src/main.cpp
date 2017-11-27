@@ -98,7 +98,7 @@ int main(void)
   while (1)
   {
 	  //TODO:
-	  //Write a simple program witch flashes(toggle) the led when the button is pressed
+	  //Write a simple program which flashes(toggle) the led when the button is pressed
   }
 }
 

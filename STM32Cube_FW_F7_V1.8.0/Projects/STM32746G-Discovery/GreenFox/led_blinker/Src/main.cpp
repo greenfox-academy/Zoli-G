@@ -37,6 +37,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include <unistd.h>
 
 /** @addtogroup STM32F7xx_HAL_Examples
   * @{
@@ -92,14 +93,16 @@ int main(void)
 
   /* Add your application code here     */
   BSP_LED_Init(LED_GREEN);
-  BSP_LED_On(LED_GREEN);
 
   /* Infinite loop */
   while (1)
   {
 	  //TODO:
-	  //Flash the ledwith 200 ms period time
-
+	  //Flash the led with 200 ms period time
+	  BSP_LED_On(LED_GREEN);
+	  HAL_Delay(1000);
+	  BSP_LED_Off(LED_GREEN);
+	  HAL_Delay(1000);
   }
 }
 

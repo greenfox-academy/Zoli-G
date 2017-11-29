@@ -93,54 +93,9 @@ void LedInit() {
     LED3.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
 
     HAL_GPIO_Init(GPIOF, &LED3);
-
-    GPIO_InitTypeDef LED4;            // create a config structure
-    LED4.Pin = GPIO_PIN_7;            // this is about PIN 0
-    LED4.Mode = GPIO_MODE_OUTPUT_PP;  // Configure as output with push-up-down enabled
-    LED4.Pull = GPIO_PULLDOWN;        // the push-up-down should work as pulldown
-    LED4.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
-
-    HAL_GPIO_Init(GPIOF, &LED4);
-
-    GPIO_InitTypeDef LED5;            // create a config structure
-    LED5.Pin = GPIO_PIN_6;            // this is about PIN 0
-    LED5.Mode = GPIO_MODE_OUTPUT_PP;  // Configure as output with push-up-down enabled
-    LED5.Pull = GPIO_PULLDOWN;        // the push-up-down should work as pulldown
-    LED5.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
-
-    HAL_GPIO_Init(GPIOF, &LED5);
 }
 
-void HalfByteLED(unsigned int x) {
-	unsigned int maskA0, maskF10, maskF9, maskF8, maskF7, maskF6;
 
-	maskA0 = 0b000001;
-	GPIOA->ODR = GPIOA->ODR & 0xFFFFFFFE; //0b11111111111111111111111111111110;
-	GPIOA->ODR |= (x & maskA0);
-
-	maskF10 = 0b000010;
-	GPIOF->ODR &= 0b11111111111111111111101111111111;
-	GPIOF->ODR |= ((x & maskF10) >> 1) << 10;
-
-	maskF9 = 0b000100;
-	GPIOF->ODR &= 0b11111111111111111111110111111111;
-	GPIOF->ODR |= ((x & maskF9) >> 2) << 9;
-
-	maskF8 = 0b001000;
-	GPIOF->ODR &= 0b11111111111111111111111011111111;
-	GPIOF->ODR |= ((x & maskF8) >> 3) << 8;
-
-	maskF7 = 0b010000;
-	GPIOF->ODR &= 0b11111111111111111111111101111111;
-	GPIOF->ODR |= ((x & maskF7) >> 4) << 7;
-
-	maskF6 = 0b100000;
-	GPIOF->ODR &= 0b11111111111111111111111110111111;
-	GPIOF->ODR |= ((x & maskF6) >> 5) << 6;
-
-	HAL_Delay(100);
-
-}
 
 int main(void)
 {
@@ -172,10 +127,14 @@ int main(void)
   LedInit();
 
   /* Infinite loop */
-  while (1) {
-	  for (int i = 0; i <= 64; ++i) {
-		  HalfByteLED(i);
-	  }
+  while (1)
+  {
+	  //TODO:
+	  //Flash the led with 200 ms period time
+	  GPIOA->ODR |= 1;
+	  HAL_Delay(500);
+	  GPIOA->ODR &= 0xFFFFFFFE;
+	  HAL_Delay(500);
   }
 }
 /**

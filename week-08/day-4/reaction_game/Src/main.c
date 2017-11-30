@@ -115,41 +115,50 @@ int main(void)
 
   BSP_COM_Init(COM1, &uart_handle);
 
-  /* Output a message using printf function */
-  printf("\n------------------WELCOME------------------\n");
-  printf("**********in STATIC reaction game**********\n\n");
-  printf("Let's play a game! Are you ready?\n");
-
-  //Turn LED on. If onboard button is pressed, than turn LED off and exit while.
-  //LED is flashing 1Hz, the 1000ms delay is divided to 10ms pieces to listen to keypress.
   unsigned int delay = 0;
-  BSP_LED_On(LED_GREEN);
-  while (1) {
-	  HAL_Delay(10);
-	  delay += 10;
-	  if (BSP_PB_GetState(BUTTON_KEY) == SET) {BSP_LED_Off(LED_GREEN); break;}
-	  if (delay % 1000 == 0) {BSP_LED_Toggle(LED_GREEN);}
-  }
-
-  printf("\nButton pressed. Wait for the signal! Game starting...\n");
 
   RNG_HandleTypeDef rand;
   rand.Instance = RNG;
   HAL_RNG_Init(&rand);
   uint32_t rand_time = HAL_RNG_GetRandomNumber(&rand);
-  rand_time = rand_time % 10000 + 1;
-
-  printf("Random time (ms): %u\n", rand_time);
-
-  HAL_Delay(2000 + rand_time);
-
-  BSP_LED_On(LED_GREEN);
 
   uint32_t tickstart = 0;
-  tickstart = HAL_GetTick();
-  while (BSP_PB_GetState(BUTTON_KEY) != SET) {}
-  uint32_t tickend = HAL_GetTick() - tickstart;
-  printf("Your reaction time was: %u!\n", tickend);
+  uint32_t tickend = 0;
+
+  while (1) {
+	  //Print welcome message
+	  printf("\n------------------WELCOME------------------\n");
+	  printf("**********in STATIC reaction game**********\n\n");
+	  printf("Let's play a game! Are you ready?\n");
+
+	  //Turn LED on. If onboard button is pressed, than turn LED off and exit while.
+	  //LED is flashing 1Hz, the 1000ms delay is divided to 10ms pieces to listen to keypress.
+
+	  BSP_LED_On(LED_GREEN);
+	  while (1) {
+		  HAL_Delay(10);
+		  delay += 10;
+		  if (BSP_PB_GetState(BUTTON_KEY) == SET) {BSP_LED_Off(LED_GREEN); break;}
+		  if (delay % 1000 == 0) {BSP_LED_Toggle(LED_GREEN);}
+	  }
+
+	  printf("\nButton pressed. Wait for the signal! Game starting...\n");
+
+	  rand_time = rand_time % 10000 + 1;
+
+	  printf("\t(Hint: will wait %u ms.)\n", rand_time);
+
+	  HAL_Delay(2000 + rand_time);
+
+	  BSP_LED_On(LED_GREEN);
+
+	  tickstart = HAL_GetTick();
+	  while (BSP_PB_GetState(BUTTON_KEY) != SET) {}
+	  tickend = HAL_GetTick() - tickstart;
+	  printf("Your reaction time was: %u!\n", tickend);
+	  printf("Next game will start in 2 seconds!\n");
+	  HAL_Delay(2000);
+  }
 }
 /**
   * @brief  Retargets the C library printf function to the USART.

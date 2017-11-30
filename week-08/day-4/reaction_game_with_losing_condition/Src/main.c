@@ -115,49 +115,84 @@ int main(void)
 
   BSP_COM_Init(COM1, &uart_handle);
 
+  //Button
+  unsigned int buttonPressed = 0;
+
+  //Measure delay until buttonpress
   unsigned int delay = 0;
 
+  //Random number genarator initialization before while cycle
   RNG_HandleTypeDef rand;
   rand.Instance = RNG;
   HAL_RNG_Init(&rand);
   uint32_t rand_time = HAL_RNG_GetRandomNumber(&rand);
 
+  //Reaction time start and end stamp variables
   uint32_t tickstart = 0;
   uint32_t tickend = 0;
+  uint32_t reaction_time = 0;
+
+  uint8_t game_counter = 0;
+  uint32_t sum_of_reaction_times = 0;
+  uint8_t game_lost = 0;
 
   while (1) {
+	  ++game_counter;
 	  //Print welcome message
-	  printf("\n------------------WELCOME------------------\n");
-	  printf("**********in STATIC reaction game**********\n\n");
-	  printf("Let's play a game! Are you ready?\n");
+	  printf("\n--------------REACTION GAME------------------\n");
+	  printf("***********STATIC class reaction game**********\n\n");
+	  printf("Prepare! When you're ready press the button!\n");
 
 	  //Turn LED on. If onboard button is pressed, than turn LED off and exit while.
 	  //LED is flashing 1Hz, the 1000ms delay is divided to 10ms pieces to listen to keypress.
-
+	  //Turn the LED on...
 	  BSP_LED_On(LED_GREEN);
+	  //Wait while the button is not pressed and not released (LED off). Inbetween flashing the LED 1Hz.
+	  delay = 0;
 	  while (1) {
 		  HAL_Delay(10);
 		  delay += 10;
-		  if (BSP_PB_GetState(BUTTON_KEY) == SET) {BSP_LED_Off(LED_GREEN); break;}
-		  if (delay % 1000 == 0) {BSP_LED_Toggle(LED_GREEN);}
+		  if (BSP_PB_GetState(BUTTON_KEY) == SET) {buttonPressed = 1;}
+		  if (BSP_PB_GetState(BUTTON_KEY) == RESET && buttonPressed == 1) {buttonPressed = 0; BSP_LED_Off(LED_GREEN); break;}
+		  if (delay % 500 == 0) {BSP_LED_Toggle(LED_GREEN);}
 	  }
 
-	  printf("\nButton pressed. Wait for the signal! Game starting...\n");
+	  //Game starting...
+	  printf("\nGame started! Wait for the LED to turn on!\n");
 
+	  //Make a random number between 1 and 10000
 	  rand_time = rand_time % 10000 + 1;
 
-	  printf("\t(Hint: will wait %u ms.)\n", rand_time);
+	  //Print out this cheat!
+	  printf("(Hint: will wait %u ms.)\n", rand_time);
 
-	  HAL_Delay(2000 + rand_time);
+	  //Wait 2sec before the random time wait starts to prevent very slow random times
+	  delay = 0;
+	  while (delay < rand_time) {
+		  HAL_Delay(5);
+		  delay += 5;
+		  if (BSP_PB_GetState(BUTTON_KEY) == SET) {
+			  printf("You lost the game! You pressed too early! You got 10s penalty time!\n");
+			  sum_of_reaction_times += 10000;
+			  game_lost = 1;
+			  break;
+		  }
+	  }
+	  if (game_lost == 1) {game_lost = 0; HAL_Delay(2000); continue;}
 
+	  //Signal!
 	  BSP_LED_On(LED_GREEN);
 
+	  //Make a "timestamp":
 	  tickstart = HAL_GetTick();
-	  while (BSP_PB_GetState(BUTTON_KEY) != SET) {}
-	  tickend = HAL_GetTick() - tickstart;
-	  printf("Your reaction time was: %u!\n", tickend);
-	  printf("Next game will start in 2 seconds!\n");
-	  HAL_Delay(2000);
+	  while (BSP_PB_GetState(BUTTON_KEY) != SET) {}					//While button is not pressed do nothing
+	  tickend = HAL_GetTick();										//Get a timestamp at buttonpress
+	  reaction_time = tickend - tickstart;							//Calculate time between gamestart and buttonpress
+	  printf("Your reaction time was: %u ms!\n", reaction_time);	//Print out result
+	  sum_of_reaction_times += reaction_time;
+	  printf("Your average reaction time based on %u games is %u.\n", game_counter, sum_of_reaction_times / game_counter);
+	  printf("Next game will start in 2 seconds!\n\n\n\n");
+	  HAL_Delay(2000);												//Wait 2s between games
   }
 }
 /**

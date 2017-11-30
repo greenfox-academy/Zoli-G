@@ -67,17 +67,17 @@ void LedInit() {
   LED0.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
 
   HAL_GPIO_Init(GPIOA, &LED0);      // initialize the pin on GPIOA port with HAL
-  //--------------------------
+
   __HAL_RCC_GPIOF_CLK_ENABLE();    // Enable the GPIOA port's clock first
 
     GPIO_InitTypeDef LED1;            // create a config structure
-    LED1.Pin = GPIO_PIN_10;            // this is about PIN 0
+    LED1.Pin = GPIO_PIN_10 | GPIO_PIN_9 | GPIO_PIN_8 | GPIO_PIN_7 | GPIO_PIN_6;            // this is about PIN 0
     LED1.Mode = GPIO_MODE_OUTPUT_PP;  // Configure as output with push-up-down enabled
     LED1.Pull = GPIO_PULLDOWN;        // the push-up-down should work as pulldown
     LED1.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
 
     HAL_GPIO_Init(GPIOF, &LED1);
-
+/*
     GPIO_InitTypeDef LED2;            // create a config structure
     LED2.Pin = GPIO_PIN_9;            // this is about PIN 0
     LED2.Mode = GPIO_MODE_OUTPUT_PP;  // Configure as output with push-up-down enabled
@@ -108,16 +108,22 @@ void LedInit() {
     LED5.Pull = GPIO_PULLDOWN;        // the push-up-down should work as pulldown
     LED5.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
 
-    HAL_GPIO_Init(GPIOF, &LED5);
+    HAL_GPIO_Init(GPIOF, &LED5);*/
 }
 
 void HalfByteLED(unsigned int x) {
-	unsigned int maskA0, maskF10, maskF9, maskF8, maskF7, maskF6;
+	//unsigned int maskA0, maskF10, maskF9, maskF8, maskF7, maskF6,
+	unsigned int maskA0, maskF10_F6;
 
 	maskA0 = 0b000001;
-	GPIOA->ODR = GPIOA->ODR & 0xFFFFFFFE; //0b11111111111111111111111111111110;
+	GPIOA->ODR &= 0b11111111111111111111111111111110;
 	GPIOA->ODR |= (x & maskA0);
 
+	maskF10_F6 = 0b111110;
+	GPIOF->ODR &= 0b11111111111111111111100000111111;
+	GPIOF->ODR |= ((x & maskF10_F6) >> 1) << 6;
+
+	/*
 	maskF10 = 0b000010;
 	GPIOF->ODR &= 0b11111111111111111111101111111111;
 	GPIOF->ODR |= ((x & maskF10) >> 1) << 10;
@@ -137,8 +143,8 @@ void HalfByteLED(unsigned int x) {
 	maskF6 = 0b100000;
 	GPIOF->ODR &= 0b11111111111111111111111110111111;
 	GPIOF->ODR |= ((x & maskF6) >> 5) << 6;
-
-	HAL_Delay(100);
+	*/
+	HAL_Delay(800);
 
 }
 
@@ -173,7 +179,7 @@ int main(void)
 
   /* Infinite loop */
   while (1) {
-	  for (int i = 0; i <= 64; ++i) {
+	  for (int i = 0; i <= 63; ++i) {
 		  HalfByteLED(i);
 	  }
   }

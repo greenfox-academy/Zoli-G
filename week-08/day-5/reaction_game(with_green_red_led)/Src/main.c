@@ -116,7 +116,7 @@ int main(void) {
   RNG_HandleTypeDef rand;
   rand.Instance = RNG;
   HAL_RNG_Init(&rand);
-  uint32_t rand_time = HAL_RNG_GetRandomNumber(&rand);
+  uint32_t rand_time;
 
   //Reaction time start and end stamp variables
   uint32_t tickstart = 0;
@@ -157,6 +157,7 @@ int main(void) {
 	  printf("\nGame started! Wait for the LED to turn on!\n");
 
 	  //Make a random number between 1 and 10000
+	  rand_time = HAL_RNG_GetRandomNumber(&rand);
 	  rand_time = rand_time % 10000 + 1;
 
 	  //Print out this cheat!
@@ -170,7 +171,7 @@ int main(void) {
 		  delay += 5; //Increase delay counter to measure past time
 		  if (BSP_PB_GetState(BUTTON_KEY) == SET) { //If there is a button pressed before the random time
 			  HAL_GPIO_WritePin(GPIOI, GPIO_PIN_3, GPIO_PIN_SET); //turn on red led
-			  printf("You lost the game! (Pressed too early!) 1s penalty time added!\n"); //write sad information to serial
+			  printf("You lost the game! (Pressed too early!) 1s penalty time added!\n\n\n\n"); //write sad information to serial
 			  sum_of_reaction_times += 1000; //add penalty time to the sum variable
 			  game_lost = 1; //set lost game flag
 			  break; //exit while loop immediately

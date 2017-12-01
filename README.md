@@ -59,6 +59,6 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >37. Day - [GPIO, bitwise operations, ODR register](https://github.com/greenfox-academy/Zoli-G/tree/master/week-08/day-2)
 >38. Day - [Practice day](https://github.com/greenfox-academy/Zoli-G/tree/master/week-08/day-3)
 >39. Day - [Project: Reaction Game - day 1/2](https://github.com/greenfox-academy/Zoli-G/tree/master/week-08/day-4)
->40. Day - [Project: Reaction Game - day 2/2](https://github.com/greenfox-academy/Zoli-G/tree/master/week-08/day-5)
+>40. Day - [Project: Reaction Game - day 2/2](https://github.com/greenfox-academy/Zoli-G/tree/master/week-08/day-5), `Demo 7`
 ---
  :copyright: 2017 |  :zzz:oli

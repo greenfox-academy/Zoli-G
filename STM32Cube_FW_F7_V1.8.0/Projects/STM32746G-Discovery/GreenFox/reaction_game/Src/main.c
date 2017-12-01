@@ -37,7 +37,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include <unistd.h>
+#include <string.h>
+
 
 /** @addtogroup STM32F7xx_HAL_Examples
   * @{
@@ -46,138 +47,175 @@
 /** @addtogroup Templates
   * @{
   */ 
-
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
+UART_HandleTypeDef uart_handle;
+
 /* Private function prototypes -----------------------------------------------*/
+
+#ifdef __GNUC__
+/* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
+   set to 'Yes') calls __io_putchar() */
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif /* __GNUC__ */
+
 static void SystemClock_Config(void);
 static void Error_Handler(void);
 static void MPU_Config(void);
 static void CPU_CACHE_Enable(void);
 
-void LedInit() {
-  __HAL_RCC_GPIOA_CLK_ENABLE();    // Enable the GPIOA port's clock first
+/* Private functions ---------------------------------------------------------*/
 
-  GPIO_InitTypeDef LED0;            // create a config structure
-  LED0.Pin = GPIO_PIN_0;            // this is about PIN 0
-  LED0.Mode = GPIO_MODE_OUTPUT_PP;  // Configure as output with push-up-down enabled
-  LED0.Pull = GPIO_PULLDOWN;        // the push-up-down should work as pulldown
-  LED0.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
-
-  HAL_GPIO_Init(GPIOA, &LED0);      // initialize the pin on GPIOA port with HAL
-  //--------------------------
-  __HAL_RCC_GPIOF_CLK_ENABLE();    // Enable the GPIOA port's clock first
-
-    GPIO_InitTypeDef LED1;            // create a config structure
-    LED1.Pin = GPIO_PIN_10;            // this is about PIN 0
-    LED1.Mode = GPIO_MODE_OUTPUT_PP;  // Configure as output with push-up-down enabled
-    LED1.Pull = GPIO_PULLDOWN;        // the push-up-down should work as pulldown
-    LED1.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
-
-    HAL_GPIO_Init(GPIOF, &LED1);
-
-    GPIO_InitTypeDef LED2;            // create a config structure
-    LED2.Pin = GPIO_PIN_9;            // this is about PIN 0
-    LED2.Mode = GPIO_MODE_OUTPUT_PP;  // Configure as output with push-up-down enabled
-    LED2.Pull = GPIO_PULLDOWN;        // the push-up-down should work as pulldown
-    LED2.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
-
-    HAL_GPIO_Init(GPIOF, &LED2);
-
-    GPIO_InitTypeDef LED3;            // create a config structure
-    LED3.Pin = GPIO_PIN_8;            // this is about PIN 0
-    LED3.Mode = GPIO_MODE_OUTPUT_PP;  // Configure as output with push-up-down enabled
-    LED3.Pull = GPIO_PULLDOWN;        // the push-up-down should work as pulldown
-    LED3.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
-
-    HAL_GPIO_Init(GPIOF, &LED3);
-
-    GPIO_InitTypeDef LED4;            // create a config structure
-    LED4.Pin = GPIO_PIN_7;            // this is about PIN 0
-    LED4.Mode = GPIO_MODE_OUTPUT_PP;  // Configure as output with push-up-down enabled
-    LED4.Pull = GPIO_PULLDOWN;        // the push-up-down should work as pulldown
-    LED4.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
-
-    HAL_GPIO_Init(GPIOF, &LED4);
-
-    GPIO_InitTypeDef LED5;            // create a config structure
-    LED5.Pin = GPIO_PIN_6;            // this is about PIN 0
-    LED5.Mode = GPIO_MODE_OUTPUT_PP;  // Configure as output with push-up-down enabled
-    LED5.Pull = GPIO_PULLDOWN;        // the push-up-down should work as pulldown
-    LED5.Speed = GPIO_SPEED_HIGH;     // we need a high-speed output
-
-    HAL_GPIO_Init(GPIOF, &LED5);
+void WelcomeScreen() {
+	printf("\n--------------REACTION GAME------------------\n");
+	printf("***********STATIC class reaction game**********\n\n");
 }
+void InitLEDs() {
+	__HAL_RCC_GPIOI_CLK_ENABLE();    //enable GPIO I port's clock
 
-void HalfByteLED(unsigned int x) {
-	unsigned int maskA0, maskF10, maskF9, maskF8, maskF7, maskF6;
+	GPIO_InitTypeDef RedGreenLEDs;   			// create a config structure
+	RedGreenLEDs.Pin = GPIO_PIN_0 | GPIO_PIN_3; // this is about PIN 0
+	RedGreenLEDs.Mode = GPIO_MODE_OUTPUT_PP;  	// Configure as output with push-up-down enabled
+	RedGreenLEDs.Pull = GPIO_PULLDOWN;        	// the push-up-down should work as pulldown
+	RedGreenLEDs.Speed = GPIO_SPEED_HIGH;     	// we need a high-speed output
 
-	maskA0 = 0b000001;
-	GPIOA->ODR = GPIOA->ODR & 0xFFFFFFFE; //0b11111111111111111111111111111110;
-	GPIOA->ODR |= (x & maskA0);
-
-	maskF10 = 0b000010;
-	GPIOF->ODR &= 0b11111111111111111111101111111111;
-	GPIOF->ODR |= ((x & maskF10) >> 1) << 10;
-
-	maskF9 = 0b000100;
-	GPIOF->ODR &= 0b11111111111111111111110111111111;
-	GPIOF->ODR |= ((x & maskF9) >> 2) << 9;
-
-	maskF8 = 0b001000;
-	GPIOF->ODR &= 0b11111111111111111111111011111111;
-	GPIOF->ODR |= ((x & maskF8) >> 3) << 8;
-
-	maskF7 = 0b010000;
-	GPIOF->ODR &= 0b11111111111111111111111101111111;
-	GPIOF->ODR |= ((x & maskF7) >> 4) << 7;
-
-	maskF6 = 0b100000;
-	GPIOF->ODR &= 0b11111111111111111111111110111111;
-	GPIOF->ODR |= ((x & maskF6) >> 5) << 6;
-
-	HAL_Delay(100);
-
+	HAL_GPIO_Init(GPIOI, &RedGreenLEDs);
 }
-
-int main(void)
-{
-
-  /* This project template calls firstly two functions in order to configure MPU feature 
-     and to enable the CPU Cache, respectively MPU_Config() and CPU_CACHE_Enable().
-     These functions are provided as template implementation that User may integrate 
-     in his application, to enhance the performance in case of use of AXI interface 
-     with several masters. */ 
-  
-  /* Configure the MPU attributes as Write Through */
+/* Private functions ---------------------------------------------------------*/
+int main(void) {
+  //HW init...
   MPU_Config();
-
-  /* Enable the CPU Cache */
   CPU_CACHE_Enable();
-
-  /* STM32F7xx HAL library initialization:
-       - Configure the Flash ART accelerator on ITCM interface
-       - Configure the Systick to generate an interrupt each 1 msec
-       - Set NVIC Group Priority to 4
-       - Low Level Initialization
-     */
   HAL_Init();
-
-  /* Configure the System clock to have a frequency of 216 MHz */
   SystemClock_Config();
 
-  /* Add your application code here     */
-  LedInit();
+  //Software codes
+  BSP_LED_Init(LED_GREEN);
+  BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_GPIO);
 
-  /* Infinite loop */
+  uart_handle.Init.BaudRate   = 115200;
+  uart_handle.Init.WordLength = UART_WORDLENGTH_8B;
+  uart_handle.Init.StopBits   = UART_STOPBITS_1;
+  uart_handle.Init.Parity     = UART_PARITY_NONE;
+  uart_handle.Init.HwFlowCtl  = UART_HWCONTROL_NONE;
+  uart_handle.Init.Mode       = UART_MODE_TX_RX;
+
+  BSP_COM_Init(COM1, &uart_handle);
+
+  //Button
+  unsigned int buttonPressed = 0;
+
+  //Measure delay until buttonpress
+  unsigned int delay = 0;
+
+  //Random number genarator initialization before while cycle
+  RNG_HandleTypeDef rand;
+  rand.Instance = RNG;
+  HAL_RNG_Init(&rand);
+  uint32_t rand_time = HAL_RNG_GetRandomNumber(&rand);
+
+  //Reaction time start and end stamp variables
+  uint32_t tickstart = 0;
+  uint32_t tickend = 0;
+  uint32_t reaction_time = 0;
+
+  uint8_t game_counter = 0;
+  uint32_t sum_of_reaction_times = 0;
+  uint8_t game_lost = 0;
+
+  //Print welcome message
+  WelcomeScreen();
+
+  InitLEDs();
+
   while (1) {
-	  for (int i = 0; i <= 64; ++i) {
-		  HalfByteLED(i);
+	  //Increase game counter for average reaction time calculation
+	  ++game_counter;
+
+	  //Promt for game start
+	  printf("Prepare! When you're ready press the button!\n");
+
+	  //Turn LED on. If onboard button is pressed, than turn LED off and exit while.
+	  //LED is flashing 1Hz, the 1000ms delay is divided to 10ms pieces to listen to keypress.
+	  //Turn the LED on...
+	  BSP_LED_On(LED_GREEN);
+	  //Wait while the button is not pressed and not released (LED off). Inbetween flashing the LED 1Hz.
+	  delay = 0;
+	  while (1) {
+		  HAL_Delay(5);
+		  delay += 5;
+		  if (BSP_PB_GetState(BUTTON_KEY) == SET) {buttonPressed = 1;}
+		  if (BSP_PB_GetState(BUTTON_KEY) == RESET && buttonPressed == 1) {buttonPressed = 0; BSP_LED_Off(LED_GREEN); break;}
+		  if (delay == 500) {delay = 0; BSP_LED_Toggle(LED_GREEN);}
 	  }
+
+	  //Game starting...
+	  printf("\nGame started! Wait for the LED to turn on!\n");
+
+	  //Make a random number between 1 and 10000
+	  rand_time = rand_time % 10000 + 1;
+
+	  //Print out this cheat!
+	  printf("(Hint: will wait %lu ms.)\n", rand_time);
+
+	  //Reset delay counter
+	  delay = 0;
+	  //Wait 1sec + random time wait starts to prevent immediate signaling by very slow random times
+	  while (delay < rand_time + 1000) {
+		  HAL_Delay(5); //Delay is 5ms blocks
+		  delay += 5; //Increase delay counter to measure past time
+		  if (BSP_PB_GetState(BUTTON_KEY) == SET) { //If there is a button pressed before the random time
+			  HAL_GPIO_WritePin(GPIOI, GPIO_PIN_3, GPIO_PIN_SET); //turn on red led
+			  printf("You lost the game! (Pressed too early!) 1s penalty time added!\n"); //write sad information to serial
+			  sum_of_reaction_times += 1000; //add penalty time to the sum variable
+			  game_lost = 1; //set lost game flag
+			  break; //exit while loop immediately
+		  }
+	  }
+	  if (game_lost == 1) { //Enter this if block only if the while loop above ended with "game lost" flag
+		  game_lost = 0; //reset lost game flag
+		  HAL_Delay(2000); //wait 2sec
+		  while (BSP_PB_GetState(BUTTON_KEY) == SET) {} //wait until key is not pressed
+		  HAL_GPIO_WritePin(GPIOI, GPIO_PIN_3, GPIO_PIN_RESET); //turn off red led
+		  continue; //start new while loop
+	  }
+
+	  //Signal! (there was no buttonpress before time)
+	  BSP_LED_On(LED_GREEN);
+
+	  //Make a "timestamp":
+	  tickstart = HAL_GetTick();
+	  while (BSP_PB_GetState(BUTTON_KEY) != SET) {}	//While button is not pressed do nothing
+	  HAL_GPIO_WritePin(GPIOI, GPIO_PIN_0, GPIO_PIN_SET); //Turn on green led
+	  tickend = HAL_GetTick();										//Get a timestamp at buttonpress
+	  reaction_time = tickend - tickstart;							//Calculate time between gamestart and buttonpress
+	  printf("Your reaction time was: %lu ms!\n", reaction_time);	//Print out result
+	  sum_of_reaction_times += reaction_time;						//add this game rusult to the current sum
+	  printf("Your average reaction time based on %u games is %lu ms.\n", game_counter, sum_of_reaction_times / game_counter);
+	  printf("Next game will start in 2 seconds!\n\n\n\n");
+	  HAL_Delay(2000);												//Wait 2s between games
+	  HAL_GPIO_WritePin(GPIOI, GPIO_PIN_0, GPIO_PIN_RESET);			//Turn off green led
+	  while (BSP_PB_GetState(BUTTON_KEY) == SET) {}					//Do not allow to start a game with pressed button
   }
 }
+/**
+  * @brief  Retargets the C library printf function to the USART.
+  * @param  None
+  * @retval None
+  */
+PUTCHAR_PROTOTYPE
+{
+  /* Place your implementation of fputc here */
+  /* e.g. write a character to the EVAL_COM1 and Loop until the end of transmission */
+  HAL_UART_Transmit(&uart_handle, (uint8_t *)&ch, 1, 0xFFFF);
+
+  return ch;
+}
+
 /**
   * @brief  System Clock Configuration
   *         The system Clock is configured as follow : 
@@ -244,19 +282,10 @@ static void SystemClock_Config(void)
   */
 static void Error_Handler(void)
 {
-  /* User may add here some code to deal with this error */
-  while(1)
-  {
+  while(1) {
   }
 }
 
-/**
-  * @brief  Configure the MPU attributes as Write Through for SRAM1/2.
-  * @note   The Base Address is 0x20010000 since this memory interface is the AXI.
-  *         The Region Size is 256KB, it is related to SRAM1 and SRAM2  memory size.
-  * @param  None
-  * @retval None
-  */
 static void MPU_Config(void)
 {
   MPU_Region_InitTypeDef MPU_InitStruct;
@@ -283,11 +312,6 @@ static void MPU_Config(void)
   HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
 }
 
-/**
-  * @brief  CPU L1-Cache enable.
-  * @param  None
-  * @retval None
-  */
 static void CPU_CACHE_Enable(void)
 {
   /* Enable I-Cache */
@@ -317,13 +341,3 @@ void assert_failed(uint8_t* file, uint32_t line)
   }
 }
 #endif
-
-/**
-  * @}
-  */ 
-
-/**
-  * @}
-  */ 
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

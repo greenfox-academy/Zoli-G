@@ -43,7 +43,7 @@ void TLMainMenu() {
     }
 
     //Main menu's "global" variables
-    SerialPortWrapper* serial = new SerialPortWrapper("COM4", 115200);  //Serial port object
+    SerialPortWrapper* serial = new SerialPortWrapper("COM1", 115200);  //Serial port object
     bool isPortOpen = false;                                            //Bool var to see if the port is already opened
     char menu;                                                          //Menu keypress
     vector<string> SerialData;                                          //Vector to store the serial data (from STM32 USB)

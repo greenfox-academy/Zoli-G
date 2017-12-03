@@ -25,7 +25,7 @@ int main(void) {
 	UARTInit();
 	LEDInit();
 
-	uint16_t delay = 1050;
+	uint16_t delay = 150;
 	printf("10bit binary counter\n");
 
 	while (1) {
@@ -33,7 +33,6 @@ int main(void) {
 			printf("%d\n", i);
 			NumberToLED(i, delay);
 		}
-		delay -= 1;
 	}
 }
 

@@ -47,7 +47,7 @@ void LEDInit() {
 	LEDA.Pull = GPIO_PULLDOWN;
 	LEDA.Speed = GPIO_SPEED_HIGH;
 	HAL_GPIO_Init(GPIOA, &LEDA);
-	//----------B port---------- D15, D14, D12, D11
+	//----------B port---------- D3, D15, D14, D12, D11
 	__HAL_RCC_GPIOB_CLK_ENABLE();
 
 	GPIO_InitTypeDef LEDB;

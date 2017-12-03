@@ -60,5 +60,12 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >38. Day - [Practice day](https://github.com/greenfox-academy/Zoli-G/tree/master/week-08/day-3)
 >39. Day - [Project: Reaction Game - day 1/2](https://github.com/greenfox-academy/Zoli-G/tree/master/week-08/day-4)
 >40. Day - [Project: Reaction Game - day 2/2](https://github.com/greenfox-academy/Zoli-G/tree/master/week-08/day-5), `Demo 7`
+
+## :date: Week-9 (4th Dec. - 8th Dec.) - <i>STM32 Discovery board continues...</i>
+>41. Day - STM32 Timer, interrupt, PWM
+>42. Day -
+>43. Day -
+>44. Day -
+>45. Day -
 ---
  :copyright: 2017 |  :zzz:oli

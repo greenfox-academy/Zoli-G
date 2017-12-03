@@ -13,3 +13,13 @@ obj/
 
 # Office
 *.pptx
+
+# Eclipse files for STM32
+.settings/
+Debug/
+startup/
+*.cproject
+*.project
+*.ld
+*.xml
+*.cfg

@@ -1,10 +1,12 @@
- /**
+#ifndef MAIN_H_
+#define MAIN_H_
+/**
   ******************************************************************************
-  * @file    Templates/Src/main.c 
+  * @file    Templates/Src/main.c
   * @author  MCD Application Team
   * @version V1.0.3
-  * @date    22-April-2016 
-  * @brief   STM32F7xx HAL API Template project 
+  * @date    22-April-2016
+  * @brief   STM32F7xx HAL API Template project
   ******************************************************************************
   * @attention
   *
@@ -34,35 +36,21 @@
   *
   ******************************************************************************
   */
-
-/* Includes ------------------------------------------------------------------*/
-#include "main.h"
-#include <string.h>
-
+#include "stm32f7xx_hal.h"
+#include "stm32746g_discovery.h"
 /** @addtogroup STM32F7xx_HAL_Examples
   * @{
   */
 
 /** @addtogroup Templates
   * @{
-  */ 
+  */
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-UART_HandleTypeDef uart_handle;
-
 /* Private function prototypes -----------------------------------------------*/
-
-#ifdef __GNUC__
-/* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
-   set to 'Yes') calls __io_putchar() */
-#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
-#else
-#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
-#endif /* __GNUC__ */
-
 static void SystemClock_Config(void);
 static void Error_Handler(void);
 static void MPU_Config(void);
@@ -75,77 +63,11 @@ static void CPU_CACHE_Enable(void);
   * @param  None
   * @retval None
   */
-int main(void)
-{
-  /* This project template calls firstly two functions in order to configure MPU feature 
-     and to enable the CPU Cache, respectively MPU_Config() and CPU_CACHE_Enable().
-     These functions are provided as template implementation that User may integrate 
-     in his application, to enhance the performance in case of use of AXI interface 
-     with several masters. */ 
-  
-  /* Configure the MPU attributes as Write Through */
-  MPU_Config();
 
-  /* Enable the CPU Cache */
-  CPU_CACHE_Enable();
-
-  /* STM32F7xx HAL library initialization:
-       - Configure the Flash ART accelerator on ITCM interface
-       - Configure the Systick to generate an interrupt each 1 msec
-       - Set NVIC Group Priority to 4
-       - Low Level Initialization
-     */
-  HAL_Init();
-
-  /* Configure the System clock to have a frequency of 216 MHz */
-  SystemClock_Config();
-
-  /* Add your application code here
-     */
-  BSP_LED_Init(LED_GREEN);
-
-  uart_handle.Init.BaudRate   = 115200;
-  uart_handle.Init.WordLength = UART_WORDLENGTH_8B;
-  uart_handle.Init.StopBits   = UART_STOPBITS_1;
-  uart_handle.Init.Parity     = UART_PARITY_NONE;
-  uart_handle.Init.HwFlowCtl  = UART_HWCONTROL_NONE;
-  uart_handle.Init.Mode       = UART_MODE_TX_RX;
-
-  BSP_COM_Init(COM1, &uart_handle);
-
-  /* Output without printf, using HAL function*/
-  //char msg[] = "UART HAL Example\r\n";
-  //HAL_UART_Transmit(&uart_handle, msg, strlen(msg), 100);
-
-  /* Output a message using printf function */
-  printf("\n-----------------WELCOME-----------------\r\n");
-  printf("**********in STATIC timer & pwm WS**********\r\n\n");
-
-  char msg[] = "Hello Zoli!\n";
-
-	  while (1)
-	  {
-		  HAL_UART_Transmit(&uart_handle, msg, strlen(msg), 100);
-	  }
-}
-
-/**
-  * @brief  Retargets the C library printf function to the USART.
-  * @param  None
-  * @retval None
-  */
-PUTCHAR_PROTOTYPE
-{
-  /* Place your implementation of fputc here */
-  /* e.g. write a character to the EVAL_COM1 and Loop until the end of transmission */
-  HAL_UART_Transmit(&uart_handle, (uint8_t *)&ch, 1, 0xFFFF);
-
-  return ch;
-}
 
 /**
   * @brief  System Clock Configuration
-  *         The system Clock is configured as follow : 
+  *         The system Clock is configured as follow :
   *            System Clock source            = PLL (HSE)
   *            SYSCLK(Hz)                     = 216000000
   *            HCLK(Hz)                       = 216000000
@@ -175,7 +97,7 @@ static void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 25;
-  RCC_OscInitStruct.PLL.PLLN = 432;  
+  RCC_OscInitStruct.PLL.PLLN = 432;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 9;
   if(HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
@@ -188,14 +110,14 @@ static void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  
-  /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 
+
+  /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2
      clocks dividers */
   RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;  
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;  
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
   if(HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_7) != HAL_OK)
   {
     Error_Handler();
@@ -225,7 +147,7 @@ static void Error_Handler(void)
 static void MPU_Config(void)
 {
   MPU_Region_InitTypeDef MPU_InitStruct;
-  
+
   /* Disable the MPU */
   HAL_MPU_Disable();
 
@@ -272,7 +194,7 @@ static void CPU_CACHE_Enable(void)
   * @retval None
   */
 void assert_failed(uint8_t* file, uint32_t line)
-{ 
+{
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
 
@@ -285,10 +207,11 @@ void assert_failed(uint8_t* file, uint32_t line)
 
 /**
   * @}
-  */ 
+  */
 
 /**
   * @}
-  */ 
+  */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+#endif

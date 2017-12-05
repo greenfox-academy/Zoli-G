@@ -51,7 +51,6 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-UART_HandleTypeDef uart_handle;
 
 volatile uint32_t timIntPeriod;
 
@@ -77,10 +76,13 @@ static void CPU_CACHE_Enable(void);
  * @param  None
  * @retval None
  */
-
 void LEDInit();
 void PB_IT_Init();
 void EXTI15_10_IRQHandler();
+void HAL_GPIO_EXTI_Callback(uint16_t);
+void UARTInit();
+
+UART_HandleTypeDef uart_handle;
 
 int main(void) {
 	/* This project template calls firstly two functions in order to configure MPU feature
@@ -109,19 +111,11 @@ int main(void) {
 	//BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_GPIO);
 	BSP_PB_Init(BUTTON_WAKEUP, BUTTON_MODE_EXTI);
 
-	/* Add your application code here
-	 */
+	//Turn on onboard led
 	BSP_LED_Init(LED_GREEN);
+	BSP_LED_On(LED_GREEN);
 
-	uart_handle.Init.BaudRate = 115200;
-	uart_handle.Init.WordLength = UART_WORDLENGTH_8B;
-	uart_handle.Init.StopBits = UART_STOPBITS_1;
-	uart_handle.Init.Parity = UART_PARITY_NONE;
-	uart_handle.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-	uart_handle.Init.Mode = UART_MODE_TX_RX;
-
-	BSP_COM_Init(COM1, &uart_handle);
-
+	UARTInit();
 	LEDInit();
 
 	printf("\n-----------------WELCOME-----------------\r\n");
@@ -134,7 +128,7 @@ int main(void) {
 }
 
 void LEDInit() {
-	__HAL_RCC_GPIOA_CLK_ENABLE();    // Enable the GPIOA port's clock first
+	__HAL_RCC_GPIOA_CLK_ENABLE();
 
 	GPIO_InitTypeDef LED;
 	LED.Pin = GPIO_PIN_8;
@@ -172,6 +166,17 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
 		printf("LED off!\n");
 	}
+}
+
+void UARTInit() {
+	uart_handle.Init.BaudRate = 115200;
+	uart_handle.Init.WordLength = UART_WORDLENGTH_8B;
+	uart_handle.Init.StopBits = UART_STOPBITS_1;
+	uart_handle.Init.Parity = UART_PARITY_NONE;
+	uart_handle.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+	uart_handle.Init.Mode = UART_MODE_TX_RX;
+
+	BSP_COM_Init(COM1, &uart_handle);
 }
 /**
  * @brief  Retargets the C library printf function to the USART.

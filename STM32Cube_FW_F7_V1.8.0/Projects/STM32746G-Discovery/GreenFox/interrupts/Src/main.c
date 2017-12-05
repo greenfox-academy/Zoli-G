@@ -77,12 +77,13 @@ static void CPU_CACHE_Enable(void);
  * @retval None
  */
 void LEDInit();
-void PB_IT_Init();
-void EXTI15_10_IRQHandler();
-void HAL_GPIO_EXTI_Callback(uint16_t);
+void TimerITInit();
 void UARTInit();
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
 
+GPIO_InitTypeDef LED;
 UART_HandleTypeDef uart_handle;
+TIM_HandleTypeDef TimHandle;
 
 int main(void) {
 	/* This project template calls firstly two functions in order to configure MPU feature
@@ -117,10 +118,10 @@ int main(void) {
 
 	UARTInit();
 	LEDInit();
+	TimerITInit();
 
 	printf("\n-----------------WELCOME-----------------\r\n");
 	printf("**********in STATIC interrupts WS**********\r\n\n");
-
 
 	while (1) {
 
@@ -130,7 +131,6 @@ int main(void) {
 void LEDInit() {
 	__HAL_RCC_GPIOA_CLK_ENABLE();
 
-	GPIO_InitTypeDef LED;
 	LED.Pin = GPIO_PIN_8;
 	LED.Mode = GPIO_MODE_OUTPUT_PP;
 	LED.Pull = GPIO_PULLDOWN;
@@ -139,33 +139,30 @@ void LEDInit() {
 	HAL_GPIO_Init(GPIOA, &LED);
 }
 
-void PB_IT_Init() {
-	__HAL_RCC_GPIOI_CLK_ENABLE();
+void TimerITInit() {
 
-	GPIO_InitTypeDef button;
-	button.Pin = GPIO_PIN_11;
-	button.Mode = GPIO_MODE_IT_RISING;
-	button.Pull = GPIO_NOPULL;
-	button.Speed = GPIO_SPEED_FAST;
+	__HAL_RCC_TIM1_CLK_ENABLE();
 
-	HAL_GPIO_Init(GPIOI, &button);
+	TimHandle.Instance               = TIM1;
+	TimHandle.Init.Period            = 2000; //Max = 100%
+	TimHandle.Init.Prescaler         = 54000; //Using 1/4000 speed of 216MHz
+	TimHandle.Init.ClockDivision     = TIM_CLOCKDIVISION_DIV1;
+	TimHandle.Init.CounterMode       = TIM_COUNTERMODE_UP;
 
-	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0x0F, 0x00);
-	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+	HAL_TIM_Base_Init(&TimHandle);
+	//HAL_TIM_Base_Start(&TimHandle);
+	HAL_TIM_Base_Start_IT(&TimHandle);
+
+	HAL_NVIC_SetPriority(TIM1_UP_TIM10_IRQn, 0x0F, 0x00);
+	HAL_NVIC_EnableIRQ(TIM1_UP_TIM10_IRQn);
 }
 
-void EXTI15_10_IRQHandler() {
-	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_11);
+void TIM1_UP_TIM10_IRQHandler() {
+	HAL_TIM_IRQHandler(&TimHandle);
 }
 
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
-	if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_8) == 0) {
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
-		printf("LED on!\n");
-	} else {
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
-		printf("LED off!\n");
-	}
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_8);
 }
 
 void UARTInit() {

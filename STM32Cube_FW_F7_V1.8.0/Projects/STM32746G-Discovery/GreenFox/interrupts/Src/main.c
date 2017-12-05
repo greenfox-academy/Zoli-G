@@ -148,13 +148,13 @@ void LEDInit() {
 void PB_IT_Init() {
 	__HAL_RCC_GPIOI_CLK_ENABLE();
 
-	GPIO_InitTypeDef conf;
-	conf.Pin = GPIO_PIN_11;
-	conf.Pull = GPIO_NOPULL;
-	conf.Speed = GPIO_SPEED_FAST;
-	conf.Mode = GPIO_MODE_IT_RISING;
+	GPIO_InitTypeDef button;
+	button.Pin = GPIO_PIN_11;
+	button.Mode = GPIO_MODE_IT_RISING;
+	button.Pull = GPIO_NOPULL;
+	button.Speed = GPIO_SPEED_FAST;
 
-	HAL_GPIO_Init(GPIOI, &conf);
+	HAL_GPIO_Init(GPIOI, &button);
 
 	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0x0F, 0x00);
 	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
@@ -167,9 +167,11 @@ void EXTI15_10_IRQHandler() {
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_8) == 0) {
 		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
+		printf("LED on!\n");
 	} else {
 		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
-			}
+		printf("LED off!\n");
+	}
 }
 /**
  * @brief  Retargets the C library printf function to the USART.

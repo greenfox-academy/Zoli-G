@@ -63,7 +63,7 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 
 ## :date: Week-9 (4th Dec. - 8th Dec.) - <i>STM32 Discovery board continues...</i>
 >41. Day - STM32 Timer, interrupt, PWM
->42. Day -
+>42. Day - STM32 IRQ (external interrupt (button), internal interrupt (timer), PWM)
 >43. Day -
 >44. Day -
 >45. Day -

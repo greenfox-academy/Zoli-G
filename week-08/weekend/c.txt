@@ -1,0 +1,19 @@
+#include "main.h"
+
+int main(void) {
+	//Hardware config
+	MPU_Config();
+	CPU_CACHE_Enable();
+	HAL_Init();
+	SystemClock_Config();
+
+	BSP_LED_Init(LED_GREEN);
+
+	while (1) {
+		BSP_LED_On(LED_GREEN);
+	  	HAL_Delay(1000);
+	  	BSP_LED_Off(LED_GREEN);
+		HAL_Delay(1000);
+	}
+
+}

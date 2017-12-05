@@ -77,6 +77,11 @@ static void CPU_CACHE_Enable(void);
  * @param  None
  * @retval None
  */
+
+void LEDInit();
+void PB_IT_Init();
+void EXTI15_10_IRQHandler();
+
 int main(void) {
 	/* This project template calls firstly two functions in order to configure MPU feature
 	 and to enable the CPU Cache, respectively MPU_Config() and CPU_CACHE_Enable().
@@ -101,6 +106,7 @@ int main(void) {
 	/* Configure the System clock to have a frequency of 216 MHz */
 	SystemClock_Config();
 
+	//BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_GPIO);
 	BSP_PB_Init(BUTTON_WAKEUP, BUTTON_MODE_EXTI);
 
 	/* Add your application code here
@@ -116,15 +122,55 @@ int main(void) {
 
 	BSP_COM_Init(COM1, &uart_handle);
 
+	LEDInit();
 
 	printf("\n-----------------WELCOME-----------------\r\n");
 	printf("**********in STATIC interrupts WS**********\r\n\n");
 
 
 	while (1) {
+
 	}
 }
 
+void LEDInit() {
+	__HAL_RCC_GPIOA_CLK_ENABLE();    // Enable the GPIOA port's clock first
+
+	GPIO_InitTypeDef LED;
+	LED.Pin = GPIO_PIN_8;
+	LED.Mode = GPIO_MODE_OUTPUT_PP;
+	LED.Pull = GPIO_PULLDOWN;
+	LED.Speed = GPIO_SPEED_HIGH;
+
+	HAL_GPIO_Init(GPIOA, &LED);
+}
+
+void PB_IT_Init() {
+	__HAL_RCC_GPIOI_CLK_ENABLE();
+
+	GPIO_InitTypeDef conf;
+	conf.Pin = GPIO_PIN_11;
+	conf.Pull = GPIO_NOPULL;
+	conf.Speed = GPIO_SPEED_FAST;
+	conf.Mode = GPIO_MODE_IT_RISING;
+
+	HAL_GPIO_Init(GPIOI, &conf);
+
+	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0x0F, 0x00);
+	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+}
+
+void EXTI15_10_IRQHandler() {
+	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_11);
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+	if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_8) == 0) {
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
+	} else {
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 0);
+			}
+}
 /**
  * @brief  Retargets the C library printf function to the USART.
  * @param  None

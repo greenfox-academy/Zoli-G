@@ -98,7 +98,7 @@ void TIM2_IRQHandler() {
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-	TIM1->CCR1 >= 1 ? (TIM1->CCR1 -= 1) : (TIM1->CCR1 = 0);
+    TIM1->CCR1 >= 1 ? (TIM1->CCR1 -= 1) : (TIM1->CCR1 = 0);
     if (TIM1->CCR1 % 10 == 0 && TIM1->CCR1 != 0)
     	printf("Timer interrupt -> LED fade (%lu).\n", TIM1->CCR1);
 }
@@ -138,9 +138,6 @@ void UARTInit() {
 }
 
 PUTCHAR_PROTOTYPE {
-	/* Place your implementation of fputc here */
-	/* e.g. write a character to the EVAL_COM1 and Loop until the end of transmission */
 	HAL_UART_Transmit(&uart_handle, (uint8_t *) &ch, 1, 0xFFFF);
-
 	return ch;
 }

@@ -186,10 +186,6 @@ void TIM1_CC_IRQHandler() {
 
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim) {
 
-	//if ((TIM2->CNT < TimerOC.Pulse * 6 / 10) || (TIM2->CNT > TimerOC.Pulse * 8 / 10)) {
-	//	return;
-	//}
-
 	if (dataBefore == 0) {
 		dataBefore = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1); //TIM1->CCR1;
 	} else {
@@ -209,7 +205,6 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim) {
 		dataBefore = 0;
 		dataAfter = 0;
 	}
-	//printf("%lu\n", HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1));
 }
 //-----------------------------------------------------
 void UARTInit() {

@@ -67,5 +67,9 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >43. Day - Practice day - LED-Dinamo (Timer-PWM, Timer-IRQ, External-IRQ)
 >44. Day - Project day 1/2 - P, PI closed loop controlling
 >45. Day - Project day 2/2 - P, PI closed loop controlling, `Demo 8`
+
+## :date: Week-10 (11th Dec. - 15th Dec.) - <i>STM32 Discovery board continues...</i>
+>46. Day - Serial communication: UART
+>47. Day - Serial communication: I2C
 ---
  :copyright: 2017 |  :zzz:oli

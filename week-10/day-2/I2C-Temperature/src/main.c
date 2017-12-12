@@ -6,7 +6,7 @@
 #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif
 
-#define I2C_ADDRESS 0x4D
+#define I2C_ADDRESS 0x48 //0b1001000
 
 void GPIOInit();
 void I2CInit();
@@ -29,16 +29,21 @@ int main(void) {
 
 	GPIOInit();
 	I2CInit();
+	UARTInit();
 
-	uint8_t cmd;
+	printf("TC74 - I2C Temperature Readings\n");
+
+	uint8_t cmd = 0;
 
 	while (1) {
-		HAL_I2C_Master_Transmit(&I2cHandle, I2C_ADDRESS, 0x0, 2, 0xFFFF);
-		HAL_Delay(50);
-		HAL_I2C_Master_Receive(&I2cHandle, I2C_ADDRESS, cmd, 2, 0xFFFF);
-		HAL_Delay(50);
+		HAL_I2C_Master_Transmit(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &cmd, 1, 0xFFFF);
+		HAL_Delay(500);
+		HAL_I2C_Master_Receive(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &cmd, 1, 0xFFFF);
+		HAL_Delay(500);
 
 		printf("%d\n", cmd);
+
+		cmd = 0;
 	}
 
 }
@@ -78,3 +83,7 @@ void UARTInit() {
 	BSP_COM_Init(COM1, &uart_handle);
 }
 
+PUTCHAR_PROTOTYPE {
+	HAL_UART_Transmit(&uart_handle, (uint8_t *) &ch, 1, 0xFFFF);
+	return ch;
+}

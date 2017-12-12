@@ -38,16 +38,19 @@ int main(void) {
 
 	uint8_t prev_temp = 0;
 
+	HAL_I2C_Master_Transmit(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &cmd, 1, 0xFFFF);
+	HAL_Delay(500);
+
 	while (1) {
-		HAL_I2C_Master_Transmit(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &cmd, 1, 0xFFFF);
-		HAL_Delay(500);
+
 		HAL_I2C_Master_Receive(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &buf, 1, 0xFFFF);
-		HAL_Delay(500);
 
 		if (prev_temp != buf) {
 			buf > prev_temp ? printf("Temp: %d°C (warming)\n", buf) : printf("Temp: %d°C (cooling)\n", buf);
 			prev_temp = buf;
 		}
+
+		HAL_Delay(500);
 	}
 
 }

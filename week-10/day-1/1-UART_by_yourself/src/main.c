@@ -1,5 +1,5 @@
 #include "main.h"
-#include "string.h"
+#include "stm32746g_discovery_lcd.h"
 
 void UARTSettings(UART_HandleTypeDef huart);
 void UARTPinSettings(COM_TypeDef COM, UART_HandleTypeDef huart);
@@ -12,6 +12,8 @@ int main(void) {
 	CPU_CACHE_Enable();
 	HAL_Init();
 	SystemClock_Config();
+	BSP_LCD_Init();
+	BSP_LCD_DisplayOff();
 
 	BSP_LED_Init(LED_GREEN);
 	BSP_LED_On(LED_GREEN);
@@ -64,5 +66,3 @@ void UARTPinSettings(COM_TypeDef COM, UART_HandleTypeDef huart) {
 	  gpio_init_structure.Alternate = GPIO_AF7_USART1; //DISCOVERY_COM1_RX_AF;
 	  HAL_GPIO_Init(GPIOB, &gpio_init_structure);
 }
-
-//void SendToPC(const char* data)

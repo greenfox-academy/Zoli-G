@@ -44,7 +44,10 @@ int main(void) {
 		HAL_Delay(50);
 		HAL_I2C_Master_Receive(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &buf, 1, 0xFFFF);
 
-		if (prev_temp != buf) {
+		if (buf >= 190)	//For temperatures below 0°C TC74 gives values between [190; 255]
+			buf -= 255;
+
+		if (prev_temp != buf) {	//Print only if temperature is changing and print that direction too
 			buf > prev_temp ? printf("Temp: %d°C (warming)\n", buf) : printf("Temp: %d°C (cooling)\n", buf);
 			prev_temp = buf;
 		}

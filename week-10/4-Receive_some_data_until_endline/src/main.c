@@ -1,10 +1,14 @@
 #include "main.h"
 #include "string.h"
 
-void UARTSettings(UART_HandleTypeDef huart);
-void UARTPinSettings(COM_TypeDef COM, UART_HandleTypeDef huart);
+void UARTSettings(UART_HandleTypeDef);
+void UARTPinSettings(UART_HandleTypeDef);
+void ReadFromPC();
 
 UART_HandleTypeDef UartHandle;
+char buffer[32];
+uint8_t buffer_place_to_write = 0;
+char text[32];
 
 int main(void) {
 	//Hardware config
@@ -16,18 +20,14 @@ int main(void) {
 	BSP_LED_Init(LED_GREEN);
 	BSP_LED_On(LED_GREEN);
 
-	UARTPinSettings(COM1, UartHandle);
+	UARTPinSettings(UartHandle);
 	UARTSettings(UartHandle);
 
-	char message[8] = "Hello! \0";
-
 	while (1) {
-
-		HAL_UART_Transmit(&UartHandle, (uint8_t*) message, strlen(message), 0xFFFF);
-		HAL_Delay(1000);
+		ReadFromPC();
 	}
-}
 
+}
 void UARTSettings(UART_HandleTypeDef huart) {
 	UartHandle.Instance         = USART1;
 	UartHandle.Init.BaudRate    = 115200;
@@ -40,7 +40,7 @@ void UARTSettings(UART_HandleTypeDef huart) {
 	HAL_UART_Init(&UartHandle);
 }
 
-void UARTPinSettings(COM_TypeDef COM, UART_HandleTypeDef huart) {
+void UARTPinSettings(UART_HandleTypeDef huart) {
 	GPIO_InitTypeDef gpio_init_structure;
 
 	  /* Enable GPIO clock */
@@ -65,4 +65,19 @@ void UARTPinSettings(COM_TypeDef COM, UART_HandleTypeDef huart) {
 	  HAL_GPIO_Init(GPIOB, &gpio_init_structure);
 }
 
-//void SendToPC(const char* data)
+void ReadFromPC() {
+	//Let receive a byte and put it into the buffer array
+	HAL_UART_Receive(&UartHandle, (uint8_t*) &buffer[buffer_place_to_write], 1, 0xFFFF);
+	//Increase buffer counter
+	++buffer_place_to_write;
+
+	//Check if there is already an enter char inputted (means command finished)
+	if (buffer[buffer_place_to_write - 1] == '\n') {
+		buffer[buffer_place_to_write - 1] = '\0';		//Change enter char to string termination char
+		text[0] = '\0';									//Clear command string just in case
+		strcpy(text, buffer);						//Copy buffer content to command
+		buffer_place_to_write = 0;						//Virtually clear the buffer by resetting it's counter
+
+		HAL_UART_Transmit(&UartHandle, (uint8_t*) text, strlen(text), 0xFFFF);
+	}
+}

@@ -1,10 +1,11 @@
 #include "main.h"
 #include "string.h"
 
-void UARTSettings(UART_HandleTypeDef huart);
-void UARTPinSettings(COM_TypeDef COM, UART_HandleTypeDef huart);
+void UARTSettings(UART_HandleTypeDef);
+void UARTPinSettings(UART_HandleTypeDef);
 
 UART_HandleTypeDef UartHandle;
+char ch;
 
 int main(void) {
 	//Hardware config
@@ -16,18 +17,16 @@ int main(void) {
 	BSP_LED_Init(LED_GREEN);
 	BSP_LED_On(LED_GREEN);
 
-	UARTPinSettings(COM1, UartHandle);
+	UARTPinSettings(UartHandle);
 	UARTSettings(UartHandle);
 
-	char message[8] = "Hello! \0";
-
 	while (1) {
+		HAL_UART_Receive(&UartHandle, (uint8_t*) &ch, 1, 0xFFFF);
 
-		HAL_UART_Transmit(&UartHandle, (uint8_t*) message, strlen(message), 0xFFFF);
-		HAL_Delay(1000);
+		HAL_UART_Transmit(&UartHandle, (uint8_t*) &ch, 1, 0xFFFF);
 	}
-}
 
+}
 void UARTSettings(UART_HandleTypeDef huart) {
 	UartHandle.Instance         = USART1;
 	UartHandle.Init.BaudRate    = 115200;
@@ -40,7 +39,7 @@ void UARTSettings(UART_HandleTypeDef huart) {
 	HAL_UART_Init(&UartHandle);
 }
 
-void UARTPinSettings(COM_TypeDef COM, UART_HandleTypeDef huart) {
+void UARTPinSettings(UART_HandleTypeDef huart) {
 	GPIO_InitTypeDef gpio_init_structure;
 
 	  /* Enable GPIO clock */
@@ -64,5 +63,3 @@ void UARTPinSettings(COM_TypeDef COM, UART_HandleTypeDef huart) {
 	  gpio_init_structure.Alternate = GPIO_AF7_USART1; //DISCOVERY_COM1_RX_AF;
 	  HAL_GPIO_Init(GPIOB, &gpio_init_structure);
 }
-
-//void SendToPC(const char* data)

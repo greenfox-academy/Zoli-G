@@ -14,12 +14,12 @@ void GPIOInit();
 void UARTInit();
 
 void I2CInit();
-void I2C1_EV_IRQHandler(I2C_HandleTypeDef *hi2c);
-void HAL_I2C_MasterRxCpltCallback(I2C_HandleTypeDef *hi2c);
+void I2C1_EV_IRQHandler(I2C_HandleTypeDef* hi2c);
+void HAL_I2C_MasterRxCpltCallback(I2C_HandleTypeDef* hi2c);
 
 void TimerITInit();
 void TIM1_UP_TIM10_IRQHandler();
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim);
 
 //Global variables
 GPIO_InitTypeDef GPIO_I2C_SDA_SCL_Config;
@@ -84,6 +84,10 @@ void I2C1_EV_IRQHandler(I2C_HandleTypeDef *hi2c) {
 	HAL_I2C_EV_IRQHandler(&I2cHandle);
 }
 
+//void HAL_I2C_MasterTxCpltCallback(I2C_HandleTypeDef *hi2c) {
+//	HAL_I2C_Master_Receive_IT(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &buf, 1);
+//}
+
 void HAL_I2C_MasterRxCpltCallback(I2C_HandleTypeDef *hi2c) {
 	printf("Temperature: %d°C\n", buf);
 }
@@ -94,13 +98,12 @@ void TimerITInit() {
 	__HAL_RCC_TIM1_CLK_ENABLE();
 
 	TimHandle.Instance               = TIM1;
-	TimHandle.Init.Period            = 8000; //Max = 100%
-	TimHandle.Init.Prescaler         = 54000; //Using 1/4000 speed of 216MHz
+	TimHandle.Init.Period            = 8000; //Period time = 8000 / 4000Hz = 2s
+	TimHandle.Init.Prescaler         = 54000; //Using 1/54000 speed of 216MHz (= 4 kHz)
 	TimHandle.Init.ClockDivision     = TIM_CLOCKDIVISION_DIV1;
 	TimHandle.Init.CounterMode       = TIM_COUNTERMODE_UP;
 
 	HAL_TIM_Base_Init(&TimHandle);
-	//HAL_TIM_Base_Start(&TimHandle);
 	HAL_TIM_Base_Start_IT(&TimHandle);
 
 	HAL_NVIC_SetPriority(TIM1_UP_TIM10_IRQn, 0x0F, 0x00);
@@ -112,6 +115,7 @@ void TIM1_UP_TIM10_IRQHandler() {
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+	//HAL_I2C_Master_Transmit_IT(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &cmd, 1);
 	HAL_I2C_Master_Receive_IT(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &buf, 1);
 }
 //UART----------------------------------------------------------

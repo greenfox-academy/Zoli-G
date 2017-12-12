@@ -34,16 +34,20 @@ int main(void) {
 	printf("TC74 - I2C Temperature Readings\n");
 
 	uint8_t cmd = 0;
+	uint8_t buf;
+
+	uint8_t prev_temp = 0;
 
 	while (1) {
 		HAL_I2C_Master_Transmit(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &cmd, 1, 0xFFFF);
 		HAL_Delay(500);
-		HAL_I2C_Master_Receive(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &cmd, 1, 0xFFFF);
+		HAL_I2C_Master_Receive(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &buf, 1, 0xFFFF);
 		HAL_Delay(500);
 
-		printf("%d\n", cmd);
-
-		cmd = 0;
+		if (prev_temp != buf) {
+			buf > prev_temp ? printf("Temp: %d°C (warming)\n", buf) : printf("Temp: %d°C (cooling)\n", buf);
+			prev_temp = buf;
+		}
 	}
 
 }

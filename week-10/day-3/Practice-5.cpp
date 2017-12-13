@@ -68,7 +68,7 @@ int main() {
     //dont forget to use private variables, and get/set methods, and also place out_of_range
     //character class into a seperate file
     srand(time(NULL));
-    
+
     Character Monster("Mmmonsterrrr", 100, 80, 70);
     Character Knight("Black Knight", 80, 75, 90);
 
@@ -84,7 +84,7 @@ int main() {
         cout << endl;
     } while ((signed int)Monster.getHealth() > 0 && (signed int)Knight.getHealth() > 0);
 
-    cout << "The winner is " << winner << "!" << endl;
+    cout << endl << "-------------" << endl << "The winner is " << winner << "!" << endl;
 
     return 0;
 }

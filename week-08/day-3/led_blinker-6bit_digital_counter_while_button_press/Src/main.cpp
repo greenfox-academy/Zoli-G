@@ -120,41 +120,18 @@ void LedInit() {
     HAL_GPIO_Init(GPIOA, &Button);
 }
 
-void HalfByteLED(unsigned int x) {
-	//unsigned int maskA0, maskF10, maskF9, maskF8, maskF7, maskF6,
+void SixBitLED(unsigned int x) {
 	unsigned int maskA0, maskF10_F6;
 
 	maskA0 = 0b000001;
-	GPIOA->ODR &= 0b11111111111111111111111111111110;
+	GPIOA->ODR &= ~0b000001;
 	GPIOA->ODR |= (x & maskA0);
 
 	maskF10_F6 = 0b111110;
-	GPIOF->ODR &= 0b11111111111111111111100000111111;
+	GPIOF->ODR &= ~(0b111110 << 5);
 	GPIOF->ODR |= ((x & maskF10_F6) >> 1) << 6;
 
-	/*
-	maskF10 = 0b000010;
-	GPIOF->ODR &= 0b11111111111111111111101111111111;
-	GPIOF->ODR |= ((x & maskF10) >> 1) << 10;
-
-	maskF9 = 0b000100;
-	GPIOF->ODR &= 0b11111111111111111111110111111111;
-	GPIOF->ODR |= ((x & maskF9) >> 2) << 9;
-
-	maskF8 = 0b001000;
-	GPIOF->ODR &= 0b11111111111111111111111011111111;
-	GPIOF->ODR |= ((x & maskF8) >> 3) << 8;
-
-	maskF7 = 0b010000;
-	GPIOF->ODR &= 0b11111111111111111111111101111111;
-	GPIOF->ODR |= ((x & maskF7) >> 4) << 7;
-
-	maskF6 = 0b100000;
-	GPIOF->ODR &= 0b11111111111111111111111110111111;
-	GPIOF->ODR |= ((x & maskF6) >> 5) << 6;
-	*/
 	HAL_Delay(200);
-
 }
 
 int main(void)
@@ -189,7 +166,7 @@ int main(void)
   /* Infinite loop */
   while (1) {
 	  if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_15) == GPIO_PIN_RESET) {
-		  HalfByteLED(i);
+		  SixBitLED(i);
 		  ++i;
 	  }
   }

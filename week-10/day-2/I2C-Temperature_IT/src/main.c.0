@@ -14,6 +14,7 @@ void GPIOInit();
 void UARTInit();
 
 void I2CInit();
+<<<<<<< HEAD
 void I2C1_EV_IRQHandler(I2C_HandleTypeDef*);
 void HAL_I2C_MasterRxCpltCallback(I2C_HandleTypeDef*);
 void HAL_I2C_MasterTxCpltCallback(I2C_HandleTypeDef*);
@@ -21,6 +22,14 @@ void HAL_I2C_MasterTxCpltCallback(I2C_HandleTypeDef*);
 void TimerITInit();
 void TIM1_UP_TIM10_IRQHandler();
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*);
+=======
+void I2C1_EV_IRQHandler(I2C_HandleTypeDef* hi2c);
+void HAL_I2C_MasterRxCpltCallback(I2C_HandleTypeDef* hi2c);
+
+void TimerITInit();
+void TIM1_UP_TIM10_IRQHandler();
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim);
+>>>>>>> fe77baac943656084e7338b8175f01e4335a03e2
 
 //Global variables
 GPIO_InitTypeDef GPIO_I2C_SDA_SCL_Config;
@@ -87,9 +96,15 @@ void I2C1_EV_IRQHandler(I2C_HandleTypeDef *hi2c) {
 	HAL_I2C_EV_IRQHandler(&I2cHandle);
 }
 
+<<<<<<< HEAD
 void HAL_I2C_MasterTxCpltCallback(I2C_HandleTypeDef *hi2c) {
 	HAL_I2C_Master_Receive_IT(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &buf, 1);
 }
+=======
+//void HAL_I2C_MasterTxCpltCallback(I2C_HandleTypeDef *hi2c) {
+//	HAL_I2C_Master_Receive_IT(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &buf, 1);
+//}
+>>>>>>> fe77baac943656084e7338b8175f01e4335a03e2
 
 void HAL_I2C_MasterRxCpltCallback(I2C_HandleTypeDef *hi2c) {
 	printf("Temperature: %d°C\n", buf);
@@ -118,7 +133,12 @@ void TIM1_UP_TIM10_IRQHandler() {
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+<<<<<<< HEAD
 	HAL_I2C_Master_Transmit_IT(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &cmd, 1);
+=======
+	//HAL_I2C_Master_Transmit_IT(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &cmd, 1);
+	HAL_I2C_Master_Receive_IT(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &buf, 1);
+>>>>>>> fe77baac943656084e7338b8175f01e4335a03e2
 }
 //UART----------------------------------------------------------
 void UARTInit() {

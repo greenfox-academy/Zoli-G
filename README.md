@@ -69,7 +69,8 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >45. Day - Project day 2/2 - P, PI closed loop controlling, `Demo 8`
 
 ## :date: Week-10 (11th Dec. - 15th Dec.) - <i>STM32 Discovery board continues...</i>
->46. Day - Serial communication: UART
->47. Day - Serial communication: I2C
+>46. Day - [Serial communication: UART](https://github.com/greenfox-academy/Zoli-G/tree/master/week-10/day-1)
+>47. Day - [Serial communication: I2C](https://github.com/greenfox-academy/Zoli-G/tree/master/week-10/day-2)
+>48. Day - [C++ 2nd Exam practice day](https://github.com/greenfox-academy/Zoli-G/tree/master/week-10/day-3)
 ---
  :copyright: 2017 |  :zzz:oli

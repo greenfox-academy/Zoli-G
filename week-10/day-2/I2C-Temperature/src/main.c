@@ -15,8 +15,6 @@ void UARTInit();
 GPIO_InitTypeDef GPIO_I2C_SDA_SCL_Config;
 I2C_HandleTypeDef I2cHandle;
 UART_HandleTypeDef uart_handle;
-uint8_t send[32];
-uint8_t receive[32];
 
 int main(void) {
 	//Hardware config
@@ -31,21 +29,25 @@ int main(void) {
 	I2CInit();
 	UARTInit();
 
-	printf("TC74 - I2C Temperature Readings\n");
+	printf("-------------------------------\n"
+		   "TC74 - I2C Temperature Readings\n"
+		   "-------------------------------\n");
 
-	uint8_t cmd = 0;
+	uint8_t cmd = 0x0;
 	uint8_t buf;
 
 	uint8_t prev_temp = 0;
 
-	HAL_I2C_Master_Transmit(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &cmd, 1, 0xFFFF);
-	HAL_Delay(500);
-
 	while (1) {
 
+		HAL_I2C_Master_Transmit(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &cmd, 1, 0xFFFF);
+		HAL_Delay(50);
 		HAL_I2C_Master_Receive(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &buf, 1, 0xFFFF);
 
-		if (prev_temp != buf) {
+		if (buf >= 190)	//For temperatures below 0°C TC74 gives values between [190; 255]
+			buf -= 255;
+
+		if (prev_temp != buf) {	//Print only if temperature is changing and print that direction too
 			buf > prev_temp ? printf("Temp: %d°C (warming)\n", buf) : printf("Temp: %d°C (cooling)\n", buf);
 			prev_temp = buf;
 		}

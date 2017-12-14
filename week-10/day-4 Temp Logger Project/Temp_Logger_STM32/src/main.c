@@ -2,6 +2,9 @@
 #include "UART.h"
 #include "RTC.h"
 #include "TIM.h"
+#include "I2C.h"
+
+void Logo();
 
 //Global variables
 UART_HandleTypeDef UartHandle;
@@ -26,7 +29,8 @@ int main(void) {
 	//Start UART serial communication with printf support
 	UART_Config();
 
-	printf("STM32 - TC74 Temperature Logger Node Initializing...\n");
+	Logo();
+	printf("STM32 - TC74 Temperature Logger Node Initializing...\n\n");
 
     RTC_Config();
 	RTC_SetDateTime(
@@ -50,4 +54,16 @@ int main(void) {
 		//Nothing to see here...
 		//Timer IT -> RTC & I2C Transmit IT -> Receive IT -> printf
 	}
+}
+
+void Logo() {
+	printf(
+	 "  _____ _______ __  __ ____ ___             _______ _____ ______ _  _\n"
+	 " / ____|__   __|  \\/  |___ \\__ \\           |__   __/ ____|____  | || |\n"
+	 "| (___    | |  | \\  / | __) | ) |  ______     | | | |        / /| || |_\n"
+	 " \\___ \\   | |  | |\\/| ||__ < / /  |______|    | | | |       / / |__   _|\n"
+	 " ____) |  | |  | |  | |___) / /_              | | | |____  / /     | |\n"
+	 "|_____/   |_|  |_|  |_|____/____|             |_|  \\_____|/_/      |_|\n"
+	 "=======================================================================\n"
+	);
 }

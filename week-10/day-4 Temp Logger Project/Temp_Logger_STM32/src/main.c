@@ -39,6 +39,7 @@ int main(void) {
 	            0                           // second: 0
 	);
 
+	//Initializing I2C with GPIO pins
 	GPIOInit();
 	I2CInit();
 
@@ -46,6 +47,7 @@ int main(void) {
 	TimerITInit();
 
 	while (1) {
-
+		//Nothing to see here...
+		//Timer IT -> RTC & I2C Transmit IT -> Receive IT -> printf
 	}
 }

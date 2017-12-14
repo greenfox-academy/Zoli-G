@@ -5,7 +5,7 @@ extern GPIO_InitTypeDef GPIO_I2C_SDA_SCL_Config;
 extern I2C_HandleTypeDef I2cHandle;
 extern uint8_t buf;
 
-//GPIO Pin settings-----------------------------------------------
+//GPIO Pin settings for I2C-------------------------------------
 void GPIOInit() {
 	//D14 (B9) & D15 (B8)
 
@@ -44,4 +44,5 @@ void HAL_I2C_MasterTxCpltCallback(I2C_HandleTypeDef *hi2c) {
 void HAL_I2C_MasterRxCpltCallback(I2C_HandleTypeDef *hi2c) {
 	//Print out temperature value in celsius and a newline char
 	printf("%d\n", buf);
+	BSP_LED_Toggle(LED_GREEN);
 }

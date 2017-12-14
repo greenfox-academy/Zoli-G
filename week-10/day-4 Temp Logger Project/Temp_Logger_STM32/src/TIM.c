@@ -34,7 +34,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	HAL_RTC_GetTime(&RtcHandle, &dTime, RTC_FORMAT_BIN);
 	HAL_RTC_GetDate(&RtcHandle, &dDate, RTC_FORMAT_BIN);
 
-	printf("%d.%d.%d %d:%d:%d ",
+	//Print out date&time with leading zeros! Useful for string tokenization on PC side
+	printf("%d.%02d.%02d %02d:%02d:%02d ",
 	(dDate.Year + 2000), dDate.Month, dDate.Date, dTime.Hours, dTime.Minutes, dTime.Seconds);
 
 	HAL_I2C_Master_Transmit_IT(&I2cHandle, I2C_ADDRESS << 1, (uint8_t*) &cmd, 1);

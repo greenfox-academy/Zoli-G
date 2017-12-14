@@ -3,7 +3,6 @@
 
 extern GPIO_InitTypeDef GPIO_I2C_SDA_SCL_Config;
 extern I2C_HandleTypeDef I2cHandle;
-extern uint8_t cmd;
 extern uint8_t buf;
 
 //GPIO Pin settings-----------------------------------------------
@@ -43,5 +42,6 @@ void HAL_I2C_MasterTxCpltCallback(I2C_HandleTypeDef *hi2c) {
 }
 
 void HAL_I2C_MasterRxCpltCallback(I2C_HandleTypeDef *hi2c) {
-	printf("%d°C\n", buf);
+	//Print out temperature value in celsius and a newline char
+	printf("%d\n", buf);
 }

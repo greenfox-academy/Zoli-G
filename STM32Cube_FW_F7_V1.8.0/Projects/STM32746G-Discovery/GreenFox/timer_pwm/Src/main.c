@@ -68,9 +68,14 @@ static void CPU_CACHE_Enable(void);
 UART_HandleTypeDef uart_handle;
 TIM_HandleTypeDef TimHandle;
 GPIO_InitTypeDef led;
+GPIO_InitTypeDef Button;
 
 //Function protypes
 void LEDInit();
+
+void Button_IT_Init();
+void EXTI15_10_IRQHandler();
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
 
 void TimerITInit();
 void TIM1_UP_TIM10_IRQHandler();
@@ -112,10 +117,13 @@ int main(void)
      */
   UARTInit();
   LEDInit();
+  Button_IT_Init();
   TimerITInit();
 
   BSP_LED_Init(LED_GREEN);
   printf("Railroad crossing control software initializing...\n");
+
+  printf("Status: OPEN\n");
 
 	  while (1)
 	  {
@@ -133,13 +141,42 @@ void LEDInit() {
 	HAL_GPIO_Init(GPIOI, &led);
 }
 //----------------------------------------------------------------
+void Button_IT_Init() {
+	//__HAL_RCC_GPIOI_CLK_ENABLE();
+
+	Button.Pin = GPIO_PIN_11;
+	Button.Mode = GPIO_MODE_IT_RISING;
+	Button.Pull = GPIO_PULLUP;
+	Button.Speed = GPIO_SPEED_FAST;
+
+	HAL_GPIO_Init(GPIOI, &Button);
+
+	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0x1F, 0x00);
+	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+}
+
+void EXTI15_10_IRQHandler() {
+	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_11);
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+	//Button IT doings
+	printf("Train coming! Barrier closing... (5s)\n");
+	printf("Status: SECURING...\n");
+	//Change flashing to 1Hz
+	TIM1->ARR = 2000;
+	HAL_Delay(5000);
+	printf("Status: SECURED\n");
+
+}
+//----------------------------------------------------------------
 void TimerITInit() {
 
 	__HAL_RCC_TIM1_CLK_ENABLE();
 
 	TimHandle.Instance               = TIM1;
-	TimHandle.Init.Period            = 1000;
-	TimHandle.Init.Prescaler         = 54000;
+	TimHandle.Init.Period            = 1000; //4000Hz / 1000 = 4Hz on + 4Hz off = 2Hz
+	TimHandle.Init.Prescaler         = 54000; //216MHz / 54000 = 4000Hz
 	TimHandle.Init.ClockDivision     = TIM_CLOCKDIVISION_DIV1;
 	TimHandle.Init.CounterMode       = TIM_COUNTERMODE_UP;
 

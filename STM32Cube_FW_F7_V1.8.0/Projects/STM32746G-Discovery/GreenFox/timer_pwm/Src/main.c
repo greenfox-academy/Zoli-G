@@ -72,6 +72,8 @@ GPIO_InitTypeDef led;
 GPIO_InitTypeDef Button;
 uint8_t start_click = 1;
 
+enum STATE {OPEN, SECURING, SECURED, OPENING};
+
 //Function protypes
 void LEDInit();
 

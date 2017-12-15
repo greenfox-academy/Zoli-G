@@ -190,6 +190,8 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 		printf("Status: OPENING...\n");
 		//Set signal to 1Hz
 		TIM1->ARR = 2000;
+		//Switch off button
+		HAL_GPIO_DeInit(GPIOI, GPIO_PIN_11);
 		HAL_TIM_Base_Start_IT(&TimHandle);
 		//Set timer 2 to 6s
 		TIM2->ARR = 6000;
@@ -204,7 +206,7 @@ void TimerITInit() {
 	__HAL_RCC_TIM1_CLK_ENABLE();
 
 	TimHandle.Instance               = TIM1;
-	TimHandle.Init.Period            = 1000; //4000Hz / 1000 = 4Hz on + 4Hz off = 2Hz
+	TimHandle.Init.Period            = 4000; //4000Hz / 4000 = 1Hz on
 	TimHandle.Init.Prescaler         = 54000; //216MHz / 54000 = 4000Hz
 	TimHandle.Init.ClockDivision     = TIM_CLOCKDIVISION_DIV1;
 	TimHandle.Init.CounterMode       = TIM_COUNTERMODE_UP;
@@ -262,7 +264,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 		//Stop barrier timer
 		HAL_TIM_Base_Stop_IT(&TimBarrierHandle);
 		//Set signalling back to 0.5Hz
-		TIM1->ARR = 1000;
+		TIM1->ARR = 4000;
 	}
 }
 //----------------------------------------------------------------

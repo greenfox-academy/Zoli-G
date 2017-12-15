@@ -70,6 +70,12 @@ TIM_HandleTypeDef TimHandle;
 GPIO_InitTypeDef led;
 
 //Function protypes
+void LEDInit();
+
+void TimerITInit();
+void TIM1_UP_TIM10_IRQHandler();
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
+
 void UARTInit();
 
 /**
@@ -105,6 +111,9 @@ int main(void)
   /* Add your application code here
      */
   UARTInit();
+  LEDInit();
+  TimerITInit();
+
   BSP_LED_Init(LED_GREEN);
   printf("Railroad crossing control software initializing...\n");
 
@@ -146,7 +155,7 @@ void TIM1_UP_TIM10_IRQHandler() {
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-    //D
+    HAL_GPIO_TogglePin(GPIOI, GPIO_PIN_1);
 }
 //----------------------------------------------------------------
 void UARTInit() {

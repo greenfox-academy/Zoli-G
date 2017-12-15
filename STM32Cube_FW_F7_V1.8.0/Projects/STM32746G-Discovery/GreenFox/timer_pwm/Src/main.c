@@ -170,16 +170,33 @@ void EXTI15_10_IRQHandler() {
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
-	//Button IT doings
-	printf("Train coming! Barrier closing... (5s)\n");
-	State = SECURING;
-	printf("Status: SECURING...\n");
-	//Change flashing to 1Hz
-	TIM1->ARR = 2000;
-	//Switch off button
-	HAL_GPIO_DeInit(GPIOI, GPIO_PIN_11);
-	//Start another timer to count to 5s
-	HAL_TIM_Base_Start_IT(&TimBarrierHandle);
+	switch (State) {
+	case OPEN:
+		//Set state and print
+		printf("Train coming! Barrier closing... (5s)\n");
+		State = SECURING;
+		printf("Status: SECURING...\n");
+		//Change flashing to 1Hz
+		TIM1->ARR = 2000;
+		//Switch off button
+		HAL_GPIO_DeInit(GPIOI, GPIO_PIN_11);
+		//Start another timer to count to 5s
+		HAL_TIM_Base_Start_IT(&TimBarrierHandle);
+		break;
+	case SECURED:
+		//Set state and print
+		printf("Barrier opening... (6s)\n");
+		State = OPENING;
+		printf("Status: OPENING...\n");
+		//Set signal to 1Hz
+		TIM1->ARR = 2000;
+		HAL_TIM_Base_Start_IT(&TimHandle);
+		//Set timer 2 to 6s
+		TIM2->ARR = 6000;
+		//Start timer
+		HAL_TIM_Base_Start_IT(&TimBarrierHandle);
+		break;
+	}
 }
 //----------------------------------------------------------------
 void TimerITInit() {
@@ -207,11 +224,16 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	if (htim->Instance == TIM1) {
 		HAL_GPIO_TogglePin(GPIOI, GPIO_PIN_1);
 	}
-	if (htim->Instance == TIM2) {
+
+	if (htim->Instance == TIM2 && State == SECURING) {
+		//Skip first IRQ
 		if (start_click == 1) {
 			start_click = 0;
 			return;
 		}
+
+		//Reset first IRQ watcher flag
+		start_click = 1;
 		//Set state and print info
 		State = SECURED;
 		printf("Status: SECURED\n");
@@ -221,8 +243,26 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 		HAL_TIM_Base_Stop_IT(&TimHandle);
 		//Turn LED on constantly
 		HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1, 1);
-		//Switch on button
-		HAL_GPIO_DeInit(GPIOI, GPIO_PIN_11);
+		//Switch on button again
+		HAL_GPIO_Init(GPIOI, &Button);
+	}
+
+	if (htim->Instance == TIM2 && State == OPENING) {
+		//Skip first IRQ
+		if (start_click == 1) {
+			start_click = 0;
+			return;
+		}
+
+		//Reset first IRQ watcher flag
+		start_click = 1;
+		//Set state and print info
+		State = OPEN;
+		printf("Status: OPEN\n");
+		//Stop barrier timer
+		HAL_TIM_Base_Stop_IT(&TimBarrierHandle);
+		//Set signalling back to 0.5Hz
+		TIM1->ARR = 1000;
 	}
 }
 //----------------------------------------------------------------

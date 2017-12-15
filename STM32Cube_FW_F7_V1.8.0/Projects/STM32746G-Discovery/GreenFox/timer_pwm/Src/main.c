@@ -73,6 +73,7 @@ GPIO_InitTypeDef Button;
 uint8_t start_click = 1;
 
 enum STATE {OPEN, SECURING, SECURED, OPENING};
+enum STATE State;
 
 //Function protypes
 void LEDInit();
@@ -131,6 +132,7 @@ int main(void)
   BSP_LED_Init(LED_GREEN);
   printf("Railroad crossing control software initializing...\n");
 
+  State = OPEN;
   printf("Status: OPEN\n");
 
 	  while (1)
@@ -170,6 +172,7 @@ void EXTI15_10_IRQHandler() {
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	//Button IT doings
 	printf("Train coming! Barrier closing... (5s)\n");
+	State = SECURING;
 	printf("Status: SECURING...\n");
 	//Change flashing to 1Hz
 	TIM1->ARR = 2000;
@@ -209,10 +212,17 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 			start_click = 0;
 			return;
 		}
+		//Set state and print info
+		State = SECURED;
 		printf("Status: SECURED\n");
+		printf("Train passing by...\n");
+		//Stop timers
 		HAL_TIM_Base_Stop_IT(&TimBarrierHandle);
 		HAL_TIM_Base_Stop_IT(&TimHandle);
+		//Turn LED on constantly
 		HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1, 1);
+		//Switch on button
+		HAL_GPIO_DeInit(GPIOI, GPIO_PIN_11);
 	}
 }
 //----------------------------------------------------------------

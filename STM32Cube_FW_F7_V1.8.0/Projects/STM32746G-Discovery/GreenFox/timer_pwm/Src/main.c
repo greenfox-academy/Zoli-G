@@ -67,8 +67,10 @@ static void CPU_CACHE_Enable(void);
 //Global variables
 UART_HandleTypeDef uart_handle;
 TIM_HandleTypeDef TimHandle;
+TIM_HandleTypeDef TimBarrierHandle;
 GPIO_InitTypeDef led;
 GPIO_InitTypeDef Button;
+uint8_t start_click = 1;
 
 //Function protypes
 void LEDInit();
@@ -80,6 +82,9 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
 void TimerITInit();
 void TIM1_UP_TIM10_IRQHandler();
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
+
+void TimerBarrierITInit();
+void TIM2_IRQHandler();
 
 void UARTInit();
 
@@ -119,6 +124,7 @@ int main(void)
   LEDInit();
   Button_IT_Init();
   TimerITInit();
+  TimerBarrierITInit();
 
   BSP_LED_Init(LED_GREEN);
   printf("Railroad crossing control software initializing...\n");
@@ -165,9 +171,10 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	printf("Status: SECURING...\n");
 	//Change flashing to 1Hz
 	TIM1->ARR = 2000;
-	HAL_Delay(5000);
-	printf("Status: SECURED\n");
-
+	//Switch off button
+	HAL_GPIO_DeInit(GPIOI, GPIO_PIN_11);
+	//Start another timer to count to 5s
+	HAL_TIM_Base_Start_IT(&TimBarrierHandle);
 }
 //----------------------------------------------------------------
 void TimerITInit() {
@@ -192,8 +199,44 @@ void TIM1_UP_TIM10_IRQHandler() {
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-    HAL_GPIO_TogglePin(GPIOI, GPIO_PIN_1);
+	if (htim->Instance == TIM1) {
+		HAL_GPIO_TogglePin(GPIOI, GPIO_PIN_1);
+	}
+	if (htim->Instance == TIM2) {
+		if (start_click == 1) {
+			start_click = 0;
+			return;
+		}
+		printf("Status: SECURED\n");
+		HAL_TIM_Base_Stop_IT(&TimBarrierHandle);
+		HAL_TIM_Base_Stop_IT(&TimHandle);
+		HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1, 1);
+	}
 }
+//----------------------------------------------------------------
+void TimerBarrierITInit() {
+
+	__HAL_RCC_TIM2_CLK_ENABLE();
+
+	TimBarrierHandle.Instance               = TIM2; //108Mhz
+	TimBarrierHandle.Init.Period            = 10000; // At 2kHz this takes 5s
+	TimBarrierHandle.Init.Prescaler         = 54000; // 108MHz / 54000 = 2000Hz
+	TimBarrierHandle.Init.ClockDivision     = TIM_CLOCKDIVISION_DIV1;
+	TimBarrierHandle.Init.CounterMode       = TIM_COUNTERMODE_UP;
+
+	HAL_TIM_Base_Init(&TimBarrierHandle);
+	//HAL_TIM_Base_Start_IT(&TimBarrierHandle);
+
+	HAL_NVIC_SetPriority(TIM2_IRQn, 0x0F, 0x00);
+	HAL_NVIC_EnableIRQ(TIM2_IRQn);
+}
+
+void TIM2_IRQHandler() {
+	HAL_TIM_IRQHandler(&TimBarrierHandle);
+}
+
+//void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+//}
 //----------------------------------------------------------------
 void UARTInit() {
 	uart_handle.Init.BaudRate   = 115200;

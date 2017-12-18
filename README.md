@@ -73,6 +73,9 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >47. Day - [Serial communication: I2C](https://github.com/greenfox-academy/Zoli-G/tree/master/week-10/day-2)
 >48. Day - [C++ 2nd Exam practice day](https://github.com/greenfox-academy/Zoli-G/tree/master/week-10/day-3)
 >49. Day - [STM32 & PC Project - day 1/2: Temperature logger with TC74 sensor](https://github.com/greenfox-academy/Zoli-G/tree/master/week-10/day-4%20Temp%20Logger%20Project)
->50. Day - [STM32 & PC Project - day 2/2: Temperature logger with TC74 sensor](https://github.com/greenfox-academy/Zoli-G/tree/master/week-10/day-4%20Temp%20Logger%20Project), Exam II  :memo:
+>50. Day - [STM32 & PC Project - day 2/2: Temperature logger with TC74 sensor](https://github.com/greenfox-academy/Zoli-G/tree/master/week-10/day-4%20Temp%20Logger%20Project), Exam II  :memo: :heavy_check_mark:
+
+## :date: Week-11 (18th Dec. - 22nd Dec.) - <i>LabVIEW week</i>
+>51. Day - [LabVIEW introduction and basic tasks]()
 ---
  :copyright: 2017 |  :zzz:oli

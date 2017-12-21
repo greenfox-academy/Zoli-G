@@ -76,6 +76,8 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >50. Day - [STM32 & PC Project - day 2/2: Temperature logger with TC74 sensor](https://github.com/greenfox-academy/Zoli-G/tree/master/week-10/day-4%20Temp%20Logger%20Project), Exam II  :memo: :heavy_check_mark:
 
 ## :date: Week-11 (18th Dec. - 22nd Dec.) - <i>LabVIEW week</i>
->51. Day - [LabVIEW introduction and basic tasks]()
+>51. Day - [LabVIEW introduction and basic tasks](https://github.com/greenfox-academy/Zoli-G/tree/master/week-11/day-1)
+>52. Day - [LabVIEW Reaction Game MR](https://github.com/greenfox-academy/Zoli-G/tree/master/week-11/day-2%263)
+>53. Day - [LabVIEW Temperature Program](https://github.com/greenfox-academy/Zoli-G/tree/master/week-11/day-4)
 ---
  :copyright: 2017 |  :zzz:oli

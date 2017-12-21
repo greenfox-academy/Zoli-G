@@ -77,10 +77,11 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 
 ## :date: Week-11 (18th Dec. - 22nd Dec.) - <i>LabVIEW week</i>
 >51. Day - [LabVIEW introduction and basic tasks](https://github.com/greenfox-academy/Zoli-G/tree/master/week-11/day-1)
->52-53. Day - [LabVIEW Reaction Game MR](https://github.com/greenfox-academy/Zoli-G/tree/master/week-11/day-2%263)
+>52 - 53. Day - [LabVIEW Reaction Game MR](https://github.com/greenfox-academy/Zoli-G/tree/master/week-11/day-2%263)
 >54. Day - [LabVIEW Temperature Program](https://github.com/greenfox-academy/Zoli-G/tree/master/week-11/day-4)
 >55. Day - [Last day before Christmas Break]()
 
 <h3 align="center">❄️ ⛄️ 🎅 🎄 🎁 🔔 Christmas time! 🔔 🎁 🎄 🎅 ⛄️ ❄️</h3>
+
 ---
  :copyright: 2017 |  :zzz:oli

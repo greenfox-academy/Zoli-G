@@ -84,7 +84,9 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 
 <h3 align="center">❄️ ⛄️ 🎅 🎄 🎁 🔔 Christmas time! 🔔 🎁 🎄 🎅 ⛄️ ❄️</h3>
 
-<h3 align="center">:warning: Project phase starting... :warning:</h3>
+<h3 align="center">:warning: Project phase starting: Drawing robot :warning:</h3>
+
+## :date: Week-12 (2nd Jan. - 6th Jan.) - <i>Project starting week</i>
 
 ---
  :copyright: 2017 |  :zzz:oli

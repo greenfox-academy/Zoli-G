@@ -84,7 +84,9 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 
 <h3 align="center">❄️ ⛄️ 🎅 🎄 🎁 🔔 Christmas time! 🔔 🎁 🎄 🎅 ⛄️ ❄️</h3>
 
-<h3 align="center">:warning: Project phase starting: [Drawing robot](https://github.com/greenfox-academy/Static-DrawingRobot) :warning:</h3>
+<h3 align="center">:warning: Project phase starting: Drawing robot :warning:</h3>
+
+[Drawing robot repository](https://github.com/greenfox-academy/Static-DrawingRobot)
 
 ## :date: Week-12 (2nd Jan. - 6th Jan.) - <i>Project starting week</i>
 >56. Day - `New Year's Eve`

@@ -84,9 +84,14 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 
 <h3 align="center">❄️ ⛄️ 🎅 🎄 🎁 🔔 Christmas time! 🔔 🎁 🎄 🎅 ⛄️ ❄️</h3>
 
-<h3 align="center">:warning: Project phase starting: Drawing robot :warning:</h3>
+<h3 align="center">:warning: Project phase starting: [Drawing robot](https://github.com/greenfox-academy/Static-DrawingRobot) :warning:</h3>
 
 ## :date: Week-12 (2nd Jan. - 6th Jan.) - <i>Project starting week</i>
+>56. Day - `New Year's Eve`
+>57. Day - Project themes decisions (...and not fighting over!), looking through project descriptions, Git branching
+>58. Day - Git branching workshop, Sub-project tasks distribution among team members (mine: LCD + C project skeleton)
+>59. Day - 
+>60. Day -
 
 ---
  :copyright: 2017 |  :zzz:oli

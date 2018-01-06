@@ -91,9 +91,16 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 ## :date: Week-12 (2nd Jan. - 6th Jan.) - <i>Project starting week</i>
 >56. Day - `New Year's Eve`
 >57. Day - Project themes decisions (...and not fighting over!), looking through project descriptions, Git branching
->58. Day - Git branching workshop, Sub-project tasks distribution among team members (mine: LCD + C project skeleton)
->59. Day - 
->60. Day -
+>58. Day - Git branching workshop, Sub-project tasks distribution among team members (mine: LCD + C project skeleton + stepper drive)
+>59. Day - Deep diving into stepper drive programming in C
+>60. Day - Stepper motor speed regulation by timer IRQ and period changing, UART communication, Limit switch, G-Code interpreter
+
+## :date: Week-13 (8th Jan. - 12th Jan.) - <i>Project week: stepper driving</i>
+>61. Day -
+>62. Day -
+>63. Day -
+>64. Day -
+>65. Day -
 
 ---
- :copyright: 2017 |  :zzz:oli
+:copyright: 2017 |  :zzz:oli

@@ -95,28 +95,28 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 >59. Day - Deep diving into stepper drive programming in C
 >60. Day - Stepper motor speed regulation by timer IRQ and period changing, UART communication, Limit switch, G-Code interpreter
 
-## Week-13 (8th Jan. - 12th Jan.) - <i>Project week: stepper driving</i>
+## :date: Week-13 (8th Jan. - 12th Jan.) - <i>Project week: stepper driving</i>
 61. Day - Stepper motor PWM driving (updated from IRQ), servo motor + limit switch operation + UART continued
 62. Day - Stepper motor speed regulation (PWM frequency changing) + servo + homing operation + UART
 63. Day - LCD GUI developing and main concept finished in 1 day, functions for servo, stepper driving
 64. Day - LCD GUI v2 developing (more interactive buttons + boot logo + time), circle iteration
 65. Day - New kinematic model introduced for point-to-point controlling, first implementation and debugging, house, circle drawing functions
 
-## Week-14 (15th Jan. - 19th Jan.) - <i>Project week: Point-to-point controlling</i>
+## :date: Week-14 (15th Jan. - 19th Jan.) - <i>Project week: Point-to-point controlling</i>
 66. Day - LCD second screen update for SD Card handling, Point-to-point controlling finished(!) and tested in absolute coord.system too.
 67. Day - UART - Gcode interpreter feature day 1/2, G02/G03 circular motion functions day 1/3
 68. Day - UART - Gcode interpreter feature day 2/2, G02/G03 circular motion functions day 2/3
 69. Day - G02/G03 circular motion functions day 3/3, Machine limit sensing (software), Sd Card day 1, UART Gcode Test day with success
 70. Day - G02/G03 circular motion functions testing, SD Card screen update
 
-## Week-15 (22nd Jan. - 26th Jan.) - <i>Project week: Code integration, G-code testing</i>
+## :date: Week-15 (22nd Jan. - 26th Jan.) - <i>Project week: Code integration, G-code testing</i>
 71. Day - SD Card reading file list and export it to screen, reading from text files and send contents to UART
 72. Day - Integrating SD Card sub-project to project, updatind LCD screen for selecting files and executing drawing operations
 73. Day - Further testing motion functions, arc-function update: fill exeption bug
 74. Day - Generating and testing various gcodes from drawings
 75. Day - Final testing for demonstration
 
-## Week-16 (29th Jan. - 2nd Feb.) - <i>Project week: Finalization & Final exam preparation</i>
+## :date: Week-16 (29th Jan. - 2nd Feb.) - <i>Project week: Finalization & Final exam preparation</i>
 76. Day - CAD drawing for GFA logo, Gcode generation, testing, code cleaning, meeting with Scrum M + P.O. 
 77. Day - Switching to double variables, testing, debugging on UART
 78. Day - Implementing acceleration, putting project together, massive testing again...

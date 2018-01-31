@@ -78,6 +78,29 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 ## :date: Week-11 (18th Dec. - 22nd Dec.) - <i>LabVIEW week</i>
 >51. Day - [LabVIEW introduction and basic tasks](https://github.com/greenfox-academy/Zoli-G/tree/master/week-11/day-1)
 >52. Day - [LabVIEW Reaction Game MR](https://github.com/greenfox-academy/Zoli-G/tree/master/week-11/day-2%263)
->53. Day - [LabVIEW Temperature Program](https://github.com/greenfox-academy/Zoli-G/tree/master/week-11/day-4)
+>53. Day - LabVIEW Reaction Game MR
+>54. Day - [LabVIEW Temperature Program](https://github.com/greenfox-academy/Zoli-G/tree/master/week-11/day-4)
+>55. Day - [Last day before Christmas Break]()
+
+<h3 align="center">❄️ ⛄️ 🎅 🎄 🎁 🔔 Christmas time! 🔔 🎁 🎄 🎅 ⛄️ ❄️</h3>
+
+<h3 align="center">:warning: Project phase starting: Drawing robot :warning:</h3>
+
+[Drawing robot repository](https://github.com/greenfox-academy/Static-DrawingRobot)
+
+## :date: Week-12 (2nd Jan. - 6th Jan.) - <i>Project starting week</i>
+>56. Day - `New Year's Eve`
+>57. Day - Project themes decisions (...and not fighting over!), looking through project descriptions, Git branching
+>58. Day - Git branching workshop, Sub-project tasks distribution among team members (mine: LCD + C project skeleton + stepper drive)
+>59. Day - Deep diving into stepper drive programming in C
+>60. Day - Stepper motor speed regulation by timer IRQ and period changing, UART communication, Limit switch, G-Code interpreter
+
+## :date: Week-13 (8th Jan. - 12th Jan.) - <i>Project week: stepper driving</i>
+>61. Day -
+>62. Day -
+>63. Day -
+>64. Day -
+>65. Day -
+
 ---
- :copyright: 2017 |  :zzz:oli
+:copyright: 2017 |  :zzz:oli

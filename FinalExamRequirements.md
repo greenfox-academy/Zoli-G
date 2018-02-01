@@ -20,7 +20,7 @@ The student, on their own, is able to:
 
 
  -  Use the key elements of C language:
-     -  Variables (local, global, const, static, extern): `in function | over main() | not changeable | keep its value | use var in other file functions`
+     -  Variables (local, global, const, static, extern): `int-uint, short, long, float, double, char, pointer, enum, type, struct, union` `in function | over main() | not changeable | keep its value | use var in other file functions`
      -  Expressions and control flow (operators, if/else, switch/case): `arithmetic: +-*/ assign: = logic: >= <= < > == != && || bitwise: | & < >, comma: , ternary: ? : macro: #`
      `if (logic exp) {do stuff} else if (logic exp2) {do stuff} else {do stuff}`
      `switch (num variable) {case X: ...; break; case Y: ...; break; default: ...;}`
@@ -31,11 +31,11 @@ The student, on their own, is able to:
      -  Preprocessor macros (include, ifdef, define, etc.): `include: link header files | ifdef: inside header file the contents do not gets included if already included | define: name constanat values`
  -  Use basic standard C libraries
      -  stdint.h types: `integer types: 8-16-32-64 bits + macros for max,min values etc.`
-     -  string.h functions (memcpy, memset, strcat, strcmp, strcpy, strstr, strtok): `memcpy: copies given bytes from param1 to param2 | memset: sets the first x bytes to the given value of an array | strcat: copies to param1 the string in param2 | strcmp: compares two strings, 0 if identical | strcpy: copy a string to param1 from param2 | strstr: Returns a pointer to the first occurrence of str2 in str1 | strtok: slice up string by delimiters`
-     -  stdio.h functions (fopen, fread, fwrite, fclose, gets, puts, scanf, printf): `fopen ("myfile.txt","w") - opens file with the given access | fread (buffer,1,lSize,pFile) - reads given no of bytes from file to a buffer | fwrite (buffer , sizeof(char), sizeof(buffer), pFile) - write given buffer to file | gets(buffer) - get a string from input to buffer | puts(buffer) - writes buffer to output | scanf ("%d",&i) - get data from input | printf - print data in format to output`     
+     -  string.h functions (memcpy, memset, strcat, strcmp, strcpy, strstr, strtok): `memcpy: copies given bytes from param2 to param1 | memset: sets the first x bytes to the given value of an array | strcat: copies to param1 the string in param2 | strcmp: compares two strings, 0 if identical | strcpy: copy a string to param1 from param2 | strstr: Returns a pointer to the first occurrence of str2 in str1 | strtok: slice up string by delimiters`
+     -  stdio.h functions (fopen, fread, fwrite, fclose, gets, puts, scanf, printf): `fopen("myfile.txt","w") - opens file with the given access | fread(buffer,1,lSize,pFile) - reads given no of bytes from file to a buffer | fwrite(buffer, sizeof(char), sizeof(buffer), pFile) - write given buffer to file | gets(buffer) - get a string from input to buffer | puts(buffer) - writes buffer to output | scanf("%d",&i) - get data from input | printf - print data in format to output`     
  -  Use C++
-     -  Class, inheritance
-     -  Vector, polymorphism
+     -  Class, inheritance: `class is a blueprint of the object, an object has various attributes/different types of variables` `Inheritence: base class -> derived class with overwriting functions`
+     -  Vector, polymorphism: `advanced type of array, with built-in functions` `Polym: `
      -  Operator  
  -  Determine the output of expressions
  -  Handle errors: `try {} catch () {}`

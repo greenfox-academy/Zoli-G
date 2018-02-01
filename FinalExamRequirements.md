@@ -73,7 +73,7 @@ The student, on their own, is able to:
 For the final exam, please prepare links to your GitHub repository for each of these topics:
 
   - Your impact on your project team [PWM](https://github.com/greenfox-academy/Static-DrawingRobot/blob/Development-Zoli/DrawingRobot/src/PWM.c), [Stepper](https://github.com/greenfox-academy/Static-DrawingRobot/blob/Development-Zoli/DrawingRobot/src/STEPPER.c), [GPIO](https://github.com/greenfox-academy/Static-DrawingRobot/blob/Development-Zoli/DrawingRobot/src/GPIO.c), [LCD GUI](https://github.com/greenfox-academy/Static-DrawingRobot/blob/Development-Zoli/DrawingRobot/src/LCD_GUI.c)
-  - Something that contains multiple uC peripherals `see above`
+  - Something that contains multiple uC peripherals `see above: GPIO, Timer, Timer-IT, Timer-IT-PWM, LCD, TS, SD-Card, SDRAM, FLASH`
    - Control loop project for example [PI fan control](https://github.com/greenfox-academy/Zoli-G/tree/master/week-09/day-4%265/PI_FAN_controller)
   - Something that contains custom struct definitions and command parsing `see below todo-app`
    - ToDo app for example [ToDo-App](https://github.com/greenfox-academy/Zoli-G/tree/master/week-04/day4%265%20-%20ToDoApp)

@@ -35,12 +35,12 @@ The student, on their own, is able to:
      -  stdio.h functions (fopen, fread, fwrite, fclose, gets, puts, scanf, printf): `fopen("myfile.txt","w") - opens file with the given access | fread(buffer,1,lSize,pFile) - reads given no of bytes from file to a buffer | fwrite(buffer, sizeof(char), sizeof(buffer), pFile) - write given buffer to file | gets(buffer) - get a string from input to buffer | puts(buffer) - writes buffer to output | scanf("%d",&i) - get data from input | printf - print data in format to output`     
  -  Use C++
      -  Class, inheritance: `class is a blueprint of the object, an object has various attributes/different types of variables` `Inheritence: base class -> derived class with overwriting functions`
-     -  Vector, polymorphism: `advanced type of array, with built-in functions` `Polym: `
-     -  Operator  
+     -  Vector, polymorphism: `advanced type of array, with built-in functions` `Polym: base class pointer acting on all derived classes -> different results & function codes`
+     -  Operator overloading: `Defining new functions behind the defined operators`
  -  Determine the output of expressions
  -  Handle errors: `try {} catch () {}`
  -  Explain their own code
- -  Separate functionalities to different files
+ -  Separate functionalities to different files `Dividing codes into separate c&h files for clean and understandable programming`
  -  Include and call 3rd party libraries in their code
 
 

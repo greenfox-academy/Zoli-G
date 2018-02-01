@@ -38,16 +38,16 @@ The student, on their own, is able to:
      -  Vector, polymorphism: `advanced type of array, with built-in functions` `Polym: base class pointer acting on all derived classes -> different results & function codes`
      -  Operator overloading: `Defining new functions behind the defined operators`
  -  Determine the output of expressions
- -  Handle errors: `try {} catch () {}`
+ -  Handle errors: `try {...codes...} catch (tye errorvarname) {...printout error descr...}`
  -  Explain their own code
  -  Separate functionalities to different files `Dividing codes into separate c&h files for clean and understandable programming`
- -  Include and call 3rd party libraries in their code
+ -  Include and call 3rd party libraries in their code `catch2, logo-array, sdcard`
 
 
  -  Understand basic electronic schematics:
-     -  Voltage divider (output voltage calculation)
+     -  Voltage divider (output voltage calculation) `R1 & R2 -> UR1 = U * R1 / (R1 + R2)`
      -  LED current limiting resistor calculation
- -  Explain how does open-loop and closed-loop control works
+ -  Explain how does open-loop and closed-loop control works `OL: command value, no measurement, CL: command value -> measure -> error function -> modified command value`
  -  Convert binary, decimal and hexadecimal numbers into each other
  -  Use a microcontroller:
      -  Know what are the differences between PC and uC: `PC is running an OS and capable to work universally, a uC is doing what the actual program does`

@@ -12,14 +12,11 @@ uint8_t* make_union_array(uint8_t a[], uint8_t sizea, uint8_t b[], uint8_t sizeb
 
 void main() {
     //Variables
+    uint8_t sizes = 0;
     uint8_t num_array_a[5] = {0, 45, 6, 2, 5};
     uint8_t num_array_b[4] = {1, 23, 11, 7};
 
-    uint8_t* p;
-
-    p = make_union_array(num_array_a, 5, num_array_b, 4);
-
-    printf("%d", *p);
+    make_union_array(num_array_a, 5, num_array_b, 4);
 }
 
 uint8_t* make_union_array(uint8_t a[], uint8_t sizea, uint8_t b[], uint8_t sizeb) {

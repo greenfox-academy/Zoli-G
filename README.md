@@ -120,6 +120,8 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 76. Day - CAD drawing for GFA logo, Gcode generation, testing, code cleaning, meeting with Scrum M + P.O. 
 77. Day - Switching to double variables, testing, debugging on UART
 78. Day - Implementing acceleration, putting project together, massive testing again...
+79. Day - Adding 1-click GFA logo drawing button to HMI, added welcome screen animation (same logo), implemented drawing progress indicator, preparing for exam
+80. Day - Final Exam, some functional testing... and hanging around.
 
 ---
 :copyright: 2017 |  :zzz:oli

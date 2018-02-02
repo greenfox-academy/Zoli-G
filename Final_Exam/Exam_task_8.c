@@ -16,7 +16,7 @@ void main() {
     uint8_t num_array_a[5] = {0, 45, 6, 2, 5};
     uint8_t num_array_b[4] = {1, 23, 11, 7};
 
-    make_union_array(num_array_a, 5, num_array_b, 4);
+    make_union_array(num_array_a, sizeof(num_array_a), num_array_b, sizeof(num_array_b));
 }
 
 uint8_t* make_union_array(uint8_t a[], uint8_t sizea, uint8_t b[], uint8_t sizeb) {

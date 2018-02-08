@@ -121,7 +121,14 @@ Hardware programming course (10/2017 - 02/2018) | [Static-Pallida]
 77. Day - Switching to double variables, testing, debugging on UART
 78. Day - Implementing acceleration, putting project together, massive testing again...
 79. Day - Adding 1-click GFA logo drawing button to HMI, added welcome screen animation (same logo), implemented drawing progress indicator, preparing for exam
-80. Day - Final Exam, some functional testing... and hanging around.
+80. Day - Final Exam, some functional testing... and hanging around. :memo:  :heavy_check_mark:
+
+## :date: Week-17 (5th Feb. - 9th Feb.) - <i>Project week: Final week</i>
+81. Day - Final training (team-games mostly), new homeing function
+82. Day - :smile:
+83. Day - Drawing progress indicator added to the screen (%), Company visit (ProDSP)
+84. Day - Company visit (Evosoft), code merging (not me) and :pizza:
+85. Day - Preparation for final demo, and final demo (from 14-15:00)
 
 ---
 :copyright: 2017 |  :zzz:oli
